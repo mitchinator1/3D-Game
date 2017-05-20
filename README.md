@@ -1,4 +1,4 @@
 # 3D-Game
 
 Link to view test.
-https://rawgit.com/mitchinator1/3D-Game/master/test.html
+https://raw.githack.com/mitchinator1/3D-Game/master/test.html
