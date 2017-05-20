@@ -4,6 +4,8 @@ var geometry, material, mesh;
 init();
 animate();
 
+document.write('foo');
+
 function init() {
 
 	scene = new THREE.Scene();
