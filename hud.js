@@ -41,7 +41,7 @@ var HUD = {
             this.hearts = [];
             for (i = 0; i < this.heartCount; i += 1) {
                 this.hearts[i] = new Image();
-                this.hearts[i].src = 'sprites/heart.png';
+                this.hearts[i].src = 'sprites/fullHeart.png';
             }
         }
     },
