@@ -8,7 +8,7 @@ var Player = {
         player.position.z = 1;
         player.castShadow = true;
         player.receiveShadow = true;
-        
+                
     }
     
 };

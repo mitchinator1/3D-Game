@@ -76,6 +76,11 @@ var Input =  {
             maxY = dungeonGrid.length;
             padX = 3;
             padY = 4;
+        } else if (mapLocation === "Dungeon2") {
+            maxX = dungeon2Grid[0].length - 1;
+            maxY = dungeon2Grid.length;
+            padX = 3;
+            padY = 4;
         }
 
         timeDelta = (ts - lastTs) / 1000;
