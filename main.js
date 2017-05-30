@@ -37,6 +37,22 @@ var bCameraHelper = new THREE.Mesh(playerGeo, playerMat);
 bCameraHelper.position.z = 1.5;
 scene.add(rCameraHelper, lCameraHelper, tCameraHelper, bCameraHelper);
 */
+
+var lastCalledTime;
+var fps;
+
+function requestAnimFrame() {
+
+  if(!lastCalledTime) {
+     lastCalledTime = Date.now();
+     fps = 0;
+     return;
+  }
+  delta = (Date.now() - lastCalledTime)/1000;
+  lastCalledTime = Date.now();
+  fps = 1/delta;
+} 
+
 var render = function (ts) {
     /*
     rCameraHelper.position.x = player.position.x + 6;
@@ -48,6 +64,11 @@ var render = function (ts) {
     bCameraHelper.position.x = player.position.x;
     bCameraHelper.position.y = player.position.y - 8;
     */
+    
+    requestAnimFrame()
+    ctx.fillStyle = "Black";
+    ctx.font = "normal 14pt Arial";
+    ctx.fillText(fps + " fps", 10, 10);
     requestAnimationFrame(render);
     
     input.movement(ts, grid.gridArray, grid.location, mainCam);
