@@ -26,7 +26,7 @@ var hearts = [], scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer()
     
     scene.add(player, pointLight, ambLight, plane);
 }());
-
+/*
 var rCameraHelper = new THREE.Mesh(playerGeo, playerMat);
 rCameraHelper.position.z = 1.5;
 var lCameraHelper = new THREE.Mesh(playerGeo, playerMat);
@@ -36,9 +36,9 @@ tCameraHelper.position.z = 1.5;
 var bCameraHelper = new THREE.Mesh(playerGeo, playerMat);
 bCameraHelper.position.z = 1.5;
 scene.add(rCameraHelper, lCameraHelper, tCameraHelper, bCameraHelper);
-
+*/
 var render = function (ts) {
-    
+    /*
     rCameraHelper.position.x = player.position.x + 6;
     rCameraHelper.position.y = player.position.y;
     lCameraHelper.position.x = player.position.x - 6;
@@ -47,7 +47,7 @@ var render = function (ts) {
     tCameraHelper.position.y = player.position.y + 8;
     bCameraHelper.position.x = player.position.x;
     bCameraHelper.position.y = player.position.y - 8;
-    
+    */
     requestAnimationFrame(render);
     
     input.movement(ts, grid.gridArray, grid.location, mainCam);
