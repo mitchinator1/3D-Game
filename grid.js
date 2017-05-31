@@ -119,16 +119,12 @@ this.render();
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                    this.setLocation("Dungeon", true);
-                    //player.position.x = 8;
-                    //player.position.y = 2;
+                    this.location = "Dungeon";
+                    this.setLocation(true);
                 } else if (this.location === "Dungeon") {
-                    this.setLocation("Overworld", true);
-                    //player.position.x = 18;
-                    //player.position.y = 10;
+                    this.location = "Overworld";
+                    this.setLocation(true);
                 }
-                //camera.control.set(player.position.x, 0);
-                //storage.save();
                 this.update = true;
             }
             
@@ -137,15 +133,12 @@ this.render();
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                    this.setLocation("Dungeon2", true);
-                    //player.position.x = 8;
-                    //player.position.y = 2;
+                    this.location = "Dungeon2";
+                    this.setLocation(true);
                 } else if (this.location === "Dungeon2") {
-                    this.setLocation("Overworld", true);
-                    //player.position.x = 26;
-                    //player.position.y = 10;
+                    this.location = "Overworld";
+                    this.setLocation(true);
                 }
-                //camera.control.set(player.position.x, 0);
                 this.update = true;
             }
             
