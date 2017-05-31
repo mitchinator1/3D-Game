@@ -6,7 +6,7 @@ var overworldGrid, dungeonGrid, dungeon2Grid,
 
 var Grid = {
     
-    init: function (mapLocation) {
+    init: function () {
         
         this.gridArray = [];
         this.setLocation(this.location, true);
@@ -50,10 +50,10 @@ var Grid = {
             camera.control.set(player.position.x, 0);
             storage.save();
         }
-
+this.render();
     },
     
-    render: function (location) {
+    render: function () {
         var i, j, type, index = 0;
     
         if (this.update) {
