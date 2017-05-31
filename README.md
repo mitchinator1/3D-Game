@@ -36,3 +36,8 @@ grid =</br>
  [1, 1, 1, 1, 1]]
  
  The issue that I'll run into is in grid[4][4]. By the default I've set up, this square <i>will</i> be set as a boundary, even though we can see that grid[2][7] is the real boundary, and the camera will flow much easier having that one max boundary set.
+ 
+max x = longest array within array.
+min x = first value in array in any case.
+max y = last array within array.
+min y = first value in array
