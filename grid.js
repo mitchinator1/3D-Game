@@ -25,6 +25,9 @@ var Grid = {
             } else if (this.previousLocation === "Dungeon2") {
                 player.position.x = 26;
                 player.position.y = 10;
+            } else {
+                player.position.x = 12;
+                player.position.y = 8;
             }
 
         } else if (this.location === "Dungeon" && update) {
