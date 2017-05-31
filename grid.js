@@ -9,7 +9,7 @@ var Grid = {
     init: function () {
         
         this.gridArray = [];
-        this.setLocation(this.location, true);
+        this.setLocation(true);
 
     },
     
