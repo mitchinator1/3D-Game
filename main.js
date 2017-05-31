@@ -17,6 +17,7 @@ var hearts = [], scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer()
     lighting.init();
     hud.init();
     input.init();
+    
     grid.init();
     
     grid.update = true;
@@ -64,16 +65,11 @@ var render = function (ts) {
     bCameraHelper.position.x = player.position.x;
     bCameraHelper.position.y = player.position.y - 8;
     */
-    
-    requestAnimFrame()
-    ctx.fillStyle = "Black";
-    ctx.font = "normal 14pt Arial";
-    ctx.fillText(fps + " fps", 10, 10);
     requestAnimationFrame(render);
     
     input.movement(ts, grid.gridArray, grid.location, mainCam);
     
-    grid.render(grid.location);
+    //grid.render();
     
     renderer.render(scene, mainCam);
     
