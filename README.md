@@ -10,11 +10,11 @@ Set up boundary blocks, to avoid confusion with regular blocks and camera being 
 Example:
 </br>
 grid =</br>
-[[1, 1, 1, 1, 1],
- [1, 0, 0, 0, 1],
- [1, 0, 0, 0, 1],
- [1, 0, 0, 0, 1],
- [1, 0, 0, 0, 1],
+[[1, 1, 1, 1, 1],</br>
+ [1, 0, 0, 0, 1],</br>
+ [1, 0, 0, 0, 1],</br>
+ [1, 0, 0, 0, 1],</br>
+ [1, 0, 0, 0, 1],</br>
  [1, 1, 1, 1, 1]]
  
  i = y and j = x </br>
@@ -25,6 +25,14 @@ grid =</br>
  Only potential issue is with odd shaped rooms. Avoidable for y coordinate by having <b>only</b> first and last row have boundarys.
  Issue may arise with different column numbers.
  
- for example:
+for example:
+</br>
+grid =</br>
+[[1, 1, 1, 1, 1],</br>
+ [1, 0, 0, 0, 1, 1, 1],</br>
+ [1, 0, 0, 0, 0, 0, 0, 1],</br>
+ [1, 0, 0, 0, 1, 1, 1],</br>
+ [1, 0, 0, 0, 1],</br>
+ [1, 1, 1, 1, 1]]
  
- test
+ The issue that I'll run into is in grid[4][4]. By the default I've set up, this square <i>will</i> be set as a boundary, even though we can see that grid[2][7] is the real boundary, and the camera will flow much easier having that one max boundary set.
