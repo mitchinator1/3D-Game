@@ -1,4 +1,4 @@
-var hearts = [], scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
+var scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
     hud = Object.create(HUD), player = Object.create(Player), input = Object.create(Input),
     storage = Object.create(Storage), grid = Object.create(Grid), camera = Object.create(Camera), lighting = Object.create(Lighting), mainCam, pointLight, ambLight, 
     canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"),
@@ -20,7 +20,7 @@ var hearts = [], scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer()
     
     grid.init();
     
-    grid.update = true;
+    //grid.update = true;
     
     plane = new THREE.Mesh(planeGeo, planeMat);
     plane.receiveShadow = true;
@@ -38,7 +38,7 @@ var bCameraHelper = new THREE.Mesh(playerGeo, playerMat);
 bCameraHelper.position.z = 1.5;
 scene.add(rCameraHelper, lCameraHelper, tCameraHelper, bCameraHelper);
 */
-
+/*
 var lastCalledTime;
 var fps;
 
@@ -53,7 +53,7 @@ function requestAnimFrame() {
   lastCalledTime = Date.now();
   fps = 1/delta;
 } 
-
+*/
 var render = function (ts) {
     /*
     rCameraHelper.position.x = player.position.x + 6;
@@ -65,7 +65,7 @@ var render = function (ts) {
     bCameraHelper.position.x = player.position.x;
     bCameraHelper.position.y = player.position.y - 8;
     */
-    requestAnimationFrame(render);
+    
     
     input.movement(ts, grid.gridArray, grid.location, mainCam);
     
@@ -75,6 +75,8 @@ var render = function (ts) {
     
     hud.refresh();
     hud.displayInventory();
+    
+    requestAnimationFrame(render);
     
 };
 
