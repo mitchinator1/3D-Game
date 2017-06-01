@@ -67,6 +67,7 @@ var Grid = {
         camera.control.set(player.position.x, 0);
         storage.save();
         this.render();
+        this.update = true;
             
     },
     
