@@ -77,7 +77,11 @@ var Grid = {
             this.update = false;
             this.gridArray = [];
 
+            camera.maxY = (this.currentGrid.length - 1) * blockD;
             for (i = 0; i < this.currentGrid.length; i += 1) {
+                if ((this.currentGrid[i].length - 1) * blockW > camera.maxX) {
+                    camera.maxX = (this.currentGrid[i].length - 1) * blockW;
+                }
                 for (j = 0; j < this.currentGrid[i].length; j += 1) {
                     type = this.currentGrid[i][j];
                     this.add(index, i * blockD, j * blockW, type);
