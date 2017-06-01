@@ -92,8 +92,8 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.x -= movementSpeed;
             }
-            //if (player.position.x < blockW * (maxX - padX) || grid.hitDetect()) {
-            if (player.position.x < camera.maxX * padX || grid.hitDetect()) {
+            //if (player.position.x < blockW * (maxX - padX) || grid.hitDetect()) { grid.length - 1
+            if (player.position.x < camera.maxX - (padX * blockW) || grid.hitDetect()) {
                 camera.control.move(-movementSpeed, 0);
             }
             if (player.position.x < camera.minX * padX || grid.hitDetect()) {
