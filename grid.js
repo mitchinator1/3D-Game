@@ -14,24 +14,26 @@ var Grid = {
 
     },
     
-    setLocation: function (update) {
-        //this.location = mapLocation;
+    setLocation: function (mapLocation) {
+        this.location = mapLocation;
         
-        if (this.location === "Overworld" && update) {
+        if (this.location === "Overworld") {
             this.currentGrid = overworldGrid;
             
             if (this.previousLocation === "Dungeon") {
                 player.position.x = 18;
                 player.position.y = 10;
-            } else if (this.previousLocation === "Dungeon2") {
+            }
+            if (this.previousLocation === "Dungeon2") {
                 player.position.x = 26;
                 player.position.y = 10;
-            } else {
+            } 
+            if (this.previousLocation === "") {
                 player.position.x = 12;
                 player.position.y = 8;
             }
 
-        } else if (this.location === "Dungeon" && update) {
+        } else if (this.location === "Dungeon") {
             this.currentGrid = dungeonGrid;
             
             if (this.previousLocation === "Overworld") {
@@ -39,7 +41,7 @@ var Grid = {
                 player.position.y = 2;
             }
 
-        } else if (this.location === "Dungeon2" && update) {
+        } else if (this.location === "Dungeon2") {
             this.currentGrid = dungeon2Grid;
             
             if (this.previousLocation === "Overworld") {
@@ -49,12 +51,12 @@ var Grid = {
 
         }
         
-        if (update) {
-            camera.transition.fadeIn(ctx);
-            camera.control.set(player.position.x, 0);
-            storage.save();
-        }
-this.render();
+        camera.transition.fadeIn(ctx);
+        camera.control.set(player.position.x, 0);
+        storage.save();
+        this.render();
+        id;
+            
     },
     
     render: function () {
