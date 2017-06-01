@@ -40,6 +40,11 @@ var Grid = {
                 player.position.x = 8;
                 player.position.y = 2;
             }
+            if (this.previousLocation === "") {
+                player.position.x = 12;
+                player.position.y = 8;
+            }
+            
 
         } else if (this.location === "Dungeon2") {
             this.currentGrid = dungeon2Grid;
@@ -47,6 +52,10 @@ var Grid = {
             if (this.previousLocation === "Overworld") {
                 player.position.x = 8;
                 player.position.y = 2;
+            }
+            if (this.previousLocation === "") {
+                player.position.x = 12;
+                player.position.y = 8;
             }
 
         }
@@ -66,7 +75,7 @@ var Grid = {
             for (type in this.gridArray) {
                 scene.remove(this.gridArray[type]);
             }
-
+            this.update = false;
             this.gridArray = [];
 
             for (i = 0; i < this.currentGrid.length; i += 1) {
@@ -77,8 +86,6 @@ var Grid = {
                 }
             }
         }
-        this.update = false;
-        
     },
     
     add: function (index, i, j, type) {
