@@ -10,7 +10,7 @@ var Grid = {
         
         this.gridArray = [];
         this.update = true;
-        this.setLocation(true);
+        this.setLocation(this.location);
 
     },
     
