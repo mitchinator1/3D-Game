@@ -16,6 +16,7 @@ var Grid = {
     
     setLocation: function (mapLocation) {
         this.location = mapLocation;
+        console.log(this.location, mapLocation);
         
         if (this.location === "Overworld") {
             this.currentGrid = overworldGrid;
