@@ -16,7 +16,7 @@ var Grid = {
     
     setLocation: function (mapLocation) {
         this.location = mapLocation;
-        console.log(this.location, mapLocation, 'foo');
+        console.log(this.location, 'foo');
         
         if (this.location === "Overworld") {
             this.currentGrid = overworldGrid;
@@ -59,6 +59,8 @@ var Grid = {
                 player.position.y = 8;
             }
 
+        } else {
+            this.currentGrid = overworldGrid;
         }
         
         camera.transition.fadeIn(ctx);
