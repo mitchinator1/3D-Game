@@ -127,10 +127,8 @@ var Grid = {
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                    //this.location = "Dungeon";
                     this.setLocation("Dungeon");
                 } else if (this.location === "Dungeon") {
-                    //this.location = "Overworld";
                     this.setLocation("Overworld");
                 }
                 this.update = true;
@@ -141,10 +139,8 @@ var Grid = {
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                   // this.location = "Dungeon2";
                     this.setLocation("Dungeon2");
                 } else if (this.location === "Dungeon2") {
-                    //this.location = "Overworld";
                     this.setLocation("Overworld");
                 }
                 this.update = true;
