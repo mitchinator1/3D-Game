@@ -12,7 +12,7 @@ var Storage = {
     load: function () {
         hud.heartCount = parseInt(localStorage.getItem("hud.heartCount")) || 5;
         grid.location = localStorage.getItem("grid.location") || "Overworld";
-        grid.previousLocation = localStorage.getItem("grid.previousLocation");
+        grid.previousLocation = localStorage.getItem("grid.previousLocation") || "";
     }
     
 };
