@@ -1,10 +1,15 @@
-var scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
-    canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"),
+var THREE, HUD, Player, Input, Grid, Camera, Lighting, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
+    canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"), requestAnimationFrame,
     hud = Object.create(HUD), player = Object.create(Player), input = Object.create(Input), storage = Object.create(Storage), grid = Object.create(Grid), camera = Object.create(Camera), lighting = Object.create(Lighting),
     mainCam, pointLight, ambLight,
     planeGeo, planeMat, plane;
 
+//scene.fog = new THREE.Fog(0x000000, 0.015, 100);
+//scene.fog = new THREE.FogExp2( 0x000000, 0.045 );
+
 (function init() {
+    'use strict';
+    
     renderer.shadowMap.enabled = true;
     renderer.setSize(900, 700);
     document.body.appendChild(renderer.domElement);
@@ -14,8 +19,8 @@ var scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
     player.init();
     player.controllable = true;
     
-    camera.init("mainCam", player.position.x, 10, 15);
-    lighting.init();
+    camera.init("mainCam", 10, 15);
+    lighting.init(45);
     hud.init();
     input.init();
     
@@ -25,27 +30,16 @@ var scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
     plane.receiveShadow = true;
     
     scene.add(player, pointLight, ambLight, plane);
+    
 }());
 
-var rCameraHelper = new THREE.Mesh(playerGeo, playerMat);
-rCameraHelper.position.z = 1.5;
-var tCameraHelper = new THREE.Mesh(playerGeo, playerMat);
-tCameraHelper.position.z = 1.5;
-scene.add(rCameraHelper, tCameraHelper);
-
 var render = function (ts) {
-    
-    rCameraHelper.position.x = player.position.x + 6;
-    rCameraHelper.position.y = player.position.y;
-    tCameraHelper.position.x = player.position.x;
-    tCameraHelper.position.y = player.position.y + 8;
-    
-    input.movement(ts, grid.gridArray, grid.location, mainCam);
+    'use strict';
     
     renderer.render(scene, mainCam);
-    
     hud.refresh();
-    hud.displayInventory();
+    
+    input.movement(ts, mainCam);
     
     requestAnimationFrame(render);
     

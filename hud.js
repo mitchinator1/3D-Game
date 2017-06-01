@@ -3,6 +3,8 @@ var mainCam, THREE, ctx, canvas, i;
 var HUD = {
     
     init: function () {
+        'use strict';
+        
         this.showInventory = false;
         this.showHud = true;
         this.hearts = [];
@@ -38,6 +40,8 @@ var HUD = {
         if (this.refreshScreen) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+        
+        this.displayInventory();
     },
     
     health: function (update, count) {

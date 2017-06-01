@@ -1,4 +1,4 @@
-var overworldGrid, dungeonGrid, hud, input, hitDetect, e, player, blockW, blockD, camera, grid, pointLight, controllable, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false;
+var hud, input, e, player, blockW, blockD, camera, grid, pointLight, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false;
 
 var Input =  {
 
@@ -65,22 +65,16 @@ var Input =  {
         }
     },
     
-    movement: function (ts, gridArray, mapLocation, cam) {
-        var maxX, padX, maxY, padY;
+    movement: function (ts, cam) {
+        var padX, padY;
     
         if (grid.location === "Overworld") {
-            maxX = overworldGrid.length - 1;
-            maxY = overworldGrid[0].length;
             padX = 4;
             padY = 5;
         } else if (grid.location === "Dungeon") {
-            maxX = dungeonGrid[0].length - 1;
-            maxY = dungeonGrid.length;
             padX = 3;
             padY = 4;
         } else if (grid.location === "Dungeon2") {
-            maxX = dungeon2Grid[0].length - 1;
-            maxY = dungeon2Grid.length;
             padX = 3;
             padY = 4;
         }
@@ -163,34 +157,40 @@ var Input =  {
         }
 
         if (input.LArrowKey) {
-            cam.rotation.z += 0.01;
+            cam.rotation.y += 0.01;
         }
 
         if (input.RArrowKey) {
-            cam.rotation.z -= 0.01;
+            cam.rotation.y -= 0.01;
         }
 
         if (input.UArrowKey) {
             pointLight.position.y += 0.2;
             pointLight.position.z -= 0.1;
+            
             if (hud.heartCount < 20) {
                 hud.health(true, 1);
             }
+            
         }
 
         if (input.DArrowKey) {
             pointLight.position.y -= 0.2;
             pointLight.position.z += 0.1;
+            
             if (hud.heartCount > 4) {
                 hud.health(true, -1);
             }
+            
         }
 
         if (input.QKey && hud.refreshScreen) {
             camera.transition.fadeIn(ctx);
         }
+        
         //Inventory switch on E Key
         if (input.EKey && !ESwitch) {
+            
             if (!hud.showInventory) {
                 hud.showInventory = true;
                 player.controllable = false;
@@ -200,9 +200,11 @@ var Input =  {
             }
             ESwitch = true;
         }
+        
         if (!input.EKey && ESwitch) {
             ESwitch = false;
         }
+        
     }
     
 };

@@ -2,7 +2,7 @@ var overworldGrid, dungeonGrid, dungeon2Grid,
     entryX, entryY, player,
     blockW, blockD,
     blockGeos, blockMats,
-    THREE, scene, camera, ctx, canvas, hud, storage;
+    THREE, scene, camera, lighting, ctx, canvas, hud, storage;
 
 var Grid = {
     
@@ -21,6 +21,7 @@ var Grid = {
         
         if (this.location === "Overworld") {
             this.currentGrid = overworldGrid;
+            lighting.fog(0);
             
             if (this.previousLocation === "Dungeon") {
                 player.position.x = 18;
@@ -35,6 +36,7 @@ var Grid = {
 
         } else if (this.location === "Dungeon") {
             this.currentGrid = dungeonGrid;
+            lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
                 player.position.x = 8;
@@ -47,6 +49,7 @@ var Grid = {
 
         } else if (this.location === "Dungeon2") {
             this.currentGrid = dungeon2Grid;
+            lighting.fog(50);
             
             if (this.previousLocation === "Overworld") {
                 player.position.x = 8;
@@ -72,6 +75,7 @@ var Grid = {
     },
     
     render: function () {
+        'use strict';
         var i, j, type, index = 0;
     
         if (this.update) {
@@ -85,20 +89,25 @@ var Grid = {
             camera.maxY = (this.currentGrid.length - 1) * blockD;
             
             for (i = 0; i < this.currentGrid.length; i += 1) {
+                
                 if ((this.currentGrid[i].length - 1) * blockW > camera.maxX) {
                     camera.maxX = (this.currentGrid[i].length - 1) * blockW;
-                    console.log(camera.maxX);
                 }
+                
                 for (j = 0; j < this.currentGrid[i].length; j += 1) {
                     type = this.currentGrid[i][j];
                     this.add(index, i * blockD, j * blockW, type);
                     index += 1;
                 }
+                
             }
+            
         }
     },
     
     add: function (index, i, j, type) {
+        'use strict';
+        
         this.gridArray[index] = new THREE.Mesh(blockGeos[type], blockMats[type]);
         this.gridArray[index].position.x = j;
         this.gridArray[index].position.y = i;
@@ -111,12 +120,13 @@ var Grid = {
             this.gridArray[index].position.z = 1;
             this.gridArray[index].castShadow = true;
         }
-
+        
         scene.add(this.gridArray[index]);
         
     },
     
     hitDetect: function () {
+        'use strict';
         var playerX = player.position.x, playerY = player.position.y,
             blockX, blockY, type, i;
     
@@ -161,9 +171,12 @@ var Grid = {
     },
     
     blockCheck: function (playerX, playerY, blockX, blockY, pad) {
+        'use strict';
+        
         if (playerX + pad > blockX - (blockW / 2) && playerX - pad < blockX + (blockW / 2) && playerY + pad > blockY - (blockD / 2) && playerY - pad < blockY + (blockD / 2)) {
             return true;
         }
+        
     }
     
 };

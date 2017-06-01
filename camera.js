@@ -1,19 +1,20 @@
-var THREE, mainCam, movementSpeed, hud, canvas, player, blockW, blockD;
+var THREE, mainCam, hud, canvas, player, blockW, blockD;
 
 var Camera = {
     
-    init: function (cam, startX, startY, startZ) {
+    init: function (cam, startY, startZ) {
         'use strict';
-        this.startX = startX;
         this.startY = startY;
         this.startZ = startZ;
+        
+        this.currentCamera = cam;
         
         this.minX = blockW;
         this.minY = blockD;
         this.maxX = 0;
         this.maxY = 0;
         
-        if (cam === "mainCam") {
+        if (this.currentCamera === "mainCam") {
             mainCam = new THREE.PerspectiveCamera(75, 900 / 700, 0.1, 1000);
             mainCam.position.z = this.startZ;
             mainCam.position.x = player.position.x;
@@ -41,41 +42,50 @@ var Camera = {
     transition: {
         
         fadeIn: function (ctx) {
+            'use strict';
+            var opac = 1, fadeIn;
+            
             hud.showInventory = false;
             hud.showHud = false;
             hud.refreshScreen = false;
             player.controllable = false;
-            ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-            var opac = 0;
+            
+            ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            var fade = setInterval(fadein, 6);
+            
             function fadein() {
-                if (opac >= 1) {
+                
+                if (opac <= 0) {
                     hud.refreshScreen = true;
                     hud.showHud = true;
                     player.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    clearInterval(fade);
+                    clearInterval(fadeIn);
                 } else {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.beginPath();
-                    ctx.fillStyle = 'rgba(0, 0, 0,' + (1 - opac) + ')';
+                    ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.closePath();
-                    opac += 0.01;
+                    opac -= 0.01;
                 }
+                
             }
+            
+            fadeIn = setInterval(fadein, 5);
+            
         },
         
         fadeOut: function (ctx) {
+            'use strict';
+            var opac = 0, fadeOut;
+            
             hud.showInventory = false;
             hud.showHud = false;
             hud.refreshScreen = false;
             player.controllable = false;
-            ctx.fillStyle = 'rgba(0, 0, 0, 0)';
-            var opac = 0;
+            
+            ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            var fadeOut = setInterval(fadeout, 6);
+            
             function fadeout() {
 
                 if (opac >= 1) {
@@ -87,13 +97,16 @@ var Camera = {
                 } else {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.beginPath();
-                    ctx.fillStyle = 'rgba(0, 0, 0,' + (opac) + ')';
+                    ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.closePath();
                     opac += 0.01;
                 }
 
             }
+            
+            fadeOut = setInterval(fadeout, 5);
+            
         }
     
     }
