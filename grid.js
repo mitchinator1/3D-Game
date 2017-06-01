@@ -23,12 +23,10 @@ var Grid = {
             if (this.previousLocation === "Dungeon") {
                 player.position.x = 18;
                 player.position.y = 10;
-            }
-            if (this.previousLocation === "Dungeon2") {
+            } else if (this.previousLocation === "Dungeon2") {
                 player.position.x = 26;
                 player.position.y = 10;
-            } 
-            if (this.previousLocation === "") {
+            } else {
                 player.position.x = 12;
                 player.position.y = 8;
             }
@@ -39,8 +37,7 @@ var Grid = {
             if (this.previousLocation === "Overworld") {
                 player.position.x = 8;
                 player.position.y = 2;
-            }
-            if (this.previousLocation === "") {
+            } else {
                 player.position.x = 12;
                 player.position.y = 8;
             }
@@ -52,8 +49,7 @@ var Grid = {
             if (this.previousLocation === "Overworld") {
                 player.position.x = 8;
                 player.position.y = 2;
-            }
-            if (this.previousLocation === "") {
+            } else {
                 player.position.x = 12;
                 player.position.y = 8;
             }
