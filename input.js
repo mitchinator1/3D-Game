@@ -66,17 +66,17 @@ var Input =  {
     movement: function (ts, gridArray, mapLocation, cam) {
         var maxX, padX, maxY, padY;
     
-        if (mapLocation === "Overworld") {
+        if (grid.location === "Overworld") {
             maxX = overworldGrid.length - 1;
             maxY = overworldGrid[0].length;
             padX = 4;
             padY = 5;
-        } else if (mapLocation === "Dungeon") {
+        } else if (grid.location === "Dungeon") {
             maxX = dungeonGrid[0].length - 1;
             maxY = dungeonGrid.length;
             padX = 3;
             padY = 4;
-        } else if (mapLocation === "Dungeon2") {
+        } else if (grid.location === "Dungeon2") {
             maxX = dungeon2Grid[0].length - 1;
             maxY = dungeon2Grid.length;
             padX = 3;
