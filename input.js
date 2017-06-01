@@ -111,7 +111,7 @@ var Input =  {
             if (player.position.x > camera.minX * padX || grid.hitDetect()) {
                 camera.control.move(movementSpeed, 0);
             }
-            if (player.position.x > blockW * (maxX - padX) || grid.hitDetect()) {
+            if (player.position.x > camera.maxX - (padX * blockW) || grid.hitDetect()) {
                 camera.control.move(-movementSpeed, 0);
             }
             if (grid.hitDetect()) {
