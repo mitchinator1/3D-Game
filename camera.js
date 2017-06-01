@@ -7,12 +7,19 @@ var Camera = {
         this.startX = startX;
         this.startY = startY;
         this.startZ = startZ;
+        
+        this.minX = blockW;
+        this.minY = blockD;
+        this.maxX = 0;
+        this.maxY = 0;
+        
         if (cam === "mainCam") {
             mainCam = new THREE.PerspectiveCamera(75, 900 / 700, 0.1, 1000);
             mainCam.position.z = this.startZ;
             mainCam.position.x = player.position.x;
             mainCam.lookAt(new THREE.Vector3(player.position.x, this.startY, 0));
         }
+        
     },
     
     control: {
