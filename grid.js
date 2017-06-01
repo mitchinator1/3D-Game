@@ -81,6 +81,7 @@ var Grid = {
             for (i = 0; i < this.currentGrid.length; i += 1) {
                 if ((this.currentGrid[i].length - 1) * blockW > camera.maxX) {
                     camera.maxX = (this.currentGrid[i].length - 1) * blockW;
+                    console.log(camera.maxX);
                 }
                 for (j = 0; j < this.currentGrid[i].length; j += 1) {
                     type = this.currentGrid[i][j];
