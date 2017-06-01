@@ -43,3 +43,6 @@ min x = block width * xPadding. </br>
 min y = block depth * yPadding.</br>
 max x = longest array within array.</br>
 max y = last array within array.</br>
+
+Updated grid.setLocation("location name") function, as well as data updated in hitDetect.
+Removed grid.render() function from render loop.
