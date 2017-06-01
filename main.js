@@ -1,5 +1,5 @@
 var THREE, HUD, Player, Input, Grid, Camera, Lighting, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
-    canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"), requestAnimationFrame,
+    canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"),
     hud = Object.create(HUD), player = Object.create(Player), input = Object.create(Input), storage = Object.create(Storage), grid = Object.create(Grid), camera = Object.create(Camera), lighting = Object.create(Lighting),
     mainCam, pointLight, ambLight,
     planeGeo, planeMat, plane;
