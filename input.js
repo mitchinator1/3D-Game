@@ -92,10 +92,11 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.x -= movementSpeed;
             }
-            if (player.position.x < blockW * (maxX - padX) || grid.hitDetect()) {
+            //if (player.position.x < blockW * (maxX - padX) || grid.hitDetect()) {
+            if (player.position.x < camera.maxX * padX || grid.hitDetect()) {
                 camera.control.move(-movementSpeed, 0);
             }
-            if (player.position.x < blockW * padX || grid.hitDetect()) {
+            if (player.position.x < camera.minX * padX || grid.hitDetect()) {
                 camera.control.move(movementSpeed, 0);
             }
             if (grid.hitDetect()) {
@@ -107,7 +108,7 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.x += movementSpeed;
             }
-            if (player.position.x > blockW * padX || grid.hitDetect()) {
+            if (player.position.x > camera.minX * padX || grid.hitDetect()) {
                 camera.control.move(movementSpeed, 0);
             }
             if (player.position.x > blockW * (maxX - padX) || grid.hitDetect()) {
