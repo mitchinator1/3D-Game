@@ -7,6 +7,7 @@ var HUD = {
         this.showHud = true;
         this.hearts = [];
         this.health(true, 0);
+        this.coinCount = 2;
         this.inventoryGrid = [];
         this.refreshScreen = true;
         
@@ -26,16 +27,22 @@ var HUD = {
         this.bottomRight.src = 'sprites/bottomRight.png';
         this.left.src = 'sprites/left.png';
         this.right.src = 'sprites/right.png';
+        
+        this.coin = new Image();
+        this.coin.src = 'sprites/coin.png';
     },
     
     refresh: function () {
+        'use strict';
+        
         if (this.refreshScreen) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
     },
     
     health: function (update, count) {
-        //this.heartCount += count;
+        'use strict';
+        
         if (update) {
             this.heartCount += count;
             this.hearts = [];
@@ -47,6 +54,7 @@ var HUD = {
     },
 
     window: function (xPad, yPad, xScale, yScale, xMax, yMax, background) {
+        'use strict';
         
         if (background) {
             ctx.beginPath();
@@ -69,8 +77,14 @@ var HUD = {
     },
     
     displayInventory: function () {
+        'use strict';
         var i, j, k;
+        
         if (this.showHud) {
+            ctx.drawImage(this.coin, canvas.width - 68, 20, 32, 32);
+            ctx.font = '16px Arial';
+            ctx.fillStyle = "white";
+            ctx.fillText("x" + this.coinCount, canvas.width - 34, 50);
             for (i = 0; i < this.hearts.length; i += 1) {
                 if (i <= 9) {
                     ctx.drawImage(this.hearts[i], 20 + (22 * i), 20, 32, 32);

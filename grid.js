@@ -7,6 +7,7 @@ var overworldGrid, dungeonGrid, dungeon2Grid,
 var Grid = {
     
     init: function () {
+        'use strict';
         
         this.gridArray = [];
         this.update = true;
@@ -15,6 +16,7 @@ var Grid = {
     },
     
     setLocation: function (mapLocation) {
+        'use strict';
         this.location = mapLocation;
         
         if (this.location === "Overworld") {
@@ -38,8 +40,8 @@ var Grid = {
                 player.position.x = 8;
                 player.position.y = 2;
             } else {
-                player.position.x = 12;
-                player.position.y = 8;
+                player.position.x = 8;
+                player.position.y = 2;
             }
             
 
@@ -50,13 +52,15 @@ var Grid = {
                 player.position.x = 8;
                 player.position.y = 2;
             } else {
-                player.position.x = 12;
-                player.position.y = 8;
+                player.position.x = 8;
+                player.position.y = 2;
             }
 
         } else {
             this.location = "Overworld";
             this.currentGrid = overworldGrid;
+            player.position.x = 22;
+            player.position.y = 8;
         }
         
         camera.transition.fadeIn(ctx);
@@ -76,8 +80,10 @@ var Grid = {
             }
             this.update = false;
             this.gridArray = [];
-
+            
+            camera.maxX = 0;
             camera.maxY = (this.currentGrid.length - 1) * blockD;
+            
             for (i = 0; i < this.currentGrid.length; i += 1) {
                 if ((this.currentGrid[i].length - 1) * blockW > camera.maxX) {
                     camera.maxX = (this.currentGrid[i].length - 1) * blockW;

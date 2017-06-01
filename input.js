@@ -3,6 +3,7 @@ var overworldGrid, dungeonGrid, hud, input, hitDetect, e, player, blockW, blockD
 var Input =  {
 
     init: function () {
+        
         this.AKey = false;
         this.DKey = false;
         this.WKey = false;
@@ -14,6 +15,7 @@ var Input =  {
         this.DArrowKey = false;
         this.QKey = false;
         this.EKey = false;
+        
     },
     
     handleKeyEvent: function (e, isKeyDown) {
@@ -87,12 +89,13 @@ var Input =  {
         lastTs = ts;
 
         movementSpeed = 5 * timeDelta;
+        
         //Left Direction
-        if (input.AKey && player.controllable) {
+        if (input.AKey && player.controllable && !input.DKey) {
+            
             if (!grid.hitDetect()) {
                 player.position.x -= movementSpeed;
             }
-            //if (player.position.x < blockW * (maxX - padX) || grid.hitDetect()) { grid.length - 1
             if (player.position.x < camera.maxX - (padX * blockW) || grid.hitDetect()) {
                 camera.control.move(-movementSpeed, 0);
             }
@@ -102,9 +105,12 @@ var Input =  {
             if (grid.hitDetect()) {
                 player.position.x += movementSpeed;
             }
+            
         }
+        
         //Right Direction
-        if (input.DKey && player.controllable) {
+        if (input.DKey && player.controllable && !input.AKey) {
+            
             if (!grid.hitDetect()) {
                 player.position.x += movementSpeed;
             }
@@ -117,36 +123,43 @@ var Input =  {
             if (grid.hitDetect()) {
                 player.position.x -= movementSpeed;
             }
+            
         }
+        
         //Up Direction
-        if (input.WKey && player.controllable) {
+        if (input.WKey && player.controllable && !input.SKey) {
+            
             if (!grid.hitDetect()) {
                 player.position.y += movementSpeed;
             }
-            if (player.position.y > blockD * padY || grid.hitDetect()) {
+            if (player.position.y > camera.minY * padY || grid.hitDetect()) {
                 camera.control.move(0, movementSpeed);
             }
-            if (player.position.y > blockD * (maxY - padY) || grid.hitDetect()) {
+            if (player.position.y > camera.maxY - (padY * blockD) || grid.hitDetect()) {
                 camera.control.move(0, -movementSpeed);
             }
             if (grid.hitDetect()) {
                 player.position.y -= movementSpeed;
             }
+            
         }
+        
         //Down Direction
-        if (input.SKey && player.controllable) {
+        if (input.SKey && player.controllable && !input.WKey) {
+            
             if (!grid.hitDetect()) {
                 player.position.y -= movementSpeed;
             }
-            if (player.position.y < blockD * (maxY - padY) || grid.hitDetect()) {
+            if (player.position.y < camera.maxY - (padY * blockD) || grid.hitDetect()) {
                 camera.control.move(0, -movementSpeed);
             }
-            if (player.position.y < blockD * padY || grid.hitDetect()) {
+            if (player.position.y < camera.minY * padY || grid.hitDetect()) {
                 camera.control.move(0, movementSpeed);
             }
             if (grid.hitDetect()) {
                 player.position.y += movementSpeed;
             }
+            
         }
 
         if (input.LArrowKey) {

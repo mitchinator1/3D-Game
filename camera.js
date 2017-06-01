@@ -1,4 +1,4 @@
-var THREE, mainCam, movementSpeed, hud, canvas, player;
+var THREE, mainCam, movementSpeed, hud, canvas, player, blockW, blockD;
 
 var Camera = {
     
