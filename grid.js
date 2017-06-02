@@ -96,7 +96,7 @@ var Grid = {
                 
                 for (j = 0; j < this.currentGrid[i].length; j += 1) {
                     type = this.currentGrid[i][j];
-                    this.add(index, i * blockD, j * blockW, type);
+                    this.add(index, ((this.currentGrid.length - 1) - i) * blockD, j * blockW, type);
                     index += 1;
                 }
                 

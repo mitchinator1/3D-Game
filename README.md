@@ -5,7 +5,8 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 
 Jun 2, 2017
 - Added Dungeon 1 layout.
-- Need to flip rendering of Y Axis. It was fine for testing, but it's getting confusing for adding multiple maps.
+- Flipped rendering of Y Axis. It was fine for testing, but it's getting confusing for adding multiple maps.
+- 
 
 Jun 1, 2017
 - Fixed a huge unneccesary loop in the main loop. Blocks were being added and removed every call.
