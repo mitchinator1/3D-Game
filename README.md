@@ -8,5 +8,3 @@ Jun 1, 2017
 - Fixed camera movement, and set different movement patterns based on location.
 - Updated grid.setLocation("location name") function, as well as data updated in hitDetect.
 - Added fog, with differing amounts based on location.
-
-To find enemy distance from player, summing x and y coordinate of player and enemy, and finding the difference, will give distance.
