@@ -4,14 +4,14 @@
 [ ] [i] [ ] [ ] [ ] [i] [ ] [ ] [ ]
 [i] [ ] [ ] [ ] [ ] [ ] [i] [ ] [ ]
 [ ] [ ] [ ] [x] [ ] [ ] [ ] [i] [ ]
-[ ] [ ] [ ] [ ] [ ] [ ] [i] [ ] [ ]
-[ ] [ ] [ ] [ ] [ ] [i] [ ] [ ] [ ]
+[i] [ ] [ ] [ ] [ ] [ ] [i] [ ] [ ]
+[ ] [i] [ ] [ ] [ ] [i] [ ] [ ] [ ]
+
+To find enemy distance from player, summing x and y coordinate of player and enemy, and finding the difference, will give distance.
 
 player (x, y) = (4, 3) = 7
-enemy (x, y)
+- check that player sum is within 4 of enemy sum 
 
-3 3 = 6
-5 5 = 10
-
-4, 3 = 7
-7, 4 = 11
+enemy (x, y) = (7, 4) = 11
+- or -
+enemy (x, y) = (3, 6) = 9
