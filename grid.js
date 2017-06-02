@@ -88,7 +88,7 @@ var Grid = {
             camera.maxX = 0;
             camera.maxY = (this.currentGrid.length - 1) * blockD;
             
-            for (i = 0; i < this.currentGrid.length; i += 1) {
+            for (i = this.currentGrid.length - 1; i > 0; i -= 1) {
                 
                 if ((this.currentGrid[i].length - 1) * blockW > camera.maxX) {
                     camera.maxX = (this.currentGrid[i].length - 1) * blockW;
