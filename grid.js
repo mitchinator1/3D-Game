@@ -21,7 +21,7 @@ var Grid = {
         this.location = mapLocation;
         
         if (this.location === "Overworld") {
-            this.currentGrid = mapGrid[Overworld];
+            this.currentGrid = mapGrid["Overworld"];
             lighting.fog(0);
             
             if (this.previousLocation === "Dungeon") {
@@ -38,7 +38,7 @@ var Grid = {
         } else if (this.location === "Dungeon") {
             this.gridX = 1;
             this.gridY = 0;
-            this.currentGrid = mapGrid[Dungeon1][this.gridY][this.gridX];
+            this.currentGrid = mapGrid["Dungeon1"][this.gridY][this.gridX];
             lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
@@ -51,7 +51,7 @@ var Grid = {
             
 
         } else if (this.location === "Dungeon2") {
-            this.currentGrid = mapGrid[Dungeon2];
+            this.currentGrid = mapGrid["Dungeon2"];
             lighting.fog(50);
             
             if (this.previousLocation === "Overworld") {
@@ -64,7 +64,7 @@ var Grid = {
 
         } else {
             this.location = "Overworld";
-            this.currentGrid = mapGrid[Overworld];
+            this.currentGrid = mapGrid["Overworld"];
             player.position.x = 22;
             player.position.y = 8;
         }
