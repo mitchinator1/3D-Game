@@ -24,7 +24,7 @@ var Grid = {
             this.currentGrid = mapGrid["Overworld"];
             lighting.fog(0);
             
-            if (this.previousLocation === "Dungeon") {
+            if (this.previousLocation === "Dungeon1") {
                 player.position.x = 18;
                 player.position.y = 10;
             } else if (this.previousLocation === "Dungeon2") {
@@ -35,7 +35,7 @@ var Grid = {
                 player.position.y = 8;
             }
 
-        } else if (this.location === "Dungeon") {
+        } else if (this.location === "Dungeon1") {
             this.gridX = 1;
             this.gridY = 0;
             this.currentGrid = mapGrid["Dungeon1"][this.gridY][this.gridX];
@@ -80,27 +80,27 @@ var Grid = {
     setDungeonLocation: function () {
         'use strict';
 
-        if (player.position.x > this.currentGrid[0].length * 2 - 3 && dungeonGrid[this.gridY][this.gridX + 1] !== undefined) {
+        if (player.position.x > this.currentGrid[0].length * 2 - 3 && mapGrid[this.location][this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
-            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            this.currentGrid = mapGrid[this.location][this.gridY][this.gridX];
             player.position.x = blockW;
             camera.control.set(6, 2);
             
-        } else if (player.position.x < blockW + 1 && dungeonGrid[this.gridY][this.gridX - 1] !== undefined) {
+        } else if (player.position.x < blockW + 1 && mapGrid[this.location][this.gridY][this.gridX - 1] !== undefined) {
             this.gridX -= 1;
-            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            this.currentGrid = mapGrid[this.location][this.gridY][this.gridX];
             player.position.x = this.currentGrid[0].length * blockW - 4;
             camera.control.set(player.position.x - 4, 2);
             
-        } else if (player.position.y > this.currentGrid.length * 2 - 3 && dungeonGrid[this.gridY + 1][this.gridX] !== undefined) {
+        } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
-            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            this.currentGrid = mapGrid[this.location][this.gridY][this.gridX];
             player.position.y = blockD;
             camera.control.set(player.position.x, 0);
             
-        } else if (player.position.y < blockD + 1 && dungeonGrid[this.gridY - 1][this.gridX] !== undefined) {
+        } else if (player.position.y < blockD + 1 && mapGrid[this.location][this.gridY - 1][this.gridX] !== undefined) {
             this.gridY -= 1;
-            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            this.currentGrid = mapGrid[this.location][this.gridY][this.gridX];
             player.position.y = this.currentGrid.length * blockD - 4;
             camera.control.set(player.position.x, 4);
             
@@ -184,8 +184,8 @@ var Grid = {
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                    this.setOverworldLocation("Dungeon");
-                } else if (this.location === "Dungeon") {
+                    this.setOverworldLocation("Dungeon1");
+                } else if (this.location === "Dungeon1") {
                     this.setOverworldLocation("Overworld");
                 }
                 this.update = true;
