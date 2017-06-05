@@ -11,11 +11,13 @@ var Grid = {
         
         this.gridArray = [];
         this.update = true;
-        this.setLocation(this.location);
+        this.gridX = 0;
+        this.gridY = 0;
+        this.setOverworldLocation(this.location);
 
     },
     
-    setLocation: function (mapLocation) {
+    setOverworldLocation: function (mapLocation) {
         'use strict';
         this.location = mapLocation;
         
@@ -35,14 +37,16 @@ var Grid = {
             }
 
         } else if (this.location === "Dungeon") {
-            this.currentGrid = dungeonGrid;
+            this.gridX = 1;
+            this.gridY = 0;
+            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
             lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
-                player.position.x = 8;
+                player.position.x = 10;
                 player.position.y = 2;
             } else {
-                player.position.x = 8;
+                player.position.x = 10;
                 player.position.y = 2;
             }
             
@@ -72,6 +76,40 @@ var Grid = {
         this.render();
         this.update = true;
             
+    },
+    
+    setDungeonLocation: function () {
+        'use strict';
+
+        if (player.position.x > this.currentGrid[0].length * 2 - 3 && dungeonGrid[this.gridY][this.gridX + 1] !== undefined) {
+            this.gridX += 1;
+            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            player.position.x = blockW;
+            camera.control.set(6, 2);
+            
+        } else if (player.position.x < blockW + 1 && dungeonGrid[this.gridY][this.gridX - 1] !== undefined) {
+            this.gridX -= 1;
+            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            player.position.x = this.currentGrid[0].length * blockW - 4;
+            camera.control.set(player.position.x - 4, 2);
+            
+        } else if (player.position.y > this.currentGrid.length * 2 - 3 && dungeonGrid[this.gridY + 1][this.gridX] !== undefined) {
+            this.gridY += 1;
+            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            player.position.y = blockD;
+            camera.control.set(player.position.x, 0);
+            
+        } else if (player.position.y < blockD + 1 && dungeonGrid[this.gridY - 1][this.gridX] !== undefined) {
+            this.gridY -= 1;
+            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            player.position.y = this.currentGrid.length * blockD - 4;
+            camera.control.set(player.position.x, 4);
+            
+        }
+        camera.transition.fadeIn(ctx);
+        this.render();
+        this.update = true;
+        
     },
     
     render: function () {
@@ -138,9 +176,8 @@ var Grid = {
             if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 1) {
                 return true;
             }
-            if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 5) {
-                hud.health(true, -1);
-                return true;
+            if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 5) {
+                this.setDungeonLocation();
             }
 
             if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 3) {
@@ -148,9 +185,9 @@ var Grid = {
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                    this.setLocation("Dungeon");
+                    this.setOverworldLocation("Dungeon");
                 } else if (this.location === "Dungeon") {
-                    this.setLocation("Overworld");
+                    this.setOverworldLocation("Overworld");
                 }
                 this.update = true;
             }
@@ -160,9 +197,9 @@ var Grid = {
                 this.previousLocation = this.location;
                 
                 if (this.location === "Overworld") {
-                    this.setLocation("Dungeon2");
+                    this.setOverworldLocation("Dungeon2");
                 } else if (this.location === "Dungeon2") {
-                    this.setLocation("Overworld");
+                    this.setOverworldLocation("Overworld");
                 }
                 this.update = true;
             }
