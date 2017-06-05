@@ -9,6 +9,7 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 - Added Dungeon 1 map to the grid.
 - Added dungeon navigation, via setDungeonLocation().
 - Began layout of Dungeon 2 map.
+- Added further depthed Grid. ex. grid[map][floor][y][x]
 
 <b>Jun 2, 2017</b>
 - Added Dungeon 1 map idea.
