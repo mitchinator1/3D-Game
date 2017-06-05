@@ -1,5 +1,4 @@
-var overworldGrid, dungeonGrid, dungeon2Grid,
-    entryX, entryY, player,
+var entryX, entryY, player,
     blockW, blockD,
     blockGeos, blockMats,
     THREE, scene, camera, lighting, ctx, canvas, hud, storage;
@@ -22,7 +21,7 @@ var Grid = {
         this.location = mapLocation;
         
         if (this.location === "Overworld") {
-            this.currentGrid = overworldGrid;
+            this.currentGrid = mapGrid[0];
             lighting.fog(0);
             
             if (this.previousLocation === "Dungeon") {
@@ -39,7 +38,7 @@ var Grid = {
         } else if (this.location === "Dungeon") {
             this.gridX = 1;
             this.gridY = 0;
-            this.currentGrid = dungeonGrid[this.gridY][this.gridX];
+            this.currentGrid = mapGrid[1][this.gridY][this.gridX];
             lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
@@ -52,7 +51,7 @@ var Grid = {
             
 
         } else if (this.location === "Dungeon2") {
-            this.currentGrid = dungeon2Grid;
+            this.currentGrid = mapGrid[2];
             lighting.fog(50);
             
             if (this.previousLocation === "Overworld") {
@@ -65,7 +64,7 @@ var Grid = {
 
         } else {
             this.location = "Overworld";
-            this.currentGrid = overworldGrid;
+            this.currentGrid = mapGrid[0];
             player.position.x = 22;
             player.position.y = 8;
         }
