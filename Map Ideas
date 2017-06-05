@@ -5,8 +5,40 @@
 - 4 = inner doors
 - 5 = key/requirement door
 
-start Dungeon 1.
+Grid name based on 4 points, in order.
+- Dungeon
+- level
+- X Coordinate
+- Y Coordinate
 
+Add entry location text
+Add overworld to master grid as 0.
+Make every dungeon/grid have all 3 Arrays( Floor/level, X, Y )
+Every grid as a seperate array, link together via:
+grid = [overworld, dungeon1, dungeon2, dungeon3, etc...];
+
+Dungeon array would be:
+[
+   [
+      [1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 1],
+      [1, 0, 0, 0, 1],
+      [1, 0, 0, 0, 1],
+      [1, 1, 1, 1, 1]
+   ],
+   [  
+      [2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2],
+      [2, 2, 3, 2, 2],
+      [2, 2, 2, 2, 2],
+      [2, 2, 2, 2, 2]
+   ]
+]
+
+to pinpoint the '3', it would be grid[1][2][2].
+Dungeon 1 would be grid[0][1][2][2].
+
+start Dungeon 1.
 [^][<][<]
    [>][^]
 
@@ -23,7 +55,6 @@ start Dungeon 1.
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 Start Dungeon 2.
-
    [^]
 [v][I][v]
 [^][+][^]
