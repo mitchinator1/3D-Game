@@ -226,8 +226,8 @@ var Grid = {
         var highX = 0;
         
         for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
-            if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length) {
-                highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length;
+            if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
+                highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
             }
         }
         
