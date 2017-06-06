@@ -85,16 +85,14 @@ var Grid = {
 
         if (player.position.x > this.currentGrid[0].length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
-            player.position.x = blockW;
+            //player.position.x = blockW;
+            this.setPlayerPosition("left");
             camera.control.set(player.position.x + 4, player.position.y - 8);
             
         } else if (player.position.x < blockW + 1 && mapGrid[this.location][this.floor][this.gridY][this.gridX - 1] !== undefined) {
             this.gridX -= 1;
-            //player.position.x = this.currentGrid[0].length * blockW - 4;
             //player.position.x = (mapGrid[this.location][this.floor][this.gridY][this.gridX][0].length - 1) * blockW - 2;
-            //player.setDungeonPosition();
-            this.setPlayerPosition();
-            console.log(mapGrid[this.location][this.floor][this.gridY][this.gridX][0].length);
+            this.setPlayerPosition("right");
             camera.control.set(player.position.x - 4, player.position.y - 8);
             
         } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY + 1][this.gridX] !== undefined) {
@@ -221,18 +219,23 @@ var Grid = {
         
     },
     
-    setPlayerPosition: function () {
+    setPlayerPosition: function (side) {
         'use strict';
         var highX = 0;
         
-        for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
-            if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
-                highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
-            }
-        }
+        if (side === "right") {
+            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
+                if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
+                    highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
+                }
+            }
         
-        player.position.x = highX * blockW - 2;
+            player.position.x = highX * blockW - 2;
         
-    }
+        }
     
+        if (side === "left") {
+            player.position.x = blockW;
+        }
+        
 };
