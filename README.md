@@ -5,6 +5,9 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 
 <b><u>Change log</u></b>
 
+<b>Jun 6, 2017</b>
+- Added dynamic positioning based on grid length in dungeons. Still need to implement a stricter door linking, but this will do for now.
+
 <b>Jun 5, 2017</b>
 - Added Dungeon 1 map to the grid.
 - Added dungeon navigation, via setDungeonLocation().
