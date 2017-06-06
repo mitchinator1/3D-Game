@@ -91,8 +91,9 @@ var Grid = {
         } else if (player.position.x < blockW + 1 && mapGrid[this.location][this.floor][this.gridY][this.gridX - 1] !== undefined) {
             this.gridX -= 1;
             //player.position.x = this.currentGrid[0].length * blockW - 4;
-            player.position.x = (mapGrid[this.location][this.floor][this.gridY][this.gridX][0].length - 1) * blockW - 2;
+            //player.position.x = (mapGrid[this.location][this.floor][this.gridY][this.gridX][0].length - 1) * blockW - 2;
             //player.setDungeonPosition();
+            this.setPlayerPosition();
             console.log(mapGrid[this.location][this.floor][this.gridY][this.gridX][0].length);
             camera.control.set(player.position.x - 4, player.position.y - 8);
             
@@ -217,6 +218,20 @@ var Grid = {
         if (playerX + pad > blockX - (blockW / 2) && playerX - pad < blockX + (blockW / 2) && playerY + pad > blockY - (blockD / 2) && playerY - pad < blockY + (blockD / 2)) {
             return true;
         }
+        
+    },
+    
+    setPlayerPosition: function () {
+        'use strict';
+        var highX = 0;
+        
+        for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
+            if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length) {
+                highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length;
+            }
+        }
+        
+        player.position.x = highX * blockW - 2;
         
     }
     
