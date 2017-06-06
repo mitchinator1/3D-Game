@@ -23,7 +23,7 @@ var Grid = {
         if (this.location === "Overworld") {
             this.gridX = 0;
             this.gridY = 0;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             lighting.fog(0);
             
             if (this.previousLocation === "Dungeon1") {
@@ -40,7 +40,7 @@ var Grid = {
         } else if (this.location === "Dungeon1") {
             this.gridX = 1;
             this.gridY = 0;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
@@ -55,7 +55,7 @@ var Grid = {
         } else if (this.location === "Dungeon2") {
             this.gridX = 0;
             this.gridY = 0;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             lighting.fog(50);
             
             if (this.previousLocation === "Overworld") {
@@ -68,12 +68,15 @@ var Grid = {
 
         } else {
             this.location = "Overworld";
-            this.currentGrid = mapGrid[this.location][0];
+            this.gridX = 0;
+            this.gridY = 0;
+            //this.currentGrid = mapGrid[this.location][0];
             player.position.x = 22;
             player.position.y = 8;
         }
         
-        camera.transition.fadeIn(ctx);
+        //camera.transition.fadeIn(ctx);
+        this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.control.set(player.position.x, 0);
         storage.save();
         this.render();
@@ -86,29 +89,30 @@ var Grid = {
 
         if (player.position.x > this.currentGrid[0].length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             player.position.x = blockW;
             camera.control.set(6, 2);
             
         } else if (player.position.x < blockW + 1 && mapGrid[this.location][this.floor][this.gridY][this.gridX - 1] !== undefined) {
             this.gridX -= 1;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             player.position.x = this.currentGrid[0].length * blockW - 4;
             camera.control.set(player.position.x - 4, 2);
             
         } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             player.position.y = blockD;
             camera.control.set(player.position.x, 0);
             
         } else if (player.position.y < blockD + 1 && mapGrid[this.location][this.floor][this.gridY - 1][this.gridX] !== undefined) {
             this.gridY -= 1;
-            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+            //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             player.position.y = this.currentGrid.length * blockD - 4;
             camera.control.set(player.position.x, 4);
             
         }
+        this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.transition.fadeIn(ctx);
         this.render();
         this.update = true;
