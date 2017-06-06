@@ -6,6 +6,7 @@ var Storage = {
         localStorage.setItem("hud.heartCount", hud.heartCount);
         localStorage.setItem("grid.location", grid.location);
         localStorage.setItem("grid.previousLocation", grid.previousLocation);
+        localStorage.setItem("grid.floor", grid.floor);
         console.log("Saved to localStorage");
     },
     
@@ -13,6 +14,7 @@ var Storage = {
         hud.heartCount = parseInt(localStorage.getItem("hud.heartCount")) || 5;
         grid.location = localStorage.getItem("grid.location") || "Overworld";
         grid.previousLocation = localStorage.getItem("grid.previousLocation") || "";
+        grid.floor = localStorage.getItem("grid.floor") || 0;
     }
     
 };

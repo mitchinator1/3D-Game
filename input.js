@@ -71,7 +71,7 @@ var Input =  {
         if (grid.location === "Overworld") {
             padX = 4;
             padY = 5;
-        } else if (grid.location === "Dungeon") {
+        } else if (grid.location === "Dungeon1") {
             padX = 3;
             padY = 4;
         } else if (grid.location === "Dungeon2") {
