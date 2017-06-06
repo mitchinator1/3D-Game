@@ -238,4 +238,6 @@ var Grid = {
             player.position.x = blockW;
         }
         
+    }
+        
 };
