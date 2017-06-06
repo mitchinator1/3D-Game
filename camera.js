@@ -57,7 +57,6 @@ var Camera = {
                 
                 if (opac <= 0) {
                     hud.refreshScreen = true;
-                    hud.showHud = true;
                     player.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeIn);
@@ -65,7 +64,10 @@ var Camera = {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    opac -= 0.01;
+                    opac -= 0.015;
+                }
+                if (opac <= 0.1) {
+                    hud.showHud = true;
                 }
                 
             }
