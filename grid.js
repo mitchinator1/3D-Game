@@ -21,7 +21,9 @@ var Grid = {
         this.location = mapLocation;
         
         if (this.location === "Overworld") {
-            this.currentGrid = mapGrid[this.location][this.floor];
+            this.gridX = 0;
+            this.gridY = 0;
+            this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
             lighting.fog(0);
             
             if (this.previousLocation === "Dungeon1") {
