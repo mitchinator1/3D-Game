@@ -27,16 +27,10 @@ var Grid = {
             
             if (this.previousLocation === "Dungeon1") {
                 this.setPlayerPosition("exact", 18, 10);
-                //player.position.x = 18;
-                //player.position.y = 10;
             } else if (this.previousLocation === "Dungeon2") {
-                this.setPlayerPosition("exact", 26, 18);
-                //player.position.x = 26;
-                //player.position.y = 10;
+                this.setPlayerPosition("exact", 26, 10);
             } else {
                 this.setPlayerPosition("exact", 12, 8);
-                //player.position.x = 12;
-                //player.position.y = 8;
             }
 
         } else if (this.location === "Dungeon1") {
@@ -46,12 +40,8 @@ var Grid = {
             
             if (this.previousLocation === "Overworld") {
                 this.setPlayerPosition("exact", 10, 2);
-                //player.position.x = 10;
-                //player.position.y = 2;
             } else {
                 this.setPlayerPosition("exact", 10, 2);
-                //player.position.x = 10;
-                //player.position.y = 2;
             }
             
 
@@ -59,23 +49,20 @@ var Grid = {
             this.gridX = 0;
             this.gridY = 0;
             lighting.fog(50);
+            
             if (this.previousLocation === "Overworld") {
                 this.setPlayerPosition("exact", 8, 2);
-                //player.position.x = 8;
-                //player.position.y = 2;
             } else {
                 this.setPlayerPosition("exact", 8, 2);
-                //player.position.x = 8;
-                //player.position.y = 2;
             }
 
         } else {
+            
             this.location = "Overworld";
             this.gridX = 0;
             this.gridY = 0;
             this.setPlayerPosition("exact", 22, 8);
-            //player.position.x = 22;
-            //player.position.y = 8;
+            
         }
         
         camera.transition.fadeIn(ctx);
@@ -102,7 +89,8 @@ var Grid = {
             
         } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
-            player.position.y = blockD;
+            //player.position.y = blockD;
+            this.setPlayerPosition("down");
             camera.control.set(player.position.x, player.position.y - 2);
             
         } else if (player.position.y < blockD + 1 && mapGrid[this.location][this.floor][this.gridY - 1][this.gridX] !== undefined) {
@@ -234,6 +222,17 @@ var Grid = {
             player.position.y = y;
         }
         
+        if (relative === "top") {
+            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
+                if (highY < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
+                    highY = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
+                }
+            }
+            
+            player.position.y = highY * blockD - 2;
+            
+        }
+        
         if (relative === "right") {
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
                 if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
@@ -247,6 +246,10 @@ var Grid = {
     
         if (relative === "left") {
             player.position.x = blockW;
+        }
+        
+        if (relative === "down") {
+            player.position.y = blockD;
         }
         
     }
