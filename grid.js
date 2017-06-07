@@ -214,6 +214,7 @@ var Grid = {
     setPlayerPosition: function (relative, x, y) {
         'use strict';
         var highX = 0;
+        var startX = 0;
         
         if (relative === "exact") {
             player.position.x = x;
@@ -222,7 +223,14 @@ var Grid = {
         
         if (relative === "north") {
             player.position.y = (mapGrid[this.location][this.floor][this.gridY][this.gridX].length - 1) * blockD - 2;
-        }
+            
+            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; j += 1) {
+                if (mapGrid[this.location][this.floor][this.gridY][this.gridX][0][j] === 5) {
+                    player.position.x = j * blockW;
+                }
+            }
+            
+        }
         
         if (relative === "right") {
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
