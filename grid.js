@@ -252,7 +252,7 @@ var Grid = {
             
             for (k = 0; k < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; k += 1) {
                 if (mapGrid[this.location][this.floor][this.gridY][this.gridX][k][0] === 5) {
-                    player.position.y = k * blockD;
+                    player.position.y = (mapGrid[this.location][this.floor][this.gridY][this.gridX].length - k) * blockD;
                 }
                 
             }
