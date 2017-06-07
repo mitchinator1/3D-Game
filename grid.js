@@ -89,13 +89,12 @@ var Grid = {
             
         } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
-            //player.position.y = blockD;
-            this.setPlayerPosition("down");
+            this.setPlayerPosition("south");
             camera.control.set(player.position.x, player.position.y - 2);
             
         } else if (player.position.y < blockD + 1 && mapGrid[this.location][this.floor][this.gridY - 1][this.gridX] !== undefined) {
             this.gridY -= 1;
-            player.position.y = this.currentGrid.length * blockD - 2;
+            this.setPlayerPosition("north");
             camera.control.set(player.position.x, player.position.y - 14);
             
         }
@@ -215,22 +214,14 @@ var Grid = {
     setPlayerPosition: function (relative, x, y) {
         'use strict';
         var highX = 0;
-        var highY = 0;
         
         if (relative === "exact") {
             player.position.x = x;
             player.position.y = y;
         }
         
-        if (relative === "top") {
-            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
-                if (highY < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
-                    highY = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
-                }
-            }
-            
-            player.position.y = highY * blockD - 2;
-            
+        if (relative === "north") {
+            player.position.y = (mapGrid[this.location][this.floor][this.gridY][this.gridX].length - 1) * blockD - 2;
         }
         
         if (relative === "right") {
@@ -248,7 +239,7 @@ var Grid = {
             player.position.x = blockW;
         }
         
-        if (relative === "down") {
+        if (relative === "south") {
             player.position.y = blockD;
         }
         
