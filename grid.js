@@ -26,14 +26,17 @@ var Grid = {
             lighting.fog(0);
             
             if (this.previousLocation === "Dungeon1") {
-                player.position.x = 18;
-                player.position.y = 10;
+                this.setPlayerPosition("exact", 18, 10);
+                //player.position.x = 18;
+                //player.position.y = 10;
             } else if (this.previousLocation === "Dungeon2") {
-                player.position.x = 26;
-                player.position.y = 10;
+                this.setPlayerPosition("exact", 26, 18);
+                //player.position.x = 26;
+                //player.position.y = 10;
             } else {
-                player.position.x = 12;
-                player.position.y = 8;
+                this.setPlayerPosition("exact", 12, 8);
+                //player.position.x = 12;
+                //player.position.y = 8;
             }
 
         } else if (this.location === "Dungeon1") {
@@ -42,11 +45,13 @@ var Grid = {
             lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
-                player.position.x = 10;
-                player.position.y = 2;
+                this.setPlayerPosition("exact", 10, 2);
+                //player.position.x = 10;
+                //player.position.y = 2;
             } else {
-                player.position.x = 10;
-                player.position.y = 2;
+                this.setPlayerPosition("exact", 10, 2);
+                //player.position.x = 10;
+                //player.position.y = 2;
             }
             
 
@@ -55,19 +60,22 @@ var Grid = {
             this.gridY = 0;
             lighting.fog(50);
             if (this.previousLocation === "Overworld") {
-                player.position.x = 8;
-                player.position.y = 2;
+                this.setPlayerPosition("exact", 8, 2);
+                //player.position.x = 8;
+                //player.position.y = 2;
             } else {
-                player.position.x = 8;
-                player.position.y = 2;
+                this.setPlayerPosition("exact", 8, 2);
+                //player.position.x = 8;
+                //player.position.y = 2;
             }
 
         } else {
             this.location = "Overworld";
             this.gridX = 0;
             this.gridY = 0;
-            player.position.x = 22;
-            player.position.y = 8;
+            this.setPlayerPosition("exact", 22, 8);
+            //player.position.x = 22;
+            //player.position.y = 8;
         }
         
         camera.transition.fadeIn(ctx);
@@ -216,11 +224,17 @@ var Grid = {
         
     },
     
-    setPlayerPosition: function (side) {
+    setPlayerPosition: function (relative, x, y) {
         'use strict';
         var highX = 0;
+        var highY = 0;
         
-        if (side === "right") {
+        if (relative === "exact") {
+            player.position.x = x;
+            player.position.y = y;
+        }
+        
+        if (relative === "right") {
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
                 if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
                     highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
@@ -231,7 +245,7 @@ var Grid = {
         
         }
     
-        if (side === "left") {
+        if (relative === "left") {
             player.position.x = blockW;
         }
         
