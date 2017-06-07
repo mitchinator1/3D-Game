@@ -217,6 +217,8 @@ var Grid = {
         var startX = 0;
         var i;
         var j;
+        var k;
+        var l;
         
         if (relative === "exact") {
             player.position.x = x;
@@ -235,7 +237,7 @@ var Grid = {
         }
         
         if (relative === "right") {
-            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i++) {
+            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
                 if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
                     highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
                 }
@@ -247,6 +249,14 @@ var Grid = {
     
         if (relative === "left") {
             player.position.x = blockW;
+            
+            for (k = 0; k < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; k += 1) {
+                if (mapGrid[this.location][this.floor][this.gridY][this.gridX][k][0] === 5) {
+                    player.position.y = k * blockD;
+                }
+                
+            }
+            
         }
         
         if (relative === "south") {
