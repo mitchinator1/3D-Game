@@ -52,6 +52,15 @@ var Grid = {
 
         } else if (this.location === "Dungeon2") {
             this.gridX = 0;
+            this.gridY = 0;
+            lighting.fog(50);
+            if (this.previousLocation === "Overworld") {
+                player.position.x = 8;
+                player.position.y = 2;
+            } else {
+                player.position.x = 8;
+                player.position.y = 2;
+            }
 
         } else {
             this.location = "Overworld";
@@ -75,16 +84,6 @@ var Grid = {
 
         if (player.position.x > this.currentGrid[0].length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
-            this.gridY = 0;
-            lighting.fog(50);
-            
-            if (this.previousLocation === "Overworld") {
-                player.position.x = 8;
-                player.position.y = 2;
-            } else {
-                player.position.x = 8;
-                player.position.y = 2;
-            }
             this.setPlayerPosition("left");
             camera.control.set(player.position.x + 4, player.position.y - 8);
             
