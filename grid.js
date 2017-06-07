@@ -215,6 +215,8 @@ var Grid = {
         'use strict';
         var highX = 0;
         var startX = 0;
+        var i;
+        var j;
         
         if (relative === "exact") {
             player.position.x = x;
