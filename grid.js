@@ -17,7 +17,7 @@ var Grid = {
     
     setOverworldLocation: function (mapLocation) {
         'use strict';
-        console.log("update 4");
+        console.log("update 5");
         this.remove();
         this.location = mapLocation;
         
@@ -112,10 +112,12 @@ var Grid = {
     },
     
     remove: function () {
-        var merged = [].concat.apply([], mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX]);
-        
-        for (type in merged) {
-            scene.remove(merged[type]);
+        var i, j;
+        
+        for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
+            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
+                scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j]);
+            }
         }
         
     },
