@@ -17,7 +17,7 @@ var Grid = {
     
     setOverworldLocation: function (mapLocation) {
         'use strict';
-        console.log("update 6");
+        console.log("update 7");
         //this.remove();
         this.location = mapLocation;
         
@@ -114,9 +114,9 @@ var Grid = {
     remove: function () {
         var i, j;
         
-        for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
-            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
-                scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j]);
+        for (i = 0; i < mapGrid[this.previousLocation][this.floor][this.gridY][this.gridX].length; i += 1) {
+            for (j = 0; j < mapGrid[this.previousLocation][this.floor][this.gridY][this.gridX][i].length; j += 1) {
+                scene.remove(mapGrid[this.previousLocation][this.floor][this.gridY][this.gridX][i][j]);
             }
         }
         
