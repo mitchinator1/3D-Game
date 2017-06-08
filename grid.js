@@ -8,7 +8,6 @@ var Grid = {
     init: function () {
         'use strict';
         
-        //this.gridArray = [];
         this.update = true;
         this.gridX = 0;
         this.gridY = 0;
@@ -74,7 +73,6 @@ var Grid = {
         }
         
         camera.transition.fadeIn(ctx);
-        //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.setPosition(camera.padX, camera.padY);
         storage.save();
         this.render();
@@ -104,7 +102,6 @@ var Grid = {
             
         }
         
-        //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.transition.fadeIn(ctx);
         camera.setPosition(camera.padX, camera.padY);
         this.render();
@@ -122,7 +119,6 @@ var Grid = {
                 scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX].type);
             }*/
             this.update = false;
-            //this.gridArray = [];
             
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
                 
@@ -160,12 +156,16 @@ var Grid = {
     hitDetect: function () {
         'use strict';
         var playerX = player.position.x, playerY = player.position.y,
-            blockX, blockY, type, i;
+            blockX, blockY, type, i, j;
     
-        for (i = 0; i < this.gridArray.length; i += 1) {
-            blockX = this.gridArray[i].position.x;
-            blockY = this.gridArray[i].position.y;
-            type = this.gridArray[i].type;
+        for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
+            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
+            
+                blockX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.x;
+                blockY = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.y;
+                type = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].type;
+            }
+        }
 
             if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 1) {
                 return true;
