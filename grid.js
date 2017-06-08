@@ -114,7 +114,7 @@ var Grid = {
     
     render: function () {
         'use strict';
-        var i, j, k, l, index = 0;
+        var i, j;
     
         if (this.update) {
             /*for (k = 0; k < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; k += 1) {
@@ -127,10 +127,9 @@ var Grid = {
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
                 
                 for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
-                    //type = this.currentGrid[i][j];
-                    this.add(i, j);]
-                    //index += 1;
+                    this.add(i, j);
                 }
+                
             }
             
         }
@@ -145,7 +144,6 @@ var Grid = {
         curMap[i][j] = new THREE.Mesh(blockGeos[type], blockMats[type]);
         curMap[i][j].position.x = j * blockW;
         curMap[i][j].position.y = (curMap.length - 1 - i) * blockD;
-        //curMap[i][j].type = type;
 
         if (type === 0 || type === 3 || type === 4) {
             curMap[i][j].position.z = 0;
