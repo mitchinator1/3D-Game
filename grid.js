@@ -17,10 +17,8 @@ var Grid = {
     
     setOverworldLocation: function (mapLocation) {
         'use strict';
-        player.controllable = false;
-        console.log("Attempting scene removal");
-        scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX]);
-        console.log("scene remove succeeded");
+        console.log("update 1");
+        scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX][1]);
         this.location = mapLocation;
         
         if (this.location === "Overworld") {
@@ -81,7 +79,6 @@ var Grid = {
         storage.save();
         this.render();
         this.update = true;
-        player.controllable = true;
             
     },
     
