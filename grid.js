@@ -8,7 +8,7 @@ var Grid = {
     init: function () {
         'use strict';
         
-        this.gridArray = [];
+        //this.gridArray = [];
         this.update = true;
         this.gridX = 0;
         this.gridY = 0;
@@ -74,7 +74,7 @@ var Grid = {
         }
         
         camera.transition.fadeIn(ctx);
-        this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+        //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.setPosition(camera.padX, camera.padY);
         storage.save();
         this.render();
@@ -90,21 +90,21 @@ var Grid = {
             this.gridX += 1;
             this.setPlayerPosition("west");
             
-        } else if (player.position.x < blockW + 1 && mapGrid[this.location][this.floor][this.gridY][this.gridX - 1] !== undefined) {
+        } else if (player.position.x < blockW + 1 && currentMap[this.gridY][this.gridX - 1] !== undefined) {
             this.gridX -= 1;
             this.setPlayerPosition("east");
             
-        } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY + 1][this.gridX] !== undefined) {
+        } else if (player.position.y > this.currentGrid.length * 2 - 3 && currentMap[this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
             this.setPlayerPosition("south");
             
-        } else if (player.position.y < blockD + 1 && mapGrid[this.location][this.floor][this.gridY - 1][this.gridX] !== undefined) {
+        } else if (player.position.y < blockD + 1 && currentMap[this.gridY - 1][this.gridX] !== undefined) {
             this.gridY -= 1;
             this.setPlayerPosition("north");
             
         }
         
-        this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+        //this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.transition.fadeIn(ctx);
         camera.setPosition(camera.padX, camera.padY);
         this.render();
@@ -114,28 +114,22 @@ var Grid = {
     
     render: function () {
         'use strict';
-        var i, j, type, index = 0;
+        var i, j, k, l, index = 0;
     
         if (this.update) {
-            for (type in this.gridArray) {
-                scene.remove(this.gridArray[type]);
-            }
+            /*for (k = 0; k < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; k += 1) {
+                for (l = 0;
+                scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX].type);
+            }*/
             this.update = false;
-            this.gridArray = [];
+            //this.gridArray = [];
             
-            camera.maxX = 0;
-            camera.maxY = (this.currentGrid.length - 1) * blockD;
-            
-            for (i = 0; i < this.currentGrid.length; i += 1) {
+            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
                 
-                if ((this.currentGrid[i].length - 1) * blockW > camera.maxX) {
-                    camera.maxX = (this.currentGrid[i].length - 1) * blockW;
-                }
-                
-                for (j = 0; j < this.currentGrid[i].length; j += 1) {
-                    type = this.currentGrid[i][j];
-                    this.add(index, ((this.currentGrid.length - 1) - i) * blockD, j * blockW, type);
-                    index += 1;
+                for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
+                    //type = this.currentGrid[i][j];
+                    this.add(i, j);]
+                    //index += 1;
                 }
             }
             
@@ -143,23 +137,25 @@ var Grid = {
         
     },
     
-    add: function (index, i, j, type) {
+    add: function (i, j) {
         'use strict';
+        var curMap = mapGrid[this.location][this.floor][this.gridY][this.gridX];
+        var type = curMap[i][j].type;
         
-        this.gridArray[index] = new THREE.Mesh(blockGeos[type], blockMats[type]);
-        this.gridArray[index].position.x = j;
-        this.gridArray[index].position.y = i;
-        this.gridArray[index].type = type;
+        curMap[i][j] = new THREE.Mesh(blockGeos[type], blockMats[type]);
+        curMap[i][j].position.x = j * blockW;
+        curMap[i][j].position.y = (curMap.length - 1 - i) * blockD;
+        //curMap[i][j].type = type;
 
         if (type === 0 || type === 3 || type === 4) {
-            this.gridArray[index].position.z = 0;
-            this.gridArray[index].receiveShadow = true;
+            curMap[i][j].position.z = 0;
+            curMap[i][j].receiveShadow = true;
         } else {
-            this.gridArray[index].position.z = 1;
-            this.gridArray[index].castShadow = true;
+            curMap[i][j].position.z = 1;
+            curMap[i][j].castShadow = true;
         }
         
-        scene.add(this.gridArray[index]);
+        scene.add(curMap[i][j]);
         
     },
     
