@@ -140,6 +140,7 @@ var Grid = {
         curMap[i][j] = new THREE.Mesh(blockGeos[type], blockMats[type]);
         curMap[i][j].position.x = j * blockW;
         curMap[i][j].position.y = (curMap.length - 1 - i) * blockD;
+        curMap[i][j].type = type;
 
         if (type === 0 || type === 3 || type === 4) {
             curMap[i][j].position.z = 0;
