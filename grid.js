@@ -190,6 +190,7 @@ var Grid = {
                     } else if (this.location === "Dungeon1") {
                         this.setOverworldLocation("Overworld");
                     }
+                    return true;
 
                 }
             
