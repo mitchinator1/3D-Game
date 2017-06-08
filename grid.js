@@ -200,7 +200,7 @@ var Grid = {
                 
             }
         }
-        console.log(type);
+        
     },
     
     blockCheck: function (playerX, playerY, blockX, blockY, pad) {
