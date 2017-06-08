@@ -253,7 +253,6 @@ var Grid = {
                 if (grid[k][0].userData.bt === 5) {
                     player.position.y = (grid.length - 1 - k) * blockD;
                     player.position.x = blockW;
-                    console.log(grid[k].indexOf(0));
                 }
                 
             }
@@ -268,6 +267,7 @@ var Grid = {
                     player.position.x = l * blockW;
                 }
             }
+            console.log(grid[grid.length - 1][2].userData);
             
         }
         
