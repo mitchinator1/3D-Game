@@ -261,13 +261,13 @@ var Grid = {
         
         if (relative === "south") {
             player.position.y = blockD;
-            
+            console.log(grid[grid.length - 1][2].userData);
+            
             for (l; l < grid[grid.length - 1].length; l += 1) {
                 if (grid[grid.length - 1][l].userData.bt === 5 || grid[grid.length - 1][l].userData.bt === 4 || grid[grid.length - 1][l].userData.bt === 3) {
                     player.position.x = l * blockW;
                 }
             }
-            console.log(grid[grid.length - 1][2].userData);
             
         }
         
