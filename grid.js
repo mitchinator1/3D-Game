@@ -17,7 +17,10 @@ var Grid = {
     
     setOverworldLocation: function (mapLocation) {
         'use strict';
-        this.location = mapLocation;
+        console.log("Attempting scene removal");
+        scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX]);
+        console.log("scene remove succeeded");
+        this.location = mapLocation;
         
         if (this.location === "Overworld") {
             this.gridX = 0;
@@ -75,7 +78,7 @@ var Grid = {
         camera.transition.fadeIn(ctx);
         camera.setPosition(camera.padX, camera.padY);
         storage.save();
-        this.render();
+        this.render();
         this.update = true;
             
     },
@@ -114,10 +117,7 @@ var Grid = {
         var i, j;
     
         if (this.update) {
-            /*for (k = 0; k < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; k += 1) {
-                for (l = 0;
-                scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX].type);
-            }*/
+            //scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX].type);
             this.update = false;
             
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
