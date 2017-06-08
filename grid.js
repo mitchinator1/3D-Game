@@ -17,7 +17,7 @@ var Grid = {
     
     setOverworldLocation: function (mapLocation) {
         'use strict';
-        console.log("update 8");
+        console.log("update 9");
         this.remove();
         this.location = mapLocation;
         
