@@ -29,28 +29,28 @@ var Camera = {
     
     setPosition: function (padX, padY) {
         'use strict';
-        var maxX = 0, i,
-            maxY = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length - 1) * blockD;
+        var i,
+            this.maxY = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length - 1) * blockD;
         
         for (i = 0; i < mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length; i += 1) {
-            if (maxX < (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW) {
-                maxX = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW;
+            if (this.maxX < (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW) {
+                this.maxX = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW;
             }
         }
         
         
         if (player.position.x < blockW * padX) {
             mainCam.position.x = padX * blockW;
-        } else if (player.position.x > maxX - (padX * blockW)) {
-            mainCam.position.x = maxX - (padX * blockW);
+        } else if (player.position.x > this.maxX - (padX * blockW)) {
+            mainCam.position.x = this.maxX - (padX * blockW);
         } else {
             mainCam.position.x = player.position.x;
         }
         
         if (player.position.y < blockD * padY) {
             mainCam.position.y = (padY * blockD) + this.offsetY;
-        } else if (player.position.y > maxY - (padY * blockD)) {
-            mainCam.position.y = maxY - (padY * blockD) + this.offsetY;
+        } else if (player.position.y > this.maxY - (padY * blockD)) {
+            mainCam.position.y = this.maxY - (padY * blockD) + this.offsetY;
         } else {
             mainCam.position.y = player.position.y + this.offsetY;
         }
