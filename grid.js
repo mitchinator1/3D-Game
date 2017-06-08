@@ -226,7 +226,7 @@ var Grid = {
             player.position.y = (grid.length - 1) * blockD - 2;
             
             for (j; j < grid.length; j += 1) {
-                if (grid[0][j].userData.bt === 5) {
+                if (grid[0][j].bt === 5) {
                     player.position.x = j * blockW;
                 }
             }
@@ -235,7 +235,7 @@ var Grid = {
         
         if (relative === "east") {
             for (i; i < grid.length; i += 1) {
-                if (grid[i][0].userData.bt === 5) {
+                if (grid[i][0].bt === 5) {
                     player.position.y = (grid.length - 1 - i) * blockD;
                 }
                 if (maxX < grid[i].length - 1) {
@@ -250,7 +250,7 @@ var Grid = {
         if (relative === "west") {
 
             for (k; k < grid.length; k += 1) {
-                if (grid[k][0].userData.bt === 5) {
+                if (grid[k][0].bt === 5) {
                     player.position.y = (grid.length - 1 - k) * blockD;
                     player.position.x = blockW;
                 }
@@ -261,10 +261,9 @@ var Grid = {
         
         if (relative === "south") {
             player.position.y = blockD;
-            console.log(grid[grid.length - 1][2].userData);
             
             for (l; l < grid[grid.length - 1].length; l += 1) {
-                if (grid[grid.length - 1][l].userData.bt === 5 || grid[grid.length - 1][l].userData.bt === 4 || grid[grid.length - 1][l].userData.bt === 3) {
+                if (grid[grid.length - 1][l].bt === 5 || grid[grid.length - 1][l].bt === 4 || grid[grid.length - 1][l].bt === 3) {
                     player.position.x = l * blockW;
                 }
             }
