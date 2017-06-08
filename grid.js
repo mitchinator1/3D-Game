@@ -23,6 +23,8 @@ var Grid = {
         if (this.location === "Overworld") {
             this.gridX = 0;
             this.gridY = 0;
+            camera.padX = 4;
+            camera.padY = 4;
             lighting.fog(0);
             
             if (this.previousLocation === "Dungeon1") {
@@ -36,24 +38,28 @@ var Grid = {
         } else if (this.location === "Dungeon1") {
             this.gridX = 1;
             this.gridY = 0;
+            camera.padX = 3;
+            camera.padY = 4;
             lighting.fog(35);
             
             if (this.previousLocation === "Overworld") {
-                this.setPlayerPosition("exact", 10, 2);
+                this.setPlayerPosition("south");
             } else {
-                this.setPlayerPosition("exact", 10, 2);
+                this.setPlayerPosition("south");
             }
             
 
         } else if (this.location === "Dungeon2") {
             this.gridX = 0;
             this.gridY = 0;
-            lighting.fog(50);
-            
+            camera.padX = 3;
+            camera.padY = 4;
+            lighting.fog(50);
+
             if (this.previousLocation === "Overworld") {
-                this.setPlayerPosition("exact", 8, 2);
+                this.setPlayerPosition("south");
             } else {
-                this.setPlayerPosition("exact", 8, 2);
+                this.setPlayerPosition("south");
             }
 
         } else {
@@ -61,13 +67,15 @@ var Grid = {
             this.location = "Overworld";
             this.gridX = 0;
             this.gridY = 0;
-            this.setPlayerPosition("exact", 22, 8);
+            camera.padX = 4;
+            camera.padY = 5;
+            this.setPlayerPosition("exact", 22, 8);
             
         }
         
         camera.transition.fadeIn(ctx);
         this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
-        camera.control.set(player.position.x, 0);
+        camera.setPosition(camera.padX, camera.padY);
         storage.save();
         this.render();
         this.update = true;
@@ -76,31 +84,29 @@ var Grid = {
     
     setDungeonLocation: function () {
         'use strict';
+        var currentMap = mapGrid[this.location][this.floor];
 
-        if (player.position.x > this.currentGrid[0].length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY][this.gridX + 1] !== undefined) {
+        if (player.position.x > this.currentGrid[0].length * 2 - 3 && currentMap[this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
-            this.setPlayerPosition("left");
-            camera.control.set(player.position.x + 4, player.position.y - 8);
+            this.setPlayerPosition("west");
             
         } else if (player.position.x < blockW + 1 && mapGrid[this.location][this.floor][this.gridY][this.gridX - 1] !== undefined) {
             this.gridX -= 1;
-            this.setPlayerPosition("right");
-            camera.control.set(player.position.x - 4, player.position.y - 8);
+            this.setPlayerPosition("east");
             
         } else if (player.position.y > this.currentGrid.length * 2 - 3 && mapGrid[this.location][this.floor][this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
             this.setPlayerPosition("south");
-            camera.control.set(player.position.x, player.position.y - 2);
             
         } else if (player.position.y < blockD + 1 && mapGrid[this.location][this.floor][this.gridY - 1][this.gridX] !== undefined) {
             this.gridY -= 1;
             this.setPlayerPosition("north");
-            camera.control.set(player.position.x, player.position.y - 14);
             
         }
         
         this.currentGrid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         camera.transition.fadeIn(ctx);
+        camera.setPosition(camera.padX, camera.padY);
         this.render();
         this.update = true;
         
@@ -131,10 +137,10 @@ var Grid = {
                     this.add(index, ((this.currentGrid.length - 1) - i) * blockD, j * blockW, type);
                     index += 1;
                 }
-                
             }
             
         }
+        
     },
     
     add: function (index, i, j, type) {
@@ -213,12 +219,8 @@ var Grid = {
     
     setPlayerPosition: function (relative, x, y) {
         'use strict';
-        var highX = 0;
-        var startX = 0;
-        var i;
-        var j;
-        var k;
-        var l;
+        var maxX = 0, i = 0, j = 0, k = 0, l = 0,
+            grid = mapGrid[this.location][this.floor][this.gridY][this.gridX];
         
         if (relative === "exact") {
             player.position.x = x;
@@ -226,41 +228,52 @@ var Grid = {
         }
         
         if (relative === "north") {
-            player.position.y = (mapGrid[this.location][this.floor][this.gridY][this.gridX].length - 1) * blockD - 2;
+            player.position.y = (grid.length - 1) * blockD - 2;
             
-            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; j += 1) {
-                if (mapGrid[this.location][this.floor][this.gridY][this.gridX][0][j] === 5) {
+            for (j; j < grid.length; j += 1) {
+                if (grid[0][j] === 5) {
                     player.position.x = j * blockW;
                 }
-            }
+            }
             
-        }
+        }
         
-        if (relative === "right") {
-            for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
-                if (highX < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) {
-                    highX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1;
+        if (relative === "east") {
+            for (i; i < grid.length; i += 1) {
+                if (grid[i][0] === 5) {
+                    player.position.y = (grid.length - 1 - i) * blockD;
                 }
-            }
+                if (maxX < grid[i].length - 1) {
+                    maxX = grid[i].length - 1;
+                }
+            }
         
-            player.position.x = highX * blockW - 2;
-        
+            player.position.x = maxX * blockW - 2;
+            
         }
     
-        if (relative === "left") {
-            player.position.x = blockW;
-            
-            for (k = 0; k < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; k += 1) {
-                if (mapGrid[this.location][this.floor][this.gridY][this.gridX][k][0] === 5) {
-                    player.position.y = (mapGrid[this.location][this.floor][this.gridY][this.gridX].length - 1 - k) * blockD;
+        if (relative === "west") {
+
+            for (k; k < grid.length; k += 1) {
+                if (grid[k][0] === 5) {
+                    player.position.y = (grid.length - 1 - k) * blockD;
+                    player.position.x = blockW;
+                    console.log(grid[k].indexOf(0));
                 }
                 
-            }
+            }
             
         }
         
         if (relative === "south") {
             player.position.y = blockD;
+            
+            for (l; l < grid[grid.length - 1].length; l += 1) {
+                if (grid[grid.length - 1][l] === 5 || grid[grid.length - 1][l] === 4 || grid[grid.length - 1][l] === 3) {
+                    player.position.x = l * blockW;
+                }
+            }
+            
         }
         
     }

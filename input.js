@@ -1,8 +1,9 @@
-var hud, input, e, player, blockW, blockD, camera, grid, pointLight, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false;
+var hud, input, e, player, blockW, blockD, camera, grid, pointLight, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false, mainCam;
 
 var Input =  {
 
     init: function () {
+        'use strict';
         
         this.AKey = false;
         this.DKey = false;
@@ -19,6 +20,8 @@ var Input =  {
     },
     
     handleKeyEvent: function (e, isKeyDown) {
+        'use strict';
+        
         //Left - A Key
         if (e.keyCode === 65) {
             this.AKey = isKeyDown;
@@ -65,20 +68,9 @@ var Input =  {
         }
     },
     
-    movement: function (ts, cam) {
-        var padX, padY;
-    
-        if (grid.location === "Overworld") {
-            padX = 4;
-            padY = 5;
-        } else if (grid.location === "Dungeon1") {
-            padX = 3;
-            padY = 4;
-        } else if (grid.location === "Dungeon2") {
-            padX = 3;
-            padY = 4;
-        }
-
+    movement: function (ts) {
+        'use strict';
+        
         timeDelta = (ts - lastTs) / 1000;
         lastTs = ts;
 
@@ -90,10 +82,10 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.x -= movementSpeed;
             }
-            if (player.position.x < camera.maxX - (padX * blockW) || grid.hitDetect()) {
+            if (player.position.x < camera.maxX - (camera.padX * blockW) || grid.hitDetect()) {
                 camera.control.move(-movementSpeed, 0);
             }
-            if (player.position.x < camera.minX * padX || grid.hitDetect()) {
+            if (player.position.x < camera.minX * camera.padX || grid.hitDetect()) {
                 camera.control.move(movementSpeed, 0);
             }
             if (grid.hitDetect()) {
@@ -108,10 +100,10 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.x += movementSpeed;
             }
-            if (player.position.x > camera.minX * padX || grid.hitDetect()) {
+            if (player.position.x > camera.minX * camera.padX || grid.hitDetect()) {
                 camera.control.move(movementSpeed, 0);
             }
-            if (player.position.x > camera.maxX - (padX * blockW) || grid.hitDetect()) {
+            if (player.position.x > camera.maxX - (camera.padX * blockW) || grid.hitDetect()) {
                 camera.control.move(-movementSpeed, 0);
             }
             if (grid.hitDetect()) {
@@ -126,10 +118,10 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.y += movementSpeed;
             }
-            if (player.position.y > camera.minY * padY || grid.hitDetect()) {
+            if (player.position.y > camera.minY * camera.padY || grid.hitDetect()) {
                 camera.control.move(0, movementSpeed);
             }
-            if (player.position.y > camera.maxY - (padY * blockD) || grid.hitDetect()) {
+            if (player.position.y > camera.maxY - (camera.padY * blockD) || grid.hitDetect()) {
                 camera.control.move(0, -movementSpeed);
             }
             if (grid.hitDetect()) {
@@ -144,10 +136,10 @@ var Input =  {
             if (!grid.hitDetect()) {
                 player.position.y -= movementSpeed;
             }
-            if (player.position.y < camera.maxY - (padY * blockD) || grid.hitDetect()) {
+            if (player.position.y < camera.maxY - (camera.padY * blockD) || grid.hitDetect()) {
                 camera.control.move(0, -movementSpeed);
             }
-            if (player.position.y < camera.minY * padY || grid.hitDetect()) {
+            if (player.position.y < camera.minY * camera.padY || grid.hitDetect()) {
                 camera.control.move(0, movementSpeed);
             }
             if (grid.hitDetect()) {
@@ -157,11 +149,11 @@ var Input =  {
         }
 
         if (input.LArrowKey) {
-            cam.rotation.y += 0.01;
+            mainCam.rotation.y += 0.01;
         }
 
         if (input.RArrowKey) {
-            cam.rotation.y -= 0.01;
+            mainCam.rotation.y -= 0.01;
         }
 
         if (input.UArrowKey) {
@@ -209,5 +201,5 @@ var Input =  {
     
 };
 
-document.addEventListener("keydown", function (e) {input.handleKeyEvent(e, true); });
-document.addEventListener("keyup", function (e) {input.handleKeyEvent(e, false); });
+document.addEventListener("keydown", function (e) {'use strict'; input.handleKeyEvent(e, true); });
+document.addEventListener("keyup", function (e) {'use strict'; input.handleKeyEvent(e, false); });
