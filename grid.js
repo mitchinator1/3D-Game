@@ -164,8 +164,6 @@ var Grid = {
                 blockX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.x;
                 blockY = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.y;
                 type = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].type;
-            }
-        }
 
         if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 1) {
             return true;
@@ -197,6 +195,8 @@ var Grid = {
             
         if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 5) {
             this.setDungeonLocation();
+        }
+            }
         }
             
     },
