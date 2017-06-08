@@ -84,7 +84,7 @@ var Grid = {
         'use strict';
         var currentMap = mapGrid[this.location][this.floor];
 
-        if (player.position.x > this.currentGrid[0].length * 2 - 3 && currentMap[this.gridY][this.gridX + 1] !== undefined) {
+        if (player.position.x > currentMap[this.gridY][this.gridX][0].length * 2 - 3 && currentMap[this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
             this.setPlayerPosition("west");
             
@@ -92,7 +92,7 @@ var Grid = {
             this.gridX -= 1;
             this.setPlayerPosition("east");
             
-        } else if (player.position.y > this.currentGrid.length * 2 - 3 && currentMap[this.gridY + 1][this.gridX] !== undefined) {
+        } else if (player.position.y > currentMap[this.gridY][this.gridX].length * 2 - 3 && currentMap[this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
             this.setPlayerPosition("south");
             
