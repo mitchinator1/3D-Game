@@ -140,6 +140,7 @@ var Grid = {
         curMap[i][j] = new THREE.Mesh(blockGeos[type], blockMats[type]);
         curMap[i][j].position.x = j * blockW;
         curMap[i][j].position.y = (curMap.length - 1 - i) * blockD;
+        curMap[i][j].userData.bt = type;
 
         if (type === 0 || type === 3 || type === 4) {
             curMap[i][j].position.z = 0;
@@ -163,7 +164,7 @@ var Grid = {
             
                 blockX = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.x;
                 blockY = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.y;
-                type = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].bt;
+                type = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].userData.bt;
 
                 if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 1) {
                     return true;
