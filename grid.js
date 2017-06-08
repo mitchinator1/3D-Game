@@ -165,40 +165,41 @@ var Grid = {
                 blockY = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].position.y;
                 type = mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j].type;
 
-        if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 1) {
-            return true;
-        }
+                if (this.blockCheck(playerX, playerY, blockX, blockY, 0.9) && type === 1) {
+                    return true;
+                }
 
-        if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 3) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 3) {
                 
-            this.previousLocation = this.location;
+                    this.previousLocation = this.location;
                 
-            if (this.location === "Overworld") {
-                this.setOverworldLocation("Dungeon1");
-            } else if (this.location === "Dungeon1") {
-                this.setOverworldLocation("Overworld");
-            }
+                    if (this.location === "Overworld") {
+                        this.setOverworldLocation("Dungeon1");
+                    } else if (this.location === "Dungeon1") {
+                        this.setOverworldLocation("Overworld");
+                    }
 
-        }
+                }
             
-        if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 4) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 4) {
                 
-            this.previousLocation = this.location;
+                this.previousLocation = this.location;
                 
-            if (this.location === "Overworld") {
-                this.setOverworldLocation("Dungeon2");
-            } else if (this.location === "Dungeon2") {
-                this.setOverworldLocation("Overworld");
-            }
+                    if (this.location === "Overworld") {
+                        this.setOverworldLocation("Dungeon2");
+                   } else if (this.location === "Dungeon2") {
+                        this.setOverworldLocation("Overworld");
+                    }
 
-        }
+                }
             
-        if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 5) {
-            this.setDungeonLocation();
-        }
+                if (this.blockCheck(playerX, playerY, blockX, blockY, 0) && type === 5) {
+                    this.setDungeonLocation();
+                }
+                
             }
         }
-            
+        console.log(type);
     },
     
     blockCheck: function (playerX, playerY, blockX, blockY, pad) {
