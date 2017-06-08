@@ -1,10 +1,10 @@
 var b = '';
-var o = {type:0};
-var w = {type:1};
-var s = {type:2};
-var d1 = {type:3};
-var d2 = {type:4};
-var d3 = {type:5};
+var o = {bt:0};
+var w = {bt:1};
+var s = {bt:2};
+var d1 = {bt:3};
+var d2 = {bt:4};
+var d3 = {bt:5};
 
 // dungeon number, floor, x coordinate, y coordinate
 
