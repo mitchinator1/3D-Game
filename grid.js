@@ -17,8 +17,8 @@ var Grid = {
     
     setOverworldLocation: function (mapLocation) {
         'use strict';
-        console.log("update 7");
-        //this.remove();
+        console.log("update 8");
+        this.remove();
         this.location = mapLocation;
         
         if (this.location === "Overworld") {
@@ -84,6 +84,7 @@ var Grid = {
     
     setDungeonLocation: function () {
         'use strict';
+        this.remove();
         var currentMap = mapGrid[this.location][this.floor];
 
         if (player.position.x > currentMap[this.gridY][this.gridX][0].length * 2 - 3 && currentMap[this.gridY][this.gridX + 1] !== undefined) {
@@ -114,9 +115,9 @@ var Grid = {
     remove: function () {
         var i, j;
         
-        for (i = 0; i < mapGrid[this.previousLocation][this.floor][this.gridY][this.gridX].length; i += 1) {
-            for (j = 0; j < mapGrid[this.previousLocation][this.floor][this.gridY][this.gridX][i].length; j += 1) {
-                scene.remove(mapGrid[this.previousLocation][this.floor][this.gridY][this.gridX][i][j]);
+        for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
+            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
+                scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j]);
             }
         }
         
@@ -127,7 +128,7 @@ var Grid = {
         var i, j;
     
         if (this.update) {
-            this.remove();
+            
             this.update = false;
             
             for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
