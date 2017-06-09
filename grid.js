@@ -130,7 +130,8 @@ var Grid = {
         var i, j;
         
         for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
-            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
+
+            for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
                 
                 scene.remove(mapGrid[this.location][this.floor][this.gridY][this.gridX][i][j]);
                 
@@ -142,9 +143,14 @@ var Grid = {
     render: function () {
         'use strict';
         var i, j;
+        camera.maxX = 0;
         
         for (i = 0; i < mapGrid[this.location][this.floor][this.gridY][this.gridX].length; i += 1) {
                 
+             if (mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length - 1) * blockW > camera.maxX) {
+                 camera.maxX = (this.currentGrid[i].length - 1) * blockW;
+             }
+            
             for (j = 0; j < mapGrid[this.location][this.floor][this.gridY][this.gridX][i].length; j += 1) {
                     
                 this.add(i, j);
