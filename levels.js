@@ -69,10 +69,10 @@ var dungeon1001 = [
     [w, o, o, o, o, o, o, o, o, o, o, o, w],
     [w, o, o, o, o, o, o, o, o, o, o, o, w],
     [w, o, o, o, o, o, o, o, o, o, o, o, w],
+    [w, o, o, o, o, o, o, o, o, o, o, o, w],
+    [w, o, o, o, o, o, o, o, o, o, o, o, w],
+    [w, o, o, o, o, o, o, o, o, o, o, o, w],
     [w, o, o, o, o, o, o, o, o, o, o, o, id1],
-    [w, o, o, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, o, o, w],
     [w, o, o, o, o, o, o, o, o, o, o, o, w],
     [w, w, w, w, w, w, w, w, w, w, w, w, w]
 ];
