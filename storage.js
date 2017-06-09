@@ -1,4 +1,4 @@
-var entryX, entryY, grid;
+var entryX, entryY, grid, hud;
 
 var Storage = {
     
@@ -14,7 +14,7 @@ var Storage = {
         hud.heartCount = parseInt(localStorage.getItem("hud.heartCount")) || 5;
         grid.location = localStorage.getItem("grid.location") || "Overworld";
         grid.previousLocation = localStorage.getItem("grid.previousLocation") || "";
-        grid.floor = localStorage.getItem("grid.floor") || 0;
+        grid.floor = parseInt(localStorage.getItem("grid.floor")) || 0;
     }
     
 };

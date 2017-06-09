@@ -1,4 +1,4 @@
-var THREE, HUD, Player, Input, Grid, Camera, Lighting, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer(),
+var THREE, HUD, Player, Input, Grid, Camera, Lighting, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer( { antialias: true } ),
     canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"),
     hud = Object.create(HUD), player = Object.create(Player), input = Object.create(Input), storage = Object.create(Storage), grid = Object.create(Grid), camera = Object.create(Camera), lighting = Object.create(Lighting),
     mainCam, pointLight, ambLight,
