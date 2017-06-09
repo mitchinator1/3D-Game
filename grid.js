@@ -11,6 +11,7 @@ var Grid = {
         this.update = true;
         this.gridX = 0;
         this.gridY = 0;
+        this.floor = 0;
         this.setOverworldLocation(this.location);
 
     },
