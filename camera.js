@@ -32,6 +32,7 @@ var Camera = {
         var i;
         
         this.maxY = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length - 1) * blockD;
+        this.maxX = 0;
         
         for (i = 0; i < mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length; i += 1) {
             if (this.maxX < (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW) {
