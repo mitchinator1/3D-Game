@@ -3,12 +3,12 @@ var THREE, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer( { anti
     mainCam, pointLight, ambLight,
     planeGeo, planeMat, plane,
     Grid, Player, Camera, HUD, Lighting, Input, Storage;
-
+/*
 var geometry = new THREE.CircleGeometry( 5, 16 );
 var material = new THREE.MeshBasicMaterial( { color: 0xff9955 } );
 var coin = new THREE.Mesh( geometry, material );
 scene.add( coin );
-
+*/
 (function init() {
     'use strict';
     
