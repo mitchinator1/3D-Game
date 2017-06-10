@@ -31,12 +31,12 @@ var Camera = {
         'use strict';
         var i;
         
-        this.maxY = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length - 1) * blockD;
+        this.maxY = (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX].length - 1) * blockD;
         this.maxX = 0;
         
-        for (i = 0; i < mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length; i += 1) {
-            if (this.maxX < (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW) {
-                this.maxX = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW;
+        for (i = 0; i < mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX].length; i += 1) {
+            if (this.maxX < (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX][i].length - 1) * blockW) {
+                this.maxX = (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX][i].length - 1) * blockW;
             }
         }
         
