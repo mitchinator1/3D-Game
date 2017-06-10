@@ -1,7 +1,8 @@
 var THREE, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer( { antialias: true } ),
     canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"),
     mainCam, pointLight, ambLight,
-    planeGeo, planeMat, plane;
+    planeGeo, planeMat, plane,
+    Grid, Player, Camera, HUD, Lighting, Input, Storage;
 
 var geometry = new THREE.CircleGeometry( 5, 16 );
 var material = new THREE.MeshBasicMaterial( { color: 0xff9955 } );
@@ -18,10 +19,9 @@ scene.add( coin );
     Storage.load();
     
     Player.init();
-    Player.controllable = true;
     
     Camera.init("mainCam", 10, 15);
-    Lighting.init(45);
+    Lighting.init(0);
     HUD.init();
     Input.init();
     
@@ -30,7 +30,7 @@ scene.add( coin );
     plane = new THREE.Mesh(planeGeo, planeMat);
     plane.receiveShadow = true;
     
-    scene.add(player, pointLight, ambLight, plane);
+    scene.add(Player, pointLight, ambLight, plane);
     
 }());
 
