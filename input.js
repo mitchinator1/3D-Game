@@ -1,4 +1,5 @@
-var HUD, e, Player, player, blockW, blockD, Camera, Grid, pointLight, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false, mainCam;
+var HUD, e, Player, player, blockW, blockD, Camera, Grid, Storage, pointLight, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false,
+    mainCam;
 
 var Input =  {
 
@@ -178,6 +179,7 @@ var Input =  {
 
         if (this.QKey && HUD.refreshScreen) {
             Camera.transition.fadeIn(ctx);
+            Storage.clear();
         }
         
         //Inventory switch on E Key
