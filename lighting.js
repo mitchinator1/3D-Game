@@ -4,7 +4,7 @@ var Lighting = {
     
     init: function (fog) {
         'use strict';
-        this.fog(fog);
+        this.fog(0x000000, fog);
         
         pointLight = new THREE.PointLight(0xffffff, 1, 140);
         pointLight.position.set(20, -10, 30);
@@ -16,9 +16,8 @@ var Lighting = {
         
     },
     
-    fog: function (fog, shade) {
+    fog: function (colour, fog) {
         'use strict';
-        var colour = shade || 0x000000;
         
         scene.fog = new THREE.FogExp2(colour, (fog / 1000));
         
