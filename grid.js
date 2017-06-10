@@ -1,7 +1,7 @@
-var entryX, entryY, player,
+var player,
     blockW, blockD,
     blockGeos, blockMats,
-    THREE, scene, camera, lighting, ctx, canvas, hud, storage, mapGrid;
+    THREE, scene, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
 
 var Grid = {
     
@@ -22,9 +22,9 @@ var Grid = {
         if (this.location === "Overworld") {
             this.gridX = 0;
             this.gridY = 0;
-            camera.padX = 4;
-            camera.padY = 4;
-            lighting.fog(0x000000, 5);
+            Camera.padX = 4;
+            Camera.padY = 4;
+            Lighting.fog(0x000000, 5);
             this.render();
             
             if (this.previousLocation === "Dungeon1") {
@@ -42,9 +42,9 @@ var Grid = {
         } else if (this.location === "Dungeon1") {
             this.gridX = 1;
             this.gridY = 0;
-            camera.padX = 3;
-            camera.padY = 4;
-            lighting.fog(0x000000, 30);
+            Camera.padX = 3;
+            Camera.padY = 4;
+            Lighting.fog(0x000000, 30);
             this.render();
             
             if (this.previousLocation === "Overworld") {
@@ -61,9 +61,9 @@ var Grid = {
         } else if (this.location === "Dungeon2") {
             this.gridX = 0;
             this.gridY = 0;
-            camera.padX = 3;
-            camera.padY = 4;
-            lighting.fog(0x000000, 45);
+            Camera.padX = 3;
+            Camera.padY = 4;
+            Lighting.fog(0x000000, 45);
             this.render();
 
             if (this.previousLocation === "Overworld") {
@@ -81,16 +81,16 @@ var Grid = {
             this.location = "Overworld";
             this.gridX = 0;
             this.gridY = 0;
-            camera.padX = 4;
-            camera.padY = 5;
+            Camera.padX = 4;
+            Camera.padY = 5;
             this.render();
             this.setPlayerPosition("exact", 22, 8);
             
         }
         
-        camera.transition.fadeIn(ctx);
-        camera.setPosition(camera.padX, camera.padY);
-        storage.save();
+        Camera.transition.fadeIn(ctx);
+        Camera.setPosition(Camera.padX, Camera.padY);
+        Storage.save();
 
     },
     
@@ -121,7 +121,7 @@ var Grid = {
             
         }
         
-        camera.transition.fadeIn(ctx);
+        Camera.transition.fadeIn(ctx);
         
     },
     
@@ -331,7 +331,7 @@ var Grid = {
             
         }
         
-        camera.setPosition(camera.padX, camera.padY);
+        Camera.setPosition(Camera.padX, Camera.padY);
         
     }
         
