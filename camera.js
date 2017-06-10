@@ -1,4 +1,4 @@
-var THREE, mainCam, HUD, canvas, player, Grid, mapGrid, blockW, blockD;
+var THREE, mainCam, HUD, canvas, Player, Grid, mapGrid, blockW, blockD;
 
 var Camera = {
     
@@ -22,7 +22,7 @@ var Camera = {
         if (this.currentCamera === "mainCam") {
             mainCam = new THREE.PerspectiveCamera(75, 900 / 700, 0.1, 1000);
             mainCam.position.z = this.startZ;
-            mainCam.lookAt(new THREE.Vector3(player.position.x, this.startY, 0));
+            mainCam.lookAt(new THREE.Vector3(Player.position.x, this.startY, 0));
         }
         
     },
@@ -41,20 +41,20 @@ var Camera = {
         }
         
         
-        if (player.position.x < blockW * padX) {
+        if (Player.position.x < blockW * padX) {
             mainCam.position.x = padX * blockW;
-        } else if (player.position.x > this.maxX - (padX * blockW)) {
+        } else if (Player.position.x > this.maxX - (padX * blockW)) {
             mainCam.position.x = this.maxX - (padX * blockW);
         } else {
-            mainCam.position.x = player.position.x;
+            mainCam.position.x = Player.position.x;
         }
         
-        if (player.position.y < blockD * padY) {
+        if (Player.position.y < blockD * padY) {
             mainCam.position.y = (padY * blockD) + this.offsetY;
-        } else if (player.position.y > this.maxY - (padY * blockD)) {
+        } else if (Player.position.y > this.maxY - (padY * blockD)) {
             mainCam.position.y = this.maxY - (padY * blockD) + this.offsetY;
         } else {
-            mainCam.position.y = player.position.y + this.offsetY;
+            mainCam.position.y = Player.position.y + this.offsetY;
         }
         
     },
@@ -84,7 +84,7 @@ var Camera = {
             HUD.showInventory = false;
             HUD.showHud = false;
             HUD.refreshScreen = false;
-            Player.controllable = false;
+            Player.userData.controllable = false;
             
             ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -93,7 +93,7 @@ var Camera = {
                 
                 if (opac <= 0) {
                     HUD.refreshScreen = true;
-                    Player.controllable = true;
+                    Player.userData.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeIn);
                 } else {
@@ -119,7 +119,7 @@ var Camera = {
             HUD.showInventory = false;
             HUD.showHud = false;
             HUD.refreshScreen = false;
-            Player.controllable = false;
+            Player.userData.controllable = false;
             
             ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -129,7 +129,7 @@ var Camera = {
                 if (opac >= 1) {
                     HUD.refreshScreen = true;
                     HUD.showHud = true;
-                    Player.controllable = true;
+                    Player.userData.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeOut);
                 } else {
