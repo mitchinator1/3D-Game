@@ -24,7 +24,7 @@ var Grid = {
             this.gridY = 0;
             camera.padX = 4;
             camera.padY = 4;
-            lighting.fog(0x000000, 0);
+            lighting.fog(0x000000, 5);
             this.render();
             
             if (this.previousLocation === "Dungeon1") {
@@ -44,7 +44,7 @@ var Grid = {
             this.gridY = 0;
             camera.padX = 3;
             camera.padY = 4;
-            lighting.fog(0x999999, 30);
+            lighting.fog(0x000000, 30);
             this.render();
             
             if (this.previousLocation === "Overworld") {
@@ -63,7 +63,7 @@ var Grid = {
             this.gridY = 0;
             camera.padX = 3;
             camera.padY = 4;
-            lighting.fog(0x00ff00, 45);
+            lighting.fog(0x000000, 45);
             this.render();
 
             if (this.previousLocation === "Overworld") {
