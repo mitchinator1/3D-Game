@@ -11,12 +11,12 @@ var Player = {
         Player.receiveShadow = true;
         
         Player.userData.controllable = true;
-        Player.userData = this.test;
+        Player.userData.test = this.test;
                 
     },
     
     test: function () {
-        return this.position.x;
+        return Player.position.x;
     }
     
 };
