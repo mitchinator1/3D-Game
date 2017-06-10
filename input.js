@@ -201,5 +201,5 @@ var Input =  {
     
 };
 
-document.addEventListener("keydown", function (e) {'use strict'; this.handleKeyEvent(e, true); });
-document.addEventListener("keyup", function (e) {'use strict'; this.handleKeyEvent(e, false); });
+document.addEventListener("keydown", function (e) {'use strict'; Input.handleKeyEvent(e, true); });
+document.addEventListener("keyup", function (e) {'use strict'; Input.handleKeyEvent(e, false); });
