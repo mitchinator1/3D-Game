@@ -16,7 +16,7 @@ var Player = {
     },
     
     test: function () {
-        return this.position.x;
+        return this;
     }
     
 };
