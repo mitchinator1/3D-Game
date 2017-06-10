@@ -5,11 +5,17 @@ var Player = {
     init: function () {
         'use strict';
 
-        player = new THREE.Mesh(playerGeo, playerMat);
-        player.position.z = 1;
-        player.castShadow = true;
-        player.receiveShadow = true;
+        Player = new THREE.Mesh(playerGeo, playerMat);
+        Player.position.z = 1;
+        Player.castShadow = true;
+        Player.receiveShadow = true;
+        
+        Player.userData.test = this.test;
                 
+    },
+    
+    test: function () {
+        return "foo";
     }
     
 };
