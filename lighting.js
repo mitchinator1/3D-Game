@@ -16,10 +16,11 @@ var Lighting = {
         
     },
     
-    fog: function (fog) {
+    fog: function (fog, colour) {
         'use strict';
+        var colour = colour || "000000";
         
-        scene.fog = new THREE.FogExp2(0x000000, (fog / 1000));
+        scene.fog = new THREE.FogExp2(0x + colour, (fog / 1000));
         
     }
     
