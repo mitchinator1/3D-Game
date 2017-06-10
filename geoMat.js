@@ -18,5 +18,5 @@ var blockGeo4 = new THREE.BoxGeometry(blockW, blockD, 0.01),
     blockMat4 = new THREE.MeshLambertMaterial({ color: 0x000000 });
 
 //index of arrays equals type of block to set
-var blockGeos = [blockGeo0, blockGeo1, blockGeo2, blockGeo3, blockGeo4];
-var blockMats = [blockMat0, blockMat1, blockMat2, blockMat3, blockMat4];
+var blockGeos = [blockGeo0, blockGeo1, blockGeo2, blockGeo3, blockGeo4, blockGeo4];
+var blockMats = [blockMat0, blockMat1, blockMat2, blockMat3, blockMat4, blockMat4];
