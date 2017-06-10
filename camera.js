@@ -81,10 +81,10 @@ var Camera = {
             'use strict';
             var opac = 1, fadeIn;
             
-            hud.showInventory = false;
-            hud.showHud = false;
-            hud.refreshScreen = false;
-            player.controllable = false;
+            HUD.showInventory = false;
+            HUD.showHud = false;
+            HUD.refreshScreen = false;
+            Player.controllable = false;
             
             ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -92,8 +92,8 @@ var Camera = {
             function fadein() {
                 
                 if (opac <= 0) {
-                    hud.refreshScreen = true;
-                    player.controllable = true;
+                    HUD.refreshScreen = true;
+                    Player.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeIn);
                 } else {
@@ -103,7 +103,7 @@ var Camera = {
                     opac -= 0.015;
                 }
                 if (opac <= 0.1) {
-                    hud.showHud = true;
+                    HUD.showHud = true;
                 }
                 
             }
@@ -116,10 +116,10 @@ var Camera = {
             'use strict';
             var opac = 0, fadeOut;
             
-            hud.showInventory = false;
-            hud.showHud = false;
-            hud.refreshScreen = false;
-            player.controllable = false;
+            HUD.showInventory = false;
+            HUD.showHud = false;
+            HUD.refreshScreen = false;
+            Player.controllable = false;
             
             ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -127,9 +127,9 @@ var Camera = {
             function fadeout() {
 
                 if (opac >= 1) {
-                    hud.refreshScreen = true;
-                    hud.showHud = true;
-                    player.controllable = true;
+                    HUD.refreshScreen = true;
+                    HUD.showHud = true;
+                    Player.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeOut);
                 } else {
