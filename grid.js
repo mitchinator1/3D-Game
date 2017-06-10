@@ -99,7 +99,7 @@ var Grid = {
         this.remove();
         var currentMap = mapGrid[this.location][this.floor];
 
-        if (player.position.x > currentMap[this.gridY][this.gridX][0].length * 2 - 3 && currentMap[this.gridY][this.gridX + 1] !== undefined) {
+        if (player.position.x > (currentMap[this.gridY][this.gridX][0].length - 1) * blockW - 1 && currentMap[this.gridY][this.gridX + 1] !== undefined) {
             this.gridX += 1;
             this.render();
             this.setPlayerPosition("west");
@@ -109,7 +109,7 @@ var Grid = {
             this.render();
             this.setPlayerPosition("east");
             
-        } else if (player.position.y > currentMap[this.gridY][this.gridX].length * 2 - 3 && currentMap[this.gridY + 1][this.gridX] !== undefined) {
+        } else if (player.position.y > (currentMap[this.gridY][this.gridX].length - 1) * blockD - 1 && currentMap[this.gridY + 1][this.gridX] !== undefined) {
             this.gridY += 1;
             this.render();
             this.setPlayerPosition("south");
