@@ -22,7 +22,10 @@ var Storage = {
     },
     
     clear: function () {
+        
         localStorage.clear();
+        console.log("localStorage is cleared");
+        
     }
     
 };
