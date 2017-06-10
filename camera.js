@@ -1,4 +1,4 @@
-var THREE, mainCam, hud, canvas, player, grid, mapGrid, blockW, blockD;
+var THREE, mainCam, HUD, canvas, player, Grid, mapGrid, blockW, blockD;
 
 var Camera = {
     
