@@ -1,20 +1,31 @@
-var entryX, entryY, grid, hud;
+var entryX, entryY, Grid, HUD;
 
 var Storage = {
     
     save: function () {
-        localStorage.setItem("hud.heartCount", hud.heartCount);
-        localStorage.setItem("grid.location", grid.location);
-        localStorage.setItem("grid.previousLocation", grid.previousLocation);
-        localStorage.setItem("grid.floor", grid.floor);
+        
+        localStorage.setItem("HUD.heartCount", HUD.heartCount);
+        localStorage.setItem("Grid.location", Grid.location);
+        localStorage.setItem("Grid.previousLocation", Grid.previousLocation);
+        localStorage.setItem("Grid.floor", Grid.floor);
         console.log("Saved to localStorage");
+        
     },
     
     load: function () {
-        hud.heartCount = parseInt(localStorage.getItem("hud.heartCount")) || 5;
-        grid.location = localStorage.getItem("grid.location") || "Overworld";
-        grid.previousLocation = localStorage.getItem("grid.previousLocation") || "";
-        grid.floor = parseInt(localStorage.getItem("grid.floor")) || 0;
+        
+        HUD.heartCount = parseInt(localStorage.getItem("HUD.heartCount")) || 5;
+        Grid.location = localStorage.getItem("Grid.location") || "Overworld";
+        Grid.previousLocation = localStorage.getItem("Grid.previousLocation") || "";
+        Grid.floor = parseInt(localStorage.getItem("Grid.floor")) || 0;
+        
+    },
+    
+    clear: function () {
+        
+        localStorage.clear();
+        console.log("localStorage is cleared");
+        
     }
     
 };

@@ -11,6 +11,7 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 - Allowed for more precise entry locations.
 - Grid object is now easier to work with, as there is just one array, instead of multiple to handle hitDetect, player entry points, and rendering of the grid.
 - Camera is based solely of player position upon entry. More dynamic and tidier.
+- Had unneccessary instances of objects being created. Now all objects are referenced as "Grid" instead of "grid".
 
 <b>Jun 6, 2017</b>
 - Added dynamic positioning based on grid length in dungeons. Still need to implement a stricter door linking, but this will do for now.

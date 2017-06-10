@@ -1,4 +1,6 @@
-var hud, input, e, player, blockW, blockD, camera, grid, pointLight, ctx, lastTs, timeDelta, movementSpeed, ESwitch = false, mainCam;
+var HUD, Player, Camera, Grid, Storage,
+    ctx, lastTs, timeDelta, movementSpeed, e, ESwitch = false,
+    blockW, blockD, mainCam, pointLight;
 
 var Input =  {
 
@@ -77,123 +79,124 @@ var Input =  {
         movementSpeed = 5 * timeDelta;
         
         //Left Direction
-        if (input.AKey && player.controllable && !input.DKey) {
+        if (this.AKey && Player.userData.controllable && !this.DKey) {
             
-            if (!grid.hitDetect()) {
-                player.position.x -= movementSpeed;
+            if (!Grid.hitDetect()) {
+                Player.position.x -= movementSpeed;
             }
-            if (player.position.x < camera.maxX - (camera.padX * blockW) || grid.hitDetect()) {
-                camera.control.move(-movementSpeed, 0);
+            if (Player.position.x < Camera.maxX - (Camera.padX * blockW) || Grid.hitDetect()) {
+                Camera.control.move(-movementSpeed, 0);
             }
-            if (player.position.x < camera.minX * camera.padX || grid.hitDetect()) {
-                camera.control.move(movementSpeed, 0);
+            if (Player.position.x < Camera.minX * Camera.padX || Grid.hitDetect()) {
+                Camera.control.move(movementSpeed, 0);
             }
-            if (grid.hitDetect()) {
-                player.position.x += movementSpeed;
+            if (Grid.hitDetect()) {
+                Player.position.x += movementSpeed;
             }
             
         }
         
         //Right Direction
-        if (input.DKey && player.controllable && !input.AKey) {
+        if (this.DKey && Player.userData.controllable && !this.AKey) {
             
-            if (!grid.hitDetect()) {
-                player.position.x += movementSpeed;
+            if (!Grid.hitDetect()) {
+                Player.position.x += movementSpeed;
             }
-            if (player.position.x > camera.minX * camera.padX || grid.hitDetect()) {
-                camera.control.move(movementSpeed, 0);
+            if (Player.position.x > Camera.minX * Camera.padX || Grid.hitDetect()) {
+                Camera.control.move(movementSpeed, 0);
             }
-            if (player.position.x > camera.maxX - (camera.padX * blockW) || grid.hitDetect()) {
-                camera.control.move(-movementSpeed, 0);
+            if (Player.position.x > Camera.maxX - (Camera.padX * blockW) || Grid.hitDetect()) {
+                Camera.control.move(-movementSpeed, 0);
             }
-            if (grid.hitDetect()) {
-                player.position.x -= movementSpeed;
+            if (Grid.hitDetect()) {
+                Player.position.x -= movementSpeed;
             }
             
         }
         
         //Up Direction
-        if (input.WKey && player.controllable && !input.SKey) {
+        if (this.WKey && Player.userData.controllable && !this.SKey) {
             
-            if (!grid.hitDetect()) {
-                player.position.y += movementSpeed;
+            if (!Grid.hitDetect()) {
+                Player.position.y += movementSpeed;
             }
-            if (player.position.y > camera.minY * camera.padY || grid.hitDetect()) {
-                camera.control.move(0, movementSpeed);
+            if (Player.position.y > Camera.minY * Camera.padY || Grid.hitDetect()) {
+                Camera.control.move(0, movementSpeed);
             }
-            if (player.position.y > camera.maxY - (camera.padY * blockD) || grid.hitDetect()) {
-                camera.control.move(0, -movementSpeed);
+            if (Player.position.y > Camera.maxY - (Camera.padY * blockD) || Grid.hitDetect()) {
+                Camera.control.move(0, -movementSpeed);
             }
-            if (grid.hitDetect()) {
-                player.position.y -= movementSpeed;
+            if (Grid.hitDetect()) {
+                Player.position.y -= movementSpeed;
             }
             
         }
         
         //Down Direction
-        if (input.SKey && player.controllable && !input.WKey) {
+        if (this.SKey && Player.userData.controllable && !this.WKey) {
             
-            if (!grid.hitDetect()) {
-                player.position.y -= movementSpeed;
+            if (!Grid.hitDetect()) {
+                Player.position.y -= movementSpeed;
             }
-            if (player.position.y < camera.maxY - (camera.padY * blockD) || grid.hitDetect()) {
-                camera.control.move(0, -movementSpeed);
+            if (Player.position.y < Camera.maxY - (Camera.padY * blockD) || Grid.hitDetect()) {
+                Camera.control.move(0, -movementSpeed);
             }
-            if (player.position.y < camera.minY * camera.padY || grid.hitDetect()) {
-                camera.control.move(0, movementSpeed);
+            if (Player.position.y < Camera.minY * Camera.padY || Grid.hitDetect()) {
+                Camera.control.move(0, movementSpeed);
             }
-            if (grid.hitDetect()) {
-                player.position.y += movementSpeed;
+            if (Grid.hitDetect()) {
+                Player.position.y += movementSpeed;
             }
             
         }
 
-        if (input.LArrowKey) {
+        if (this.LArrowKey) {
             mainCam.rotation.y += 0.01;
         }
 
-        if (input.RArrowKey) {
+        if (this.RArrowKey) {
             mainCam.rotation.y -= 0.01;
         }
 
-        if (input.UArrowKey) {
+        if (this.UArrowKey) {
             pointLight.position.y += 0.2;
             pointLight.position.z -= 0.1;
             
-            if (hud.heartCount < 20) {
-                hud.health(true, 1);
+            if (HUD.heartCount < 20) {
+                HUD.health(true, 1);
             }
             
         }
 
-        if (input.DArrowKey) {
+        if (this.DArrowKey) {
             pointLight.position.y -= 0.2;
             pointLight.position.z += 0.1;
             
-            if (hud.heartCount > 4) {
-                hud.health(true, -1);
+            if (HUD.heartCount > 4) {
+                HUD.health(true, -1);
             }
             
         }
 
-        if (input.QKey && hud.refreshScreen) {
-            camera.transition.fadeIn(ctx);
+        if (this.QKey && HUD.refreshScreen) {
+            Camera.transition.fadeIn(ctx);
+            Storage.clear();
         }
         
         //Inventory switch on E Key
-        if (input.EKey && !ESwitch) {
+        if (this.EKey && !ESwitch) {
             
-            if (!hud.showInventory) {
-                hud.showInventory = true;
-                player.controllable = false;
+            if (!HUD.showInventory) {
+                HUD.showInventory = true;
+                Player.userData.controllable = false;
             } else {
-                hud.showInventory = false;
-                player.controllable = true;
+                HUD.showInventory = false;
+                Player.userData.controllable = true;
             }
             ESwitch = true;
         }
         
-        if (!input.EKey && ESwitch) {
+        if (!this.EKey && ESwitch) {
             ESwitch = false;
         }
         
@@ -201,5 +204,5 @@ var Input =  {
     
 };
 
-document.addEventListener("keydown", function (e) {'use strict'; input.handleKeyEvent(e, true); });
-document.addEventListener("keyup", function (e) {'use strict'; input.handleKeyEvent(e, false); });
+document.addEventListener("keydown", function (e) {'use strict'; Input.handleKeyEvent(e, true); });
+document.addEventListener("keyup", function (e) {'use strict'; Input.handleKeyEvent(e, false); });

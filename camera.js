@@ -1,4 +1,4 @@
-var THREE, mainCam, hud, canvas, player, grid, mapGrid, blockW, blockD;
+var THREE, mainCam, HUD, canvas, Player, Grid, mapGrid, blockW, blockD;
 
 var Camera = {
     
@@ -22,7 +22,7 @@ var Camera = {
         if (this.currentCamera === "mainCam") {
             mainCam = new THREE.PerspectiveCamera(75, 900 / 700, 0.1, 1000);
             mainCam.position.z = this.startZ;
-            mainCam.lookAt(new THREE.Vector3(player.position.x, this.startY, 0));
+            mainCam.lookAt(new THREE.Vector3(Player.position.x, this.startY, 0));
         }
         
     },
@@ -31,30 +31,30 @@ var Camera = {
         'use strict';
         var i;
         
-        this.maxY = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length - 1) * blockD;
+        this.maxY = (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX].length - 1) * blockD;
         this.maxX = 0;
         
-        for (i = 0; i < mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX].length; i += 1) {
-            if (this.maxX < (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW) {
-                this.maxX = (mapGrid[grid.location][grid.floor][grid.gridY][grid.gridX][i].length - 1) * blockW;
+        for (i = 0; i < mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX].length; i += 1) {
+            if (this.maxX < (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX][i].length - 1) * blockW) {
+                this.maxX = (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX][i].length - 1) * blockW;
             }
         }
         
         
-        if (player.position.x < blockW * padX) {
+        if (Player.position.x < blockW * padX) {
             mainCam.position.x = padX * blockW;
-        } else if (player.position.x > this.maxX - (padX * blockW)) {
+        } else if (Player.position.x > this.maxX - (padX * blockW)) {
             mainCam.position.x = this.maxX - (padX * blockW);
         } else {
-            mainCam.position.x = player.position.x;
+            mainCam.position.x = Player.position.x;
         }
         
-        if (player.position.y < blockD * padY) {
+        if (Player.position.y < blockD * padY) {
             mainCam.position.y = (padY * blockD) + this.offsetY;
-        } else if (player.position.y > this.maxY - (padY * blockD)) {
+        } else if (Player.position.y > this.maxY - (padY * blockD)) {
             mainCam.position.y = this.maxY - (padY * blockD) + this.offsetY;
         } else {
-            mainCam.position.y = player.position.y + this.offsetY;
+            mainCam.position.y = Player.position.y + this.offsetY;
         }
         
     },
@@ -81,10 +81,10 @@ var Camera = {
             'use strict';
             var opac = 1, fadeIn;
             
-            hud.showInventory = false;
-            hud.showHud = false;
-            hud.refreshScreen = false;
-            player.controllable = false;
+            HUD.showInventory = false;
+            HUD.showHud = false;
+            HUD.refreshScreen = false;
+            Player.userData.controllable = false;
             
             ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -92,8 +92,8 @@ var Camera = {
             function fadein() {
                 
                 if (opac <= 0) {
-                    hud.refreshScreen = true;
-                    player.controllable = true;
+                    HUD.refreshScreen = true;
+                    Player.userData.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeIn);
                 } else {
@@ -103,7 +103,7 @@ var Camera = {
                     opac -= 0.015;
                 }
                 if (opac <= 0.1) {
-                    hud.showHud = true;
+                    HUD.showHud = true;
                 }
                 
             }
@@ -116,10 +116,10 @@ var Camera = {
             'use strict';
             var opac = 0, fadeOut;
             
-            hud.showInventory = false;
-            hud.showHud = false;
-            hud.refreshScreen = false;
-            player.controllable = false;
+            HUD.showInventory = false;
+            HUD.showHud = false;
+            HUD.refreshScreen = false;
+            Player.userData.controllable = false;
             
             ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -127,9 +127,9 @@ var Camera = {
             function fadeout() {
 
                 if (opac >= 1) {
-                    hud.refreshScreen = true;
-                    hud.showHud = true;
-                    player.controllable = true;
+                    HUD.refreshScreen = true;
+                    HUD.showHud = true;
+                    Player.userData.controllable = true;
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     clearInterval(fadeOut);
                 } else {

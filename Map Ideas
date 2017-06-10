@@ -7,12 +7,11 @@
 
 Grid name based on 4 points, in order.
 - Dungeon
-- level
-- X Coordinate
+- Floor
 - Y Coordinate
+- X Coordinate
 
 Add entry location text
-Add overworld to master grid as 0.
 Make every dungeon/grid have all 3 Arrays( Floor/level, X, Y )
 Every grid as a seperate array, link together via:
 grid = [overworld, dungeon1, dungeon2, dungeon3, etc...];
