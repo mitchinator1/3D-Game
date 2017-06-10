@@ -1,4 +1,4 @@
-var player, THREE, playerGeo, playerMat, mapGrid, blockW, grid;
+var player, THREE, playerGeo, playerMat;
 
 var Player = {
     
