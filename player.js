@@ -11,7 +11,7 @@ var Player = {
         Player.receiveShadow = true;
         
         Player.userData.controllable = true;
-        Player.userData.test = this.test;
+        Player.userData = this.test;
                 
     },
     
