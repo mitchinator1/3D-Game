@@ -10,6 +10,7 @@ var Player = {
         Player.castShadow = true;
         Player.receiveShadow = true;
         
+        player.userData.controllable = true;
         Player.userData.test = this.test;
                 
     },
