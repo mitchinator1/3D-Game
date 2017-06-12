@@ -2,11 +2,8 @@ var THREE, mainCam, HUD, canvas, Player, Grid, mapGrid, blockW, blockD;
 
 var Camera = {
     
-    init: function (cam, startY, startZ) {
+    init: function (cam) {
         'use strict';
-        this.startY = startY;
-        this.startZ = startZ;
-        
         this.currentCamera = cam;
         
         this.minX = blockW;
@@ -21,8 +18,8 @@ var Camera = {
         
         if (this.currentCamera === "mainCam") {
             mainCam = new THREE.PerspectiveCamera(75, 900 / 700, 0.1, 1000);
-            mainCam.position.z = this.startZ;
-            mainCam.lookAt(new THREE.Vector3(Player.position.x, this.startY, 0));
+            mainCam.position.z = 15;
+            mainCam.lookAt(new THREE.Vector3(Player.position.x, 10, 0));
         }
         
     },
@@ -31,12 +28,12 @@ var Camera = {
         'use strict';
         var i;
         
-        this.maxY = (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX].length - 1) * blockD;
+        this.maxY = (mapGrid[Grid.location][Grid.floor][Grid.Y][Grid.X].length - 1) * blockD;
         this.maxX = 0;
         
-        for (i = 0; i < mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX].length; i += 1) {
-            if (this.maxX < (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX][i].length - 1) * blockW) {
-                this.maxX = (mapGrid[Grid.location][Grid.floor][Grid.gridY][Grid.gridX][i].length - 1) * blockW;
+        for (i = 0; i < mapGrid[Grid.location][Grid.floor][Grid.Y][Grid.X].length; i += 1) {
+            if (this.maxX < (mapGrid[Grid.location][Grid.floor][Grid.Y][Grid.X][i].length - 1) * blockW) {
+                this.maxX = (mapGrid[Grid.location][Grid.floor][Grid.Y][Grid.X][i].length - 1) * blockW;
             }
         }
         
@@ -77,7 +74,7 @@ var Camera = {
     
     transition: {
         
-        fadeIn: function (ctx) {
+        fadeIn: function (ctx, locationChange) {
             'use strict';
             var opac = 1, fadeIn;
             
@@ -90,7 +87,6 @@ var Camera = {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             function fadein() {
-                
                 if (opac <= 0) {
                     HUD.refreshScreen = true;
                     Player.userData.controllable = true;
@@ -101,6 +97,11 @@ var Camera = {
                     ctx.fillStyle = 'rgba(0, 0, 0,' + opac + ')';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     opac -= 0.015;
+                    
+                    if (locationChange) {
+                        HUD.displayText(Grid.location, false);
+                    }
+                    
                 }
                 if (opac <= 0.1) {
                     HUD.showHud = true;

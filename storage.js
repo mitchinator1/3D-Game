@@ -3,6 +3,7 @@ var entryX, entryY, Grid, HUD;
 var Storage = {
     
     save: function () {
+        'use strict';
         
         localStorage.setItem("HUD.heartCount", HUD.heartCount);
         localStorage.setItem("Grid.location", Grid.location);
@@ -13,6 +14,7 @@ var Storage = {
     },
     
     load: function () {
+        'use strict';
         
         HUD.heartCount = parseInt(localStorage.getItem("HUD.heartCount")) || 5;
         Grid.location = localStorage.getItem("Grid.location") || "Overworld";
@@ -22,6 +24,7 @@ var Storage = {
     },
     
     clear: function () {
+        'use strict';
         
         localStorage.clear();
         console.log("localStorage is cleared");

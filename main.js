@@ -1,18 +1,21 @@
-var THREE, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer( { antialias: true } ),
+var THREE, scene = new THREE.Scene(), renderer = new THREE.WebGLRenderer({ antialias: true }),
     canvas = document.getElementById("hud"), ctx = canvas.getContext("2d"),
     mainCam, pointLight, ambLight,
     planeGeo, planeMat, plane,
     Grid, Player, Camera, HUD, Lighting, Input, Storage;
+
 /*
 var geometry = new THREE.CircleGeometry( 5, 16 );
 var material = new THREE.MeshBasicMaterial( { color: 0xff9955 } );
 var coin = new THREE.Mesh( geometry, material );
 scene.add( coin );
 */
+
 (function init() {
     'use strict';
     
     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.setSize(900, 700);
     document.body.appendChild(renderer.domElement);
     
@@ -20,7 +23,7 @@ scene.add( coin );
     
     Player.init();
     
-    Camera.init("mainCam", 10, 15);
+    Camera.init("mainCam");
     Lighting.init(0);
     HUD.init();
     Input.init();
@@ -29,8 +32,7 @@ scene.add( coin );
     
     plane = new THREE.Mesh(planeGeo, planeMat);
     plane.receiveShadow = true;
-    
-    scene.add(Player, pointLight, ambLight, plane);
+    scene.add(plane);
     
 }());
 

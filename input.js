@@ -1,5 +1,5 @@
 var HUD, Player, Camera, Grid, Storage,
-    ctx, lastTs, timeDelta, movementSpeed, e, ESwitch = false,
+    ctx, lastTs, timeDelta, movementSpeed, e, ESwitch = false, SpaceSwitch = false,
     blockW, blockD, mainCam, pointLight;
 
 var Input =  {
@@ -11,62 +11,65 @@ var Input =  {
         this.DKey = false;
         this.WKey = false;
         this.SKey = false;
-        this.SpaceKey = false;
         this.LArrowKey = false;
         this.RArrowKey = false;
         this.UArrowKey = false;
         this.DArrowKey = false;
         this.QKey = false;
-        this.EKey = false;
+
+        this.EKey = {down: false,
+                     toggle: false};
+        this.SpaceKey = {down: false,
+                        toggle: false};
         
     },
     
-    handleKeyEvent: function (e, isKeyDown) {
+    handleKeyEvent: function (e, keyPress) {
         'use strict';
         
         //Left - A Key
         if (e.keyCode === 65) {
-            this.AKey = isKeyDown;
+            this.AKey = keyPress;
         }
         //Right - D Key
         if (e.keyCode === 68) {
-            this.DKey = isKeyDown;
+            this.DKey = keyPress;
         }
         //Up - W Key
         if (e.keyCode === 87) {
-            this.WKey = isKeyDown;
+            this.WKey = keyPress;
         }
         //Down - S Key
         if (e.keyCode === 83) {
-            this.SKey = isKeyDown;
+            this.SKey = keyPress;
         }
         //Space Key
         if (e.keyCode === 32) {
-            this.SpaceKey = isKeyDown;
+            this.SpaceKey.down = keyPress;
         }
         //Left Arrow Key
         if (e.keyCode === 37) {
-            this.LArrowKey = isKeyDown;
+            this.LArrowKey = keyPress;
         }
         //Right Arrow Key
         if (e.keyCode === 39) {
-            this.RArrowKey = isKeyDown;
+            this.RArrowKey = keyPress;
         }
         //Up Arrow Key
         if (e.keyCode === 38) {
-            this.UArrowKey = isKeyDown;
+            this.UArrowKey = keyPress;
         }
         //Down Arrow Key
         if (e.keyCode === 40) {
-            this.DArrowKey = isKeyDown;
+            this.DArrowKey = keyPress;
         }
         //Q Key
         if (e.keyCode === 81) {
-            this.QKey = isKeyDown;
+            this.QKey = keyPress;
         }
         //E Key
         if (e.keyCode === 69) {
-            this.EKey = isKeyDown;
+            this.EKey.down = keyPress;
         }
     },
     
@@ -161,20 +164,13 @@ var Input =  {
         if (this.UArrowKey) {
             pointLight.position.y += 0.2;
             pointLight.position.z -= 0.1;
-            
-            if (HUD.heartCount < 20) {
-                HUD.health(true, 1);
-            }
-            
         }
 
         if (this.DArrowKey) {
             pointLight.position.y -= 0.2;
             pointLight.position.z += 0.1;
             
-            if (HUD.heartCount > 4) {
-                HUD.health(true, -1);
-            }
+            HUD.health(true, -1);
             
         }
 
@@ -184,7 +180,7 @@ var Input =  {
         }
         
         //Inventory switch on E Key
-        if (this.EKey && !ESwitch) {
+        if (this.EKey.down && !this.EKey.toggle) {
             
             if (!HUD.showInventory) {
                 HUD.showInventory = true;
@@ -193,11 +189,78 @@ var Input =  {
                 HUD.showInventory = false;
                 Player.userData.controllable = true;
             }
-            ESwitch = true;
+            this.EKey.toggle = true;
         }
         
-        if (!this.EKey && ESwitch) {
-            ESwitch = false;
+        if (!this.EKey.down && this.EKey.toggle) {
+            this.EKey.toggle = false;
+        }
+        
+        if (this.SpaceKey.down && !this.SpaceKey.toggle) {
+            var sign, chest, door;
+            this.SpaceKey.toggle = true;
+            
+            //Check for interactable objects
+            if (Grid.hitDetect(6)) {
+                chest = Grid.hitDetect(6).userData;
+                
+                if (!Player.userData.controllable) {
+                    Player.userData.controllable = true;
+                    HUD.refreshScreen = true;
+                }
+                
+                if (!chest.interact.opened) {
+
+                    HUD.keyCount += 1;
+
+                    if (chest.interact.item === "Heart") {
+                        HUD.health(true, 1);
+                    }
+                    if (chest.interact.coins) {
+                        HUD.currency(chest.interact.coins);
+                    }
+                    chest.interact.opened = true;
+
+                    Player.userData.controllable = false;
+                    HUD.refreshScreen = false;
+                    HUD.displayText("You found a " + chest.interact.item + ", 1 Key, and " + chest.interact.coins + " coins!", true);
+                }
+                
+            }
+            
+            if (Grid.hitDetect(7)) {
+                sign = Grid.hitDetect(7).userData;
+                
+                if (Player.userData.controllable) {
+                    Player.userData.controllable = false;
+                    HUD.refreshScreen = false;
+                    HUD.displayText(sign.contents, true);
+                } else {
+                    Player.userData.controllable = true;
+                    HUD.refreshScreen = true;
+                }
+                
+            }
+
+            if (Grid.hitDetect(8)) {
+                
+                door = Grid.hitDetect(8);
+                
+                if (door.userData.locked && HUD.keyCount > 0) {
+                    
+                    Player.userData.pause(1);
+                    door.userData.locked = false;
+                    HUD.keyCount -= 1;
+                    door.position.z = -1.9;
+                    
+                }
+                
+            }
+            
+        }
+        
+        if (!this.SpaceKey.down && this.SpaceKey.toggle) {
+            this.SpaceKey.toggle = false;
         }
         
     }
