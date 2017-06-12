@@ -5,6 +5,16 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 
 <b><u>Change log</u></b>
 
+<b>Jun 12, 2017</b>
+- Added location entry text.
+- Added text and text boxes.
+- Added objects to grid array, allowing more properties. Easier to seperate Geometries and Materials in meshes, add different states, etc.
+- Added treasure chests, as well as contents.
+- Added locked doors, and keys.
+- Implemented an easier way to toggle button presses.
+- Added a function to add coins, and not exceed the current maximum.
+- Added signs.
+
 <b>Jun 9, 2017</b>
 - Completely restructured the way the grid is written, added, and rendered.
 - Now avoiding multiple regenerations of map arrays, instead just reference back to them.
