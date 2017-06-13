@@ -14,6 +14,7 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 - Implemented an easier way to toggle button presses.
 - Added a function to add coins, and not exceed the current maximum.
 - Added signs.
+- Removed unneccessary addition of heart images.
 
 <b>Jun 9, 2017</b>
 - Completely restructured the way the grid is written, added, and rendered.
