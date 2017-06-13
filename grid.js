@@ -250,11 +250,11 @@ var Grid = {
                     return block.userData.hit;
                 }
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 6) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.2) && type === 6) {
                     return block.userData.hit;
                 }
                  
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 7) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.2) && type === 7) {
                     return block.userData.hit;
                 }
                 
