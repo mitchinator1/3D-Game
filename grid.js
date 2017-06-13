@@ -250,15 +250,15 @@ var Grid = {
                     return block.userData.hit;
                 }
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.2) && type === 6) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 6) {
                     return block.userData.hit;
                 }
                  
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.3) && type === 7) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 7) {
                     return block.userData.hit;
                 }
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.2) && type === 8) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 8) {
                     
                     if (block.userData.locked) {
                         return block.userData.hit;
@@ -269,7 +269,7 @@ var Grid = {
                     
                 }
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === specific) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad + 0.1) && type === specific) {
                     return block;
                 }
                 
