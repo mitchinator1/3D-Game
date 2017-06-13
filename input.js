@@ -206,7 +206,7 @@ var Input =  {
                 
                 if (!Player.userData.controllable) {
                     Player.userData.controllable = true;
-                    HUD.refreshScreen = true;
+                    HUD.setRefreshArea("Full");
                 }
                 
                 if (!chest.interact.opened) {
@@ -222,22 +222,20 @@ var Input =  {
                     chest.interact.opened = true;
 
                     Player.userData.controllable = false;
-                    HUD.refreshScreen = false;
                     HUD.displayText("You found a " + chest.interact.item + ", 1 Key, and " + chest.interact.coins + " coins!", true);
                 }
                 
             }
             
-            if (Grid.hitDetect(7)) {
+            if (Grid.hitDetect(7) && Player.position.y < Grid.hitDetect(7).position.y - blockD + 0.1) {
                 sign = Grid.hitDetect(7).userData;
                 
                 if (Player.userData.controllable) {
                     Player.userData.controllable = false;
-                    HUD.refreshScreen = false;
                     HUD.displayText(sign.contents, true);
                 } else {
                     Player.userData.controllable = true;
-                    HUD.refreshScreen = true;
+                    HUD.setRefreshArea("Full");
                 }
                 
             }

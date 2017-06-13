@@ -8,6 +8,7 @@ var HUD = {
         this.showInventory = false;
         this.showHud = true;
         
+        //Item Counts
         this.health(true, 0);
         this.coinCount = 97;
         this.coinMax = 99;
@@ -15,22 +16,29 @@ var HUD = {
         this.refreshScreen = true;
         this.keyCount = 0;
         
+        this.refreshMinX = 0;
+        this.refreshMaxX = canvas.width;
+        this.refreshMinY = 0;
+        this.refreshMaxY = canvas.width;
+        
+        
+        //Images
         this.topLeft = new Image();
-        this.top = new Image();
-        this.topRight = new Image();
-        this.left = new Image();
-        this.right = new Image();
-        this.bottomLeft = new Image();
-        this.bottom = new Image();
-        this.bottomRight = new Image();
         this.topLeft.src = 'sprites/topLeft.png';
+        this.top = new Image();
         this.top.src = 'sprites/top.png';
+        this.topRight = new Image();
         this.topRight.src = 'sprites/topRight.png';
-        this.bottomLeft.src = 'sprites/bottomLeft.png';
-        this.bottom.src = 'sprites/bottom.png';
-        this.bottomRight.src = 'sprites/bottomRight.png';
+        this.left = new Image();
         this.left.src = 'sprites/left.png';
+        this.right = new Image();
         this.right.src = 'sprites/right.png';
+        this.bottomLeft = new Image();
+        this.bottomLeft.src = 'sprites/bottomLeft.png';
+        this.bottom = new Image();
+        this.bottom.src = 'sprites/bottom.png';
+        this.bottomRight = new Image();
+        this.bottomRight.src = 'sprites/bottomRight.png';
         
         this.coin = new Image();
         this.coin.src = 'sprites/coin.png';
@@ -43,10 +51,22 @@ var HUD = {
         'use strict';
         
         if (this.refreshScreen) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(this.refreshMinX, this.refreshMinY, this.refreshMaxX, this.refreshMaxY);
         }
         
         this.displayInventory();
+        
+    },
+    
+    setRefreshArea: function (area) {
+        'use strict';
+        
+        if (area === "Window") {
+            this.refreshMaxY = canvas.height - 228;
+        }
+        if (area === "Full") {
+            this.refreshMaxY = canvas.height;
+        }
         
     },
     
@@ -114,9 +134,9 @@ var HUD = {
         if (this.showHud) {
             ctx.drawImage(this.coin, canvas.width - 68, 20, 32, 32);
             ctx.font = '16px Arial';
-            ctx.fillStyle = "white";
-            ctx.fillText("x" + this.coinCount, canvas.width - 34, 50);
-            ctx.fillText("x" + this.keyCount, canvas.width - 34, 70);
+            ctx.fillStyle = 'rgba(255,255,255,1)';
+            ctx.fillText("x" + this.coinCount, canvas.width - 34, 44);
+            ctx.fillText("Keys x" + this.keyCount, canvas.width - 74, 70);
             
             for (i = 0; i < this.heartCount; i += 1) {
                 if (i <= 9) {
@@ -126,6 +146,9 @@ var HUD = {
                     ctx.drawImage(this.heart, 20 + (24 * (i - 10)), 44, 32, 32);
                 }
             }
+            
+            this.window(280, 20, 16, 16, 344, 84, true);
+            this.window(368, 20, 16, 16, 432, 84, true);
             
         }
         
@@ -153,6 +176,9 @@ var HUD = {
         ctx.lineWidth = 4;
         
         if (windowed) {
+            
+            this.setRefreshArea("Window");
+            //this.refreshMaxY = canvas.height - 228;
             
             this.window(20, canvas.height - 228, 16, 16, canvas.width - 36, canvas.height - 36, true);
             

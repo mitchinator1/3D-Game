@@ -1,7 +1,9 @@
 var THREE, blockW, blockD, blockH;
 
+
 var sign1 = "You are now entering Dungeon 1.";
 var sign2 = "You are now entering Dungeon 2. Complete Dungeon 1 first.";
+var signs = [sign1, sign2];
 
 var blockGeo0 = new THREE.BoxGeometry(blockW, blockD, 0.01),
     blockMat0 = new THREE.MeshLambertMaterial({ color: 0x00aa00 });
@@ -26,9 +28,12 @@ var b = {bt: '', hit: false}, //blank
     d2 = {bt: 4, hit: true, hitPad: 0.1, geometry: blockGeo4, material: blockMat4 }, //Dungeon 2 door
     id1 = {bt: 5, hit: true, hitPad: 0, geometry: blockGeo4, material: blockMat4 }, //Inner dungeon door
     id2 = {bt: 8, hit: true, hitPad: 0.2, locked: true, geometry: new THREE.BoxGeometry(blockW / 4, blockD, blockH * 2), material: blockMat1 }, //Inner locked dungeon door
-    c1 = {bt: 6, hit: true, hitPad: 1, interact: {item: "Heart", coins: 5, opened: false}, geometry: blockGeo6, material: blockMat6  }, //Chest
-    s1 = {bt: 7, hit: true, hitPad: 1, contents: sign1, geometry: blockGeo7, material: blockMat7 },
-    s2 = {bt: 7, hit: true, hitPad: 1, contents: sign2, geometry: blockGeo7, material: blockMat7 };
+    c1 = {bt: 6, hit: true, hitPad: 1, interact: {item: "Heart", coins: 5, opened: false}, geometry: blockGeo6, material: blockMat6  }; //Chest
+
+var sign = function (index) {
+    'use strict';
+    return {bt: 7, hit: true, hitPad: 1, contents: signs[index], geometry: blockGeo7, material: blockMat7 };
+};
 
 // dungeon number, floor, x coordinate, y coordinate
 
@@ -46,7 +51,7 @@ var overworld000 = [
         [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
         [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
         [w, o, o, o, o, o, o, o, s, w, w, o, w, w, w, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, w, d1, s1, o, w, d2, s2, o, o, o, o, o, w],
+        [w, o, o, o, o, o, o, o, w, d1, sign(0), o, w, d2, sign(1), o, o, o, o, o, w],
         [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
         [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
         [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
