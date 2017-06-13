@@ -5,6 +5,11 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 
 <b><u>Change log</u></b>
 
+<b>Jun 13, 2017</b>
+- Fixed screen refresh issue.
+- Added sign function, to increase dynamic range.
+- Added item boxes to HUD.
+
 <b>Jun 12, 2017</b>
 - Added location entry text.
 - Added text and text boxes.
