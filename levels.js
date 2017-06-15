@@ -1,5 +1,12 @@
 var THREE, blockW, blockD, blockH;
-
+// '11' '11111' 1 1111 1111
+//[general][type][data]
+//Interactables
+//hitpad, geo, mat,
+//00 or 0 walls
+//01 0r 1 passables
+//10 or 2 interactables
+//11 or 3 doors
 /*
 var start = 61111;
 
@@ -22,21 +29,9 @@ switch (general) {
   case 3: general = "Door";
 }
 
-console.log(number + ", " + general + ", " + type + ", " + data);
-
 //65535 = 1111 1111 1111 1111
 
 //48 + 8
-
-//Walls
-// '11' '11111' 1 1111 1111
-//[general][type][data]
-//Interactables
-//hitpad, geo, mat, 
-//00 or 0 walls
-//01 0r 1 passables
-//10 or 2 interactables
-//11 or 3 doors
 */
 
 var sign1 = "You are now entering Dungeon 1.";
