@@ -34,7 +34,9 @@ var Grid = {
                 Player.userData.setPosition("overworld", 4);
                 
             } else {
+                
                 Player.userData.setPosition("exact", 14, 8);
+            
             }
 
         } else if (this.location === "Dungeon 1") {
@@ -258,7 +260,7 @@ var Grid = {
                     return block.userData.hit;
                 }
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 8) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.2) && type === 8) {
                     
                     if (block.userData.locked) {
                         return block.userData.hit;
@@ -269,7 +271,7 @@ var Grid = {
                     
                 }
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad + 0.1) && type === specific) {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === specific) {
                     return block;
                 }
                 

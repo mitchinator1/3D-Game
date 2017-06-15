@@ -1,16 +1,54 @@
 var THREE, blockW, blockD, blockH;
 
+/*
+var start = 61111;
+
+var number = start.toString(2);
+for (i = 0; number.length < 16; i++){
+  number = "0" + number;
+}
+
+var general = parseInt(number.slice(0, 2), 2);
+var type = parseInt(number.slice(2, 7), 2);
+var data = parseInt(number.slice(7), 2);
+
+switch (general) {
+  case 0: general = "wall";
+    break;
+  case 1: general = "Passable";
+    break;
+  case 2: general = "Interactable";
+    break;
+  case 3: general = "Door";
+}
+
+console.log(number + ", " + general + ", " + type + ", " + data);
+
+//65535 = 1111 1111 1111 1111
+
+//48 + 8
+
+//Walls
+// '11' '11111' 1 1111 1111
+//[general][type][data]
+//Interactables
+//hitpad, geo, mat, 
+//00 or 0 walls
+//01 0r 1 passables
+//10 or 2 interactables
+//11 or 3 doors
+*/
 
 var sign1 = "You are now entering Dungeon 1.";
 var sign2 = "You are now entering Dungeon 2. Complete Dungeon 1 first.";
 var signs = [sign1, sign2];
 
 var blockGeo0 = new THREE.BoxGeometry(blockW, blockD, 0.01),
-    blockMat0 = new THREE.MeshLambertMaterial({ color: 0x00aa00 });
+    blockMat0 = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
 var blockGeo1 = new THREE.BoxGeometry(blockW, blockD, blockH * 2),
-    blockMat1 = new THREE.MeshLambertMaterial({ color: 0xcc9955 });
+    blockMat1 = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
 var blockGeo2 = new THREE.BoxGeometry(blockW, blockD, blockH * 2),
-    blockMat2 = new THREE.MeshLambertMaterial({ color: 0x118811 });
+    blockMat2 = new THREE.MeshLambertMaterial({ color: 0x119922 });
 var blockGeo3 = new THREE.BoxGeometry(blockW, blockD, 0.01),
     blockMat3 = new THREE.MeshLambertMaterial({ color: 0x000000 });
 var blockGeo4 = new THREE.BoxGeometry(blockW, blockD, 0.01),
@@ -172,8 +210,15 @@ var dungeon2 = [ [
         [dungeon2000, dungeon2010]
     ] ];
 
+var dungeon3,
+    dungeon4,
+    dungeon5;
+
 var mapGrid = {
-    Overworld: overworld,
+    "Overworld": overworld,
     "Dungeon 1": dungeon1,
-    "Dungeon 2": dungeon2
+    "Dungeon 2": dungeon2,
+    "Dungeon 3": dungeon3,
+    "Dungeon 4": dungeon4,
+    "Dungeon 5": dungeon5
 };
