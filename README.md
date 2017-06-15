@@ -5,6 +5,9 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 
 <b><u>Change log</u></b>
 
+<b>Jun 15, 2017</b>
+- Starting to convert levels to a 32 bit Integer
+
 <b>Jun 13, 2017</b>
 - Fixed screen refresh issue.
 - Added sign function, to increase dynamic range.
