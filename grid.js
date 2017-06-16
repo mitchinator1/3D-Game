@@ -1,5 +1,5 @@
-var blockW, blockD, blockGeos, blockMats,
-    THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
+var blockW, blockD, blockH, blockGeos, blockMats,
+    THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
 var Grid = {
     
@@ -290,31 +290,61 @@ var Grid = {
     },
     
     readGrid: function () {
-        var i, j, grid = mapGrid[this.location][this.floor][this.Y][this.X];
+        var i, j;
         
-        for (i = 0; i < grid.length; i += 1) {
-            for (j = 0; j < grid[i].length; j += 1) {
+        for (i = 0; i < mapGridTest.length; i += 1) {
+            for (j = 0; j < mapGridTest[i].length; j += 1) {
                 
-                var set = parseInt(grid[i][j].slice(0, 2), 2),
-                    type = parseInt(grid[i][j].slice(2, 7), 2),
-                    data = parseInt(grid[i][j].slice(7), 2);
+                var setSrc = parseInt(mapGridTest[i][j].slice(0, 2), 2),
+                    typeSrc = parseInt(mapGridTest[i][j].slice(2, 7), 2),
+                    dataSrc = parseInt(mapGridTest[i][j].slice(7), 2);
                 
-                parseSet(set, type, data);
+                mapGridTest[i][j] = parseSet(setSrc, typeSrc, dataSrc);
                 
             }
         }
     },
     
-    parseSet: function (general, type, data) {
-        return parseType(general, type, data);
+    parseSet: function (setSrc, typeSrc, dataSrc) {
+        var block;
+        
+        switch (setSrc) {
+            case 0: block = { set: "Wall", hit: true };
+                break;
+            case 1: block = { set: "Passable", hit: false };
+                break;
+            case 2: block = { set: "Interactable", hit: true };
+                break;
+            case 3: block = { set: "Door", hit: true };
+                break;
+                      }
+        
+        return parseType(block, typeSrc, dataSrc);
+        
     },
     
-    parseType: function (general, type, data) {
-        return parseData(general, type, data);
+    parseType: function (block, typeSrc, dataSrc) {
+        if (block.set === "Wall") {
+            switch (typeSrc) {
+                case 0: block.geography = new THREE.BoxGeometry(blockW, blockD, blockH);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                    break;
+                case 1: block.geography = new THREE.BoxGeometry(blockW, blockD, blockH);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
+                    break;
+                           }
+            
+        }
+        
+        return parseData(block, dataSrc);
+        
     },
     
-    parseData: function (general, type, data) {
-        return { general: general, type: type, data: data };
+    parseData: function (block, dataSrc) {
+        
+        
+        return block;
+        
     }
         
 };
