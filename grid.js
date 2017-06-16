@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("1:04");
+console.log("1:54");
 
 var Grid = {
     
@@ -360,7 +360,6 @@ var Grid = {
     
     parseType: function (block, typeSrc, dataSrc) {
         
-        console.log(typeSrc);
         
         if (block.set === "Wall") {
             switch (typeSrc) {
@@ -395,6 +394,8 @@ var Grid = {
                     break;
                            }
         }
+        
+        console.log(block);
 
         return this.parseData(block, dataSrc);
         
