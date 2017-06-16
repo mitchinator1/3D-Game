@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("2:40");
+console.log("2:44");
 
 var Grid = {
     
@@ -362,7 +362,24 @@ var Grid = {
     
     parseType: function (block, typeSrc, dataSrc) {
         
-        if (block.set === "Wall") {
+        if (block.set === "Passable") {
+            switch (typeSrc) {
+                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
+                    block.hitPad = 0;
+                    break;
+                case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.5);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
+                    block.hitPad = 0;
+                    break;
+                default: block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                    block.hitPad = 1;
+                    break;
+                           }
+        }
+        
+        if (block.set === "Wall") {
             switch (typeSrc) {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
@@ -377,25 +394,7 @@ var Grid = {
                     block.hitPad = 1;
                     break;
                            }
-            
-        }
-        
-        if (block.set === "Passable") {
-            switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
-                    block.hitPad = 0;
-                    break;
-                case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.5);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
-                    block.hitPad = 0;
-                    break;
-                default: block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
-                    block.hitPad = 1;
-                    break;
-                           }
-        }
+        }
 
         return this.parseData(block, dataSrc);
         
