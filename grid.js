@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("7:44");
+console.log("7:47");
 
 var Grid = {
     
@@ -319,7 +319,7 @@ var Grid = {
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.set = set;
                 
-                scene.add (mapGridTest[i][j]);
+                scene.add(mapGridTest[i][j]);
                 
             }
         }
