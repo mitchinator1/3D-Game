@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:25");
+console.log("10:34");
 
 var Grid = {
     
@@ -309,20 +309,23 @@ var Grid = {
                     typeSrc = parseInt(src.slice(2, 7), 2),
                     dataSrc = parseInt(src.slice(7), 2);
                 
-                mapGridTest[i][j] = this.parseSet(setSrc, typeSrc, dataSrc);
+                var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
                 
-                var hit = mapGridTest[i][j].hit;
-                var set = mapGridTest[i][j].set;
-                var data = mapGridTest[i][j].data;
-                var testSpot = mapGridTest[i][j].testSpot;
-                var geometry = mapGridTest[i][j].geometry;
-                var material = mapGridTest[i][j].material;
+                var hit = parsed.hit,
+                    hitPad = parsed.hitPad,
+                    set = parsed.set,
+                    data = parsed.data,
+                    testSpot = parsed.testSpot;
+                    //geometry = parsed.geometry,
+                    //material = parsed.material;
                 
-                mapGridTest[i][j] = new THREE.Mesh(geometry, material);
+                mapGridTest[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
                 mapGridTest[i][j].userData.hit = hit;
+                mapGridTest[i][j].userData.hitPad = hitPad;
                 mapGridTest[i][j].userData.set = set;
                 mapGridTest[i][j].userData.data = data;
+                mapGridTest[i][j].userData.testSpot = testSpot;
                 
                 mapGridTest[i][j].position.x = blockW * j + 2;
                 mapGridTest[i][j].position.y = blockD * i + 2;
@@ -356,14 +359,17 @@ var Grid = {
     parseType: function (block, typeSrc, dataSrc) {
         if (block.set === "Wall") {
             switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(2, 2, 2);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
+                    block.hitPad = 0.9;
                     break;
                 case 1: block.geometry = new THREE.BoxGeometry(2, 2, 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
+                    block.hitPad = 1;
                     break;
-                default: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 3);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x229922 });
+                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                    block.hitPad = 1;
                     break;
                            }
             
