@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:19");
+console.log("10:25");
 
 var Grid = {
     
@@ -313,6 +313,8 @@ var Grid = {
                 
                 var hit = mapGridTest[i][j].hit;
                 var set = mapGridTest[i][j].set;
+                var data = mapGridTest[i][j].data;
+                var testSpot = mapGridTest[i][j].testSpot;
                 var geometry = mapGridTest[i][j].geometry;
                 var material = mapGridTest[i][j].material;
                 
@@ -320,6 +322,7 @@ var Grid = {
                 
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.set = set;
+                mapGridTest[i][j].userData.data = data;
                 
                 mapGridTest[i][j].position.x = blockW * j + 2;
                 mapGridTest[i][j].position.y = blockD * i + 2;
@@ -329,8 +332,6 @@ var Grid = {
                 
             }
         }
-        
-        console.log(mapGridTest);
         
     },
     
