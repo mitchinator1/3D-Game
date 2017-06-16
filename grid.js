@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:01");
+console.log("4:14");
 
 var Grid = {
     
@@ -395,6 +395,28 @@ var Grid = {
                     break;
                            }
         }
+        
+        if (block.set === "Interactable") {
+            switch (typeSrc) {
+                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
+                    block.hitPad = 0.1
+                    break;
+                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                    block.hitPad = 1;
+                    break;
+                           }
+        }
+        
+        if (block.set === "Door") {
+            switch (typeSrc) {
+                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                    block.hitPad = 1;
+                    break;
+                           }
+        }
 
         return this.parseData(block, dataSrc);
         
@@ -403,8 +425,6 @@ var Grid = {
     parseData: function (block, dataSrc) {
         
         block.data = dataSrc;
-        
-        console.log(block);
         
         return block;
         
