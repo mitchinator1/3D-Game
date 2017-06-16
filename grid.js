@@ -314,6 +314,8 @@ var Grid = {
                 var hit = mapGridTest[i][j].hit;
                 var set = mapGridTest[i][j].set;
                 
+                console.log(mapGridTest[i][j]);
+                
                 mapGridTest[i][j] = new THREE.Mesh(mapGridTest[i][j].geometry, mapGridTest[i][j].material);
                 
                 mapGridTest[i][j].userData.hit = hit;
