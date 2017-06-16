@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:34");
+console.log("10:42");
 
 var Grid = {
     
@@ -329,7 +329,9 @@ var Grid = {
                 
                 mapGridTest[i][j].position.x = blockW * j + 2;
                 mapGridTest[i][j].position.y = blockD * i + 2;
-                mapGridTest[i][j].position.z = 3;
+                mapGridTest[i][j].position.z = 1;
+                
+                mapGridTest[i][j].castShadow = true;
                 
                 scene.add(mapGridTest[i][j]);
                 
