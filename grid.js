@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("6:43");
+console.log("7:01");
 
 var Grid = {
     
@@ -310,8 +310,8 @@ var Grid = {
                     dataSrc = parseInt(src.slice(7), 2);
                 
                 mapGridTest[i][j] = this.parseSet(setSrc, typeSrc, dataSrc);
-                
-            }
+                mapGridTest[i][j] = new THREE.Mesh(mapGridTest[i][j].geometry, mapGridTest[i][j].material);
+            }
         }
         
         console.log(mapGridTest);
@@ -355,8 +355,8 @@ var Grid = {
     
     parseData: function (block, dataSrc) {
         
-        
-        return block;
+        //currentMap[i][j] = new THREE.Mesh(geometry, material);
+        return block;
         
     }
         
