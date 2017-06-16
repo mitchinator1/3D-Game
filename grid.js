@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("2:02");
+console.log("2:16");
 
 var Grid = {
     
@@ -402,6 +402,8 @@ var Grid = {
     parseData: function (block, dataSrc) {
         
         block.data = dataSrc;
+        
+        console.log(block);
         
         return block;
         
