@@ -294,9 +294,13 @@ var Grid = {
         
         for (i = 0; i < mapGridTest.length; i += 1) {
             for (j = 0; j < mapGridTest[i].length; j += 1) {
-                for (k = mapGridTest[i][j].length; k < 16; k += 1) {
-                    var src = mapGridTest[i][j].toString(2);
+                
+                var src = mapGridTest[i][j].toString(2);
+                
+                for (k = mapGridTest[i][j].length; k < 16; k += 1) {
+                    
                     src = "0" + src;
+                    
                 }
                 
                 var setSrc = parseInt(src.slice(0, 2), 2),
