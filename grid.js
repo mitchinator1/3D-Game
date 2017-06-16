@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("1:54");
+console.log("1:57");
 
 var Grid = {
     
@@ -360,6 +360,7 @@ var Grid = {
     
     parseType: function (block, typeSrc, dataSrc) {
         
+        console.log(block.set);
         
         if (block.set === "Wall") {
             switch (typeSrc) {
@@ -380,6 +381,7 @@ var Grid = {
         }
         
         if (block.set === "Passable") {
+            console.log(typeSrc);
             switch (typeSrc) {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
@@ -394,8 +396,6 @@ var Grid = {
                     break;
                            }
         }
-        
-        console.log(block);
 
         return this.parseData(block, dataSrc);
         
