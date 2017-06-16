@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("8:37");
+console.log("8:43");
 
 var Grid = {
     
@@ -313,10 +313,11 @@ var Grid = {
                 
                 var hit = mapGridTest[i][j].hit;
                 var set = mapGridTest[i][j].set;
-                var geometry = mapGridTest[i][j].geometry;
-                var material = mapGridTest[i][j].material;
+                //var geometry = mapGridTest[i][j].geometry;
+                //var material = mapGridTest[i][j].material;
                 
-                console.log(mapGridTest[i][j]);
+                var geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
+                var material = new THREE.MeshLambertMaterial({ color: 0xddaa55 }); 
                 
                 mapGridTest[i][j] = new THREE.Mesh(geometry, material);
                 
