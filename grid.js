@@ -1,6 +1,8 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
+console.log("6:43");
+
 var Grid = {
     
     init: function () {
