@@ -319,11 +319,12 @@ var Grid = {
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.set = set;
                 
-                mapGridTest[i][j].position.x = 2 * j;
-                mapGridTest[i][j].position.y = 2 * i;
                 mapGridTest[i][j].position.z = 2;
                 
                 scene.add(mapGridTest[i][j]);
+                
+                mapGridTest[i][j].position.x = 2 * j;
+                mapGridTest[i][j].position.y = 2 * i;
                 
             }
         }
