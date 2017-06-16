@@ -376,6 +376,15 @@ var Grid = {
                            }
             
         }
+        
+        if (block.set === "Passable") {
+            switch (typeSrc) {
+                case 0:
+                    break;
+                default:
+                    break;
+                           }
+        }
 
         return this.parseData(block, dataSrc);
         
