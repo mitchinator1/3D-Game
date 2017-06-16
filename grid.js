@@ -327,8 +327,9 @@ var Grid = {
                 mapGridTest[i][j].userData.data = data;
                 mapGridTest[i][j].userData.testSpot = testSpot;
                 
-                mapGridTest[i][j].position.x = blockW * j + 2;
-                mapGridTest[i][j].position.y = blockD * i + 2;
+                mapGridTest[i][j].position.x = j * blockW;
+                mapGridTest[i][j].position.y = (mapGridTest.length - 1 - i) * blockD;
+
                 mapGridTest[i][j].position.z = 1;
                 
                 mapGridTest[i][j].castShadow = true;
