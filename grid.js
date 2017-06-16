@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("12:54");
+console.log("12:59");
 
 var Grid = {
     
@@ -312,8 +312,6 @@ var Grid = {
                 
                 var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
                 
-                console.log(parsed);
-                
                 var hit = parsed.hit,
                     hitPad = parsed.hitPad,
                     set = parsed.set,
@@ -321,8 +319,6 @@ var Grid = {
                     testSpot = parsed.testSpot;
                 
                 mapGridTest[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
-                
-                console.log(mapGridTest[i][j]);
                 
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.hitPad = hitPad;
@@ -335,7 +331,7 @@ var Grid = {
 
                 mapGridTest[i][j].position.z = 1;
                 
-                //mapGridTest[i][j].castShadow = true;
+                mapGridTest[i][j].castShadow = true;
                 
                 scene.add(mapGridTest[i][j]);
                 
@@ -363,6 +359,9 @@ var Grid = {
     },
     
     parseType: function (block, typeSrc, dataSrc) {
+        
+        console.log(typeSrc);
+        
         if (block.set === "Wall") {
             switch (typeSrc) {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
