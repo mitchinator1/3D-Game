@@ -211,7 +211,7 @@ var dungeon3,
 
 var mapGridTest = [[429, 430, 430, 430],
                    [430, 16384, 16384, 429],
-                   [430, 430, 430, 430];
+                   [430, 430, 430, 430]];
 
 var mapGrid = {
     "Overworld": overworld,
