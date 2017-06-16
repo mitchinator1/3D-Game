@@ -319,6 +319,8 @@ var Grid = {
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.set = set;
                 
+                scene.add (mapGridTest[i][j]);
+                
             }
         }
         
