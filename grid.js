@@ -302,7 +302,6 @@ var Grid = {
                 
                 for (k = src.length; k < 16; k += 1) {
                     
-                    console.log(k);
                     src = "0" + src;
                     
                 }
