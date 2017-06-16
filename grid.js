@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:13");
+console.log("10:19");
 
 var Grid = {
     
@@ -316,22 +316,16 @@ var Grid = {
                 var geometry = mapGridTest[i][j].geometry;
                 var material = mapGridTest[i][j].material;
                 
-                //var geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
-                //var material = new THREE.MeshLambertMaterial({ color: 0xddaa55 }); 
-                console.log(mapGridTest[i][j].geometry);
-                //console.log(mapGridTest[i][j].geometry);
-                
                 mapGridTest[i][j] = new THREE.Mesh(geometry, material);
                 
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.set = set;
                 
-                mapGridTest[i][j].position.z = 3;
+                mapGridTest[i][j].position.x = blockW * j + 2;
+                mapGridTest[i][j].position.y = blockD * i + 2;
+                mapGridTest[i][j].position.z = 3;
                 
                 scene.add(mapGridTest[i][j]);
-                
-                mapGridTest[i][j].position.x = 2 * j + 2;
-                mapGridTest[i][j].position.y = 2 * i + 2;
                 
             }
         }
@@ -361,19 +355,16 @@ var Grid = {
     parseType: function (block, typeSrc, dataSrc) {
         if (block.set === "Wall") {
             switch (typeSrc) {
-                case 0: block.geography = new THREE.BoxGeometry(2, 2, 2);
+                case 0: block.geometry = new THREE.BoxGeometry(2, 2, 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                     break;
-                case 1: block.geography = new THREE.BoxGeometry(2, 2, 2);
+                case 1: block.geometry = new THREE.BoxGeometry(2, 2, 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
                     break;
-                default: block.geography = new THREE.BoxGeometry(blockW, blockD, blockH * 3);
+                default: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 3);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x229922 });
                     break;
                            }
-
-            //blockGeo1 = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
-            //blockMat1 = new THREE.MeshLambertMaterial({ color: 0xddaa55 }); 
             
         }
 
@@ -384,8 +375,6 @@ var Grid = {
     parseData: function (block, dataSrc) {
         
         block.data = dataSrc;
-        
-        console.log(block);
         
         return block;
         
