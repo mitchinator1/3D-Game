@@ -287,6 +287,34 @@ var Grid = {
             return true;
         }
         
+    },
+    
+    readGrid: function () {
+        var i, j, grid = mapGrid[this.location][this.floor][this.Y][this.X];
+        
+        for (i = 0; i < grid.length; i += 1) {
+            for (j = 0; j < grid[i].length; j += 1) {
+                
+                var set = parseInt(grid[i][j].slice(0, 2), 2),
+                    type = parseInt(grid[i][j].slice(2, 7), 2),
+                    data = parseInt(grid[i][j].slice(7), 2);
+                
+                parseSet(set, type, data);
+                
+            }
+        }
+    },
+    
+    parseSet: function (general, type, data) {
+        return parseType(general, type, data);
+    },
+    
+    parseType: function (general, type, data) {
+        return parseData(general, type, data);
+    },
+    
+    parseData: function (general, type, data) {
+        return { general: general, type: type, data: data };
     }
         
 };
