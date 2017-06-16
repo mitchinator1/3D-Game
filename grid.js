@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("7:10");
+console.log("7:12");
 
 var Grid = {
     
@@ -305,7 +305,7 @@ var Grid = {
                     
                 }
                 
-                console.log(mapGridTest[i][j]);
+                console.log(src);
                 
                 var setSrc = parseInt(src.slice(0, 2), 2),
                     typeSrc = parseInt(src.slice(2, 7), 2),
