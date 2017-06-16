@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("2:24");
+console.log("2:40");
 
 var Grid = {
     
@@ -346,9 +346,9 @@ var Grid = {
         var block;
         
         switch (setSrc) {
-            case 0: block = { set: "Wall", hit: true };
+            case 0: block = { set: "Passable", hit: false };
                 break;
-            case 1: block = { set: "Passable", hit: false };
+            case 1: block = { set: "Wall", hit: true };
                 break;
             case 2: block = { set: "Interactable", hit: true };
                 break;
@@ -389,7 +389,7 @@ var Grid = {
                 case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
                     block.hitPad = 0;
-                    console.log("Type 1 selected");
+                    break;
                 default: block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                     block.hitPad = 1;
