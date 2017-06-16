@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("2:52");
+console.log("2:53");
 
 var Grid = {
     
@@ -310,10 +310,10 @@ var Grid = {
                     typeSrc = parseInt(src.slice(2, 7), 2),
                     dataSrc = parseInt(src.slice(7), 2);
                 
-                console.log(dataSrc);
+                console.log(setSrc + ", " + typeSrc + ", " + dataSrc);
                 
                 var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
-                
+                console.log(parsed);
                 var hit = parsed.hit,
                     hitPad = parsed.hitPad,
                     set = parsed.set,
