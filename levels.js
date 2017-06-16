@@ -209,6 +209,8 @@ var dungeon3,
     dungeon4,
     dungeon5;
 
+var mapGridTest = [];
+
 var mapGrid = {
     "Overworld": overworld,
     "Dungeon 1": dungeon1,
