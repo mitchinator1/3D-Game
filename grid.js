@@ -303,6 +303,9 @@ var Grid = {
                 
             }
         }
+        
+        console.log(mapGridTest);
+        
     },
     
     parseSet: function (setSrc, typeSrc, dataSrc) {
