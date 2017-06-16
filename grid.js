@@ -305,6 +305,8 @@ var Grid = {
                     
                 }
                 
+                k = 0;
+                
                 var setSrc = parseInt(src.slice(0, 2), 2),
                     typeSrc = parseInt(src.slice(2, 7), 2),
                     dataSrc = parseInt(src.slice(7), 2);
