@@ -300,7 +300,7 @@ var Grid = {
                 var src = mapGridTest[i][j].toString(2);
                 console.log(src);
                 
-                for (k = mapGridTest[i][j].length; k < 16; k += 1) {
+                for (k = src.length; k < 16; k += 1) {
                     
                     console.log(k);
                     src = "0" + src;
