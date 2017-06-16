@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("12:09");
+console.log("12:54");
 
 var Grid = {
     
@@ -296,14 +296,13 @@ var Grid = {
         
         for (i = 0; i < mapGridTest.length; i += 1) {
             for (j = 0; j < mapGridTest[i].length; j += 1) {
-                console.log(mapGridTest[i][j]);
+                
                 var src = mapGridTest[i][j].toString(2);
                 for (k = src.length; k < 16; k += 1) {
                     
                     src = "0" + src;
                     
                 }
-                console.log(i + ", " + j + ", " + src);
 
                 k = 0;
                 
@@ -313,6 +312,8 @@ var Grid = {
                 
                 var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
                 
+                console.log(parsed);
+                
                 var hit = parsed.hit,
                     hitPad = parsed.hitPad,
                     set = parsed.set,
@@ -320,6 +321,8 @@ var Grid = {
                     testSpot = parsed.testSpot;
                 
                 mapGridTest[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
+                
+                console.log(mapGridTest[i][j]);
                 
                 mapGridTest[i][j].userData.hit = hit;
                 mapGridTest[i][j].userData.hitPad = hitPad;
