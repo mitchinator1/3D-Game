@@ -309,7 +309,7 @@ var Grid = {
                     typeSrc = parseInt(src.slice(2, 7), 2),
                     dataSrc = parseInt(src.slice(7), 2);
                 
-                mapGridTest[i][j] = parseSet(setSrc, typeSrc, dataSrc);
+                mapGridTest[i][j] = this.parseSet(setSrc, typeSrc, dataSrc);
                 
             }
         }
@@ -332,7 +332,7 @@ var Grid = {
                 break;
                       }
         
-        return parseType(block, typeSrc, dataSrc);
+        return this.parseType(block, typeSrc, dataSrc);
         
     },
     
@@ -349,7 +349,7 @@ var Grid = {
             
         }
         
-        return parseData(block, dataSrc);
+        return this.parseData(block, dataSrc);
         
     },
     
