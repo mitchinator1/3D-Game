@@ -298,6 +298,7 @@ var Grid = {
             for (j = 0; j < mapGridTest[i].length; j += 1) {
                 
                 var src = mapGridTest[i][j].toString(2);
+                console.log(src);
                 
                 for (k = mapGridTest[i][j].length; k < 16; k += 1) {
                     
