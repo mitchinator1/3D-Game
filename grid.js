@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("9:56");
+console.log("10:05");
 
 var Grid = {
     
@@ -327,7 +327,7 @@ var Grid = {
                 mapGridTest[i][j].position.x = j * blockW;
                 mapGridTest[i][j].position.y = (mapGridTest.length - 1 - i) * blockD;
 
-                mapGridTest[i][j].position.z = zPos || 1;
+                mapGridTest[i][j].position.z = zPos;
                 
                 mapGridTest[i][j].castShadow = true;
                 
@@ -382,6 +382,7 @@ var Grid = {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
                     block.hitPad = 0.9;
+                    block.z = 1;
                     break;
                 case 1: block.geometry = new THREE.BoxGeometry(2, 2, 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
@@ -418,10 +419,12 @@ var Grid = {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
                     block.hitPad = 0.1;
+                    block.z = 0;
                     break;
                 default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                     block.hitPad = 1;
+                    block.z = 0;
                     break;
                            }
         }
