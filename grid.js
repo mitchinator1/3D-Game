@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("2:35");
+console.log("3:03");
 
 var Grid = {
     
@@ -76,7 +76,7 @@ var Grid = {
             this.Y = 0;
             Camera.padX = 4;
             Camera.padY = 5;
-            this.render();
+            this.readGrid();
             Player.userData.setPosition("exact", 22, 8);
             
         }
@@ -132,7 +132,7 @@ var Grid = {
         }
         
     },
-    /*
+    
     add: function (i, j) {
         'use strict';
         var currentMap = mapGrid[this.location][this.floor][this.Y][this.X],
@@ -176,7 +176,7 @@ var Grid = {
         }
         
     },
-    */
+    
     hitDetect: function (specific) {
         'use strict';
         var playerX = Player.position.x, playerY = Player.position.y,
