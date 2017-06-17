@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("11:37");
+console.log("11:41");
 
 var Grid = {
     
@@ -40,7 +40,7 @@ var Grid = {
                 */
                 Player.userData.setPosition("exact", 14, 8);
             
-            }
+            //}
 
         } else if (this.location === "Dungeon 1") {
             this.X = 1;
