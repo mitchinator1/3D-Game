@@ -55,7 +55,7 @@ var Player = {
             
             for (i; i < grid[0].length; i += 1) {
 
-                if (grid[0][i].userData.bt === 5 || grid[0][i].userData.bt === 4 || grid[0][i].userData.bt === 3 || grid[0][i].userData.bt === 8) {
+                if (grid[0][i].userData.set === "Door") {
 
                     Player.position.x = grid[0][i].position.x;
                     Player.position.y = grid[0][i].position.y - blockD / 1.5;
@@ -85,7 +85,7 @@ var Player = {
             
             for (i; i < grid.length; i += 1) {
                 
-                if (grid[i][grid[i].length - 1].userData.bt === 5 || grid[i][grid[i].length - 1].userData.bt === 4 || grid[i][grid[i].length - 1].userData.bt === 3 || grid[i][grid[i].length - 1].userData.bt === 8) {
+                if (grid[i][grid[i].length - 1].userData.set === "Door") {
                     
                     Player.position.x = grid[i][grid[i].length - 1].position.x - blockW / 1.5;
                     Player.position.y = grid[i][grid[i].length - 1].position.y;
@@ -100,7 +100,7 @@ var Player = {
 
             for (i; i < grid.length; i += 1) {
                 
-                if (grid[i][0].userData.bt === 5 || grid[i][0].userData.bt === 4 || grid[i][0].userData.bt === 3  || grid[i][0].userData.bt === 8) {
+                if (grid[i][0].userData.set === "Door") {
                     
                     Player.position.x = grid[i][0].position.x + blockW / 1.5;
                     Player.position.y = grid[i][0].position.y;
