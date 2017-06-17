@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("9:45");
+console.log("9:55");
 
 var Grid = {
     
@@ -227,7 +227,6 @@ var Grid = {
                     this.previousLocation = this.location;
                 
                     if (this.location === "Overworld") {
-                        //HUD.locationText("Dungeon 1");
                         this.setOverworldLocation("Dungeon 1");
                     } else if (this.location === "Dungeon 1") {
                         this.setOverworldLocation("Overworld");
@@ -316,7 +315,7 @@ var Grid = {
                     hitPad = parsed.hitPad,
                     set = parsed.set,
                     data = parsed.data,
-                    testSpot = parsed.testSpot;
+                    zPos = parsed.z;
                 
                 mapGridTest[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
@@ -329,7 +328,7 @@ var Grid = {
                 mapGridTest[i][j].position.x = j * blockW;
                 mapGridTest[i][j].position.y = (mapGridTest.length - 1 - i) * blockD;
 
-                mapGridTest[i][j].position.z = 0;
+                mapGridTest[i][j].position.z = zPos || 1;
                 
                 mapGridTest[i][j].castShadow = true;
                 
@@ -365,10 +364,12 @@ var Grid = {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
                     block.hitPad = 0;
+                    block.z = 0;
                     break;
                 case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
                     block.hitPad = 0;
+                    block.z = 1;
                     break;
                 default: block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
@@ -399,10 +400,13 @@ var Grid = {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
                     block.hitPad = 1;
+                    block.z = 0.5;
                     break;
                 case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH / 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xdddd55 });
                     block.hitPad = 1;
+                    block.z = 0.5;
+                    break;
                 default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                     block.hitPad = 1;
