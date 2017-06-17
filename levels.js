@@ -12,7 +12,7 @@ var THREE, blockW, blockD, blockH;
 var sign1 = "You are now entering Dungeon 1.";
 var sign2 = "You are now entering Dungeon 2. Complete Dungeon 1 first.";
 var signs = [sign1, sign2];
-/*
+
 var blockGeo0 = new THREE.BoxGeometry(blockW, blockD, 0.01),
     blockMat0 = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
 var blockGeo1 = new THREE.BoxGeometry(blockW, blockD, blockH * 2),
@@ -42,7 +42,7 @@ var sign = function (index) {
     'use strict';
     return {bt: 7, hit: true, hitPad: 1, contents: signs[index], geometry: blockGeo7, material: blockMat7 };
 };
-*/
+
 // dungeon number, floor, x coordinate, y coordinate
 
 var overworld000 = [
