@@ -199,7 +199,7 @@ var Grid = {
                 blockY = block.position.y;
                 hitPad = block.userData.hitPad;
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && (block.userData.set === "Wall" || block.userData.set === "Door" || block.userData.set === "Interactable") {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && (block.userData.set === "Wall" || block.userData.set === "Door" || block.userData.set === "Interactable")) {
                     return block.userData.hit;
                 }
                 
