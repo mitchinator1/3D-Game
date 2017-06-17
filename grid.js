@@ -354,17 +354,17 @@ var Grid = {
             switch (typeSrc) {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
-                    block.hitPad = 1;
+                    block.hitPad = 0.9;
                     block.z = 0.5;
                     break;
                 case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH / 2);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xdddd55 });
-                    block.hitPad = 1;
+                    block.hitPad = 0.9;
                     block.z = 0.5;
                     break;
                 default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
-                    block.hitPad = 1;
+                    block.hitPad = 0.9;
                     break;
                            }
         }
