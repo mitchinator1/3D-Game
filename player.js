@@ -36,10 +36,12 @@ var Player = {
                     
                     if (grid[i][j].userData.set === "Door") {
 
-                        //if (grid[i][j].userData
+                        if (grid[i][j].userData.enterLink === Grid.previousLocation) {
                         
-                        Player.position.x = grid[i][j].position.x;
-                        Player.position.y = grid[i][j].position.y  - blockD;
+                            Player.position.x = grid[i][j].position.x;
+                            Player.position.y = grid[i][j].position.y - blockD;
+                            
+                        }
                         
                     }
                     
