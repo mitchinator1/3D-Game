@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:24");
+console.log("3:29");
 
 var Grid = {
     
@@ -37,7 +37,7 @@ var Grid = {
                 
             } else {
                 */
-                Player.userData.setPosition("exact", 14, 8);
+                Player.userData.setPosition("exact", 18, 8);
             
             //}
 
