@@ -12,7 +12,7 @@ var THREE, blockW, blockD, blockH;
 var sign1 = "You are now entering Dungeon 1.";
 var sign2 = "You are now entering Dungeon 2. Complete Dungeon 1 first.";
 var signs = [sign1, sign2];
-
+/*
 var blockGeo0 = new THREE.BoxGeometry(blockW, blockD, 0.01),
     blockMat0 = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
 var blockGeo1 = new THREE.BoxGeometry(blockW, blockD, blockH * 2),
@@ -42,7 +42,7 @@ var sign = function (index) {
     'use strict';
     return {bt: 7, hit: true, hitPad: 1, contents: signs[index], geometry: blockGeo7, material: blockMat7 };
 };
-
+*/
 // dungeon number, floor, x coordinate, y coordinate
 
 var overworld000 = [
@@ -67,42 +67,19 @@ var overworld000 = [
   [16384, 0, 0, 512, 0, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
   [16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384]
 ];
-/*
-var overworld000 = [
-        [w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w],
-        [w, o, o, s, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, s, s, s, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, w, o, o, o, o, o, o, o, o, o, o, o, o, w, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, s, w, s, o, w, w, w, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, s, w, w, o, w, w, w, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, w, d1, sign(0), o, w, d2, sign(1), o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, s, o, s, o, s, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, o, o, s, o, s, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
-        [w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w]
-    ];
-*/
+
 var dungeon1010 = [
-    [w, w, w, w, w, w, w, w, w, w, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, c1, o, o, o, o, id2],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, o, o, o, o, o, o, o, o, o, w],
-    [w, w, w, w, w, d1, w, w, w, w, w]
+    [16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 512, 0, 0, 0, 0, 49152],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
+    [16384, 16384, 16384, 16384, 16384, 49153, 16384, 16384, 16384, 16384, 16384]
 ];
 
 var dungeon1020 = [
