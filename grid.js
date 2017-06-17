@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:08");
+console.log("3:24");
 
 var Grid = {
     
@@ -77,7 +77,7 @@ var Grid = {
             Camera.padX = 4;
             Camera.padY = 5;
             this.readGrid();
-            Player.userData.setPosition("exact", 22, 8);
+            Player.userData.setPosition("exact", 26, 8);
             
         }
         
