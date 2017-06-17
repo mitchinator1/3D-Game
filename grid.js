@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:45");
+console.log("3:48");
 
 var Grid = {
     
@@ -217,19 +217,6 @@ var Grid = {
                 }
                 
                 /*
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 4) {
-                
-                    this.previousLocation = this.location;
-                
-                    if (this.location === "Overworld") {
-                        this.setOverworldLocation("Dungeon 2");
-                    } else if (this.location === "Dungeon 2") {
-                        this.setOverworldLocation("Overworld");
-                    }
-                    return block.userData.hit;
-
-                }
-            
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 5) {
                     this.setDungeonLocation();
                     return block.userData.hit;
@@ -273,6 +260,7 @@ var Grid = {
                 
                 if (grid[i][j].userData !== undefined) {
                 
+                    console.log(i + ", " + j);
                     var src = grid[i][j].toString(2);
                     
                     for (k = src.length; k < 16; k += 1) {
@@ -296,7 +284,6 @@ var Grid = {
                     grid[i][j].position.z = parsed.z;
                 
                     grid[i][j].castShadow = true;
-                    //grid[i][j].receiveShadow = true;
                     
                 }
                 
