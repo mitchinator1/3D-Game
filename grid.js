@@ -396,10 +396,13 @@ var Grid = {
         
         if (block.set === "Interactable") {
             switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
-                    block.hitPad = 0.1
+                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
+                    block.hitPad = 1;
                     break;
+                case 1: block.geometry;
+                    block.material;
+                    block.hitPad = 1;
                 default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                     block.hitPad = 1;
