@@ -1,7 +1,7 @@
 var blockW, blockD, blockH,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
 
-console.log("4:30");
+console.log("4:42");
 
 var Grid = {
     
@@ -57,7 +57,7 @@ var Grid = {
             Camera.padX = 3;
             Camera.padY = 4;
             Lighting.fog(0x000000, 45);
-            this.render();
+            this.readGrid();
 
             if (this.previousLocation === "Overworld") {
                 
@@ -94,22 +94,22 @@ var Grid = {
 
         if (Player.position.x > (currentMap[this.Y][this.X][0].length - 1) * blockW - 1 && currentMap[this.Y][this.X + 1] !== undefined) {
             this.X += 1;
-            this.render();
+            this.readGrid();
             Player.userData.setPosition("west");
             
         } else if (Player.position.x < blockW + 1 && currentMap[this.Y][this.X - 1] !== undefined) {
             this.X -= 1;
-            this.render();
+            this.readGrid();
             Player.userData.setPosition("east");
             
         } else if (Player.position.y > (currentMap[this.Y][this.X].length - 1) * blockD - 1 && currentMap[this.Y + 1][this.X] !== undefined) {
             this.Y += 1;
-            this.render();
+            this.readGrid();
             Player.userData.setPosition("south");
             
         } else if (Player.position.y < blockD + 1 && currentMap[this.Y - 1][this.X] !== undefined) {
             this.Y -= 1;
-            this.render();
+            this.readGrid();
             Player.userData.setPosition("north");
             
         }
