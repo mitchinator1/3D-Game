@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("1:43");
+console.log("2:22");
 
 var Grid = {
     
@@ -47,18 +47,9 @@ var Grid = {
             Camera.padX = 3;
             Camera.padY = 4;
             Lighting.fog(0x000000, 30);
-            this.render();
-            
-            if (this.previousLocation === "Overworld") {
-                
-                Player.userData.setPosition("south");
-                
-            } else {
-                
-                Player.userData.setPosition("south");
-                
-            }
-            
+            this.readGrid();
+
+            Player.userData.setPosition("south");
 
         } else if (this.location === "Dungeon 2") {
             this.X = 0;
@@ -141,7 +132,7 @@ var Grid = {
         }
         
     },
-    
+    /*
     add: function (i, j) {
         'use strict';
         var currentMap = mapGrid[this.location][this.floor][this.Y][this.X],
@@ -185,7 +176,7 @@ var Grid = {
         }
         
     },
-    
+    */
     hitDetect: function (specific) {
         'use strict';
         var playerX = Player.position.x, playerY = Player.position.y,
@@ -209,10 +200,10 @@ var Grid = {
                         
                         this.previousLocation = this.location;
                         
-                        if (this.location === "Overworld") {
-                            this.setOverworldLocation("Dungeon 1");
-                        } else if (this.location === "Dungeon 1") {
-                            this.setOverworldLocation("Overworld");
+                        if (this.location === block.userData.enterLink) {
+                            this.setOverworldLocation(block.userData.exitLink);
+                        } else {
+                            this.setOverworldLocation(block.userData.enterLink);
                         }
                         
                         return true;
@@ -294,24 +285,29 @@ var Grid = {
                     dataSrc = parseInt(src.slice(7), 2);
                 
                 var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
-
+                /*
                 var hit = parsed.hit,
                     hitPad = parsed.hitPad,
                     set = parsed.set,
-                    data = parsed.data,
-                    zPos = parsed.z;
-                
+                    data = parsed.data;
+                var zPos = parsed.z,
+                    enterLink = parsed.enterLink,
+                    exitLink = parsed.exitLink;
+                */
                 grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
+                grid[i][j].userData = parsed;
+                /*
                 grid[i][j].userData.hit = hit;
                 grid[i][j].userData.hitPad = hitPad;
                 grid[i][j].userData.set = set;
                 grid[i][j].userData.data = data;
-                
+                grid[i][j].userData.enterLink = enterLink;
+                grid[i][j].userData.exitLink = exitLink;
+                */
                 grid[i][j].position.x = j * blockW;
                 grid[i][j].position.y = (grid.length - 1 - i) * blockD;
-
-                grid[i][j].position.z = zPos;
+                grid[i][j].position.z = parsed.zPos;
                 
                 grid[i][j].castShadow = true;
                 
@@ -422,6 +418,9 @@ var Grid = {
         if (block.set === "Door") {
             switch (dataSrc) {
                 case 1: block.enterLink = "Dungeon 1";
+                    block.exitLink = "Overworld";
+                    break;
+                case 2: block.enterLink = "Dungeon 2";
                     block.exitLink = "Overworld";
                     break;
                 default: block.enterLink = "Overworld";
