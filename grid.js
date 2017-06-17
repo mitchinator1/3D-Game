@@ -1,7 +1,7 @@
 var blockW, blockD, blockH,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
 
-console.log("4:42");
+console.log("4:58");
 
 var Grid = {
     
@@ -92,22 +92,22 @@ var Grid = {
         this.remove();
         var currentMap = mapGrid[this.location][this.floor];
 
-        if (Player.position.x > (currentMap[this.Y][this.X][0].length - 1) * blockW - 1 && currentMap[this.Y][this.X + 1] !== undefined) {
+        if (Player.position.x > (currentMap[this.Y][this.X][0].length - 1) * blockW - 1) {
             this.X += 1;
             this.readGrid();
             Player.userData.setPosition("west");
             
-        } else if (Player.position.x < blockW + 1 && currentMap[this.Y][this.X - 1] !== undefined) {
+        } else if (Player.position.x < blockW + 1) {
             this.X -= 1;
             this.readGrid();
             Player.userData.setPosition("east");
             
-        } else if (Player.position.y > (currentMap[this.Y][this.X].length - 1) * blockD - 1 && currentMap[this.Y + 1][this.X] !== undefined) {
+        } else if (Player.position.y > (currentMap[this.Y][this.X].length - 1) * blockD - 1) {
             this.Y += 1;
             this.readGrid();
             Player.userData.setPosition("south");
             
-        } else if (Player.position.y < blockD + 1 && currentMap[this.Y - 1][this.X] !== undefined) {
+        } else if (Player.position.y < blockD + 1) {
             this.Y -= 1;
             this.readGrid();
             Player.userData.setPosition("north");
