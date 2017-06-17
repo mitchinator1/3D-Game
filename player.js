@@ -66,7 +66,7 @@ var Player = {
             
             for (i; i < grid[grid.length - 1].length; i += 1) {
 
-                if (grid[grid.length - 1][i].userData.bt === 5 || grid[grid.length - 1][i].userData.bt === 4 || grid[grid.length - 1][i].userData.bt === 3  || grid[grid.length - 1][i].userData.bt === 8) {
+                if (grid[grid.length - 1][i].userData.set === "Door") {
 
                     Player.position.x = grid[grid.length - 1][i].position.x;
                     Player.position.y = grid[grid.length - 1][i].position.y + blockD / 1.5;
