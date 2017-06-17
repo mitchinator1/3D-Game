@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:29");
+console.log("3:33");
 
 var Grid = {
     
@@ -201,8 +201,10 @@ var Grid = {
                         this.previousLocation = this.location;
                         
                         if (this.location === block.userData.enterLink) {
+                            this.location = block.userData.exitLink;
                             this.setOverworldLocation(block.userData.exitLink);
                         } else {
+                            this.location = block.userData.enterLink;
                             this.setOverworldLocation(block.userData.enterLink);
                         }
                         
