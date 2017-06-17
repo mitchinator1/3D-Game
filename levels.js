@@ -167,8 +167,7 @@ var dungeon2010 = [
     [b, b, b, w, w, w]
 ];
 */
-var dungeon1020, dungeon1001, dungeon1011, dungeon1021,
-    dungeon2000, 2010;
+var dungeon1020, dungeon1001, dungeon1011, dungeon1021, dungeon2000, dungeon2010;
 
 var overworld = [ [
         [overworld000]
