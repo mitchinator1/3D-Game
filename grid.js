@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("12:07");
+console.log("12:13");
 
 var Grid = {
     
@@ -200,12 +200,16 @@ var Grid = {
                 hitPad = block.userData.hitPad;
                 
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && block.userData.hit) {
+                    
                     if (block.userData.set === "Interactable") {
                         console.log("Found an Interactable");
                         return true;
+                    } else if (block.userData.set === "Door") {
+                        console.log("Found a Door");
+                        return true;
+                    } else {                    
+                        return true;
                     }
-                    
-                    return true;
                     
                 }
                 
