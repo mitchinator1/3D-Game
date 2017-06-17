@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:48");
+console.log("11:10");
 
 var Grid = {
     
@@ -216,9 +216,15 @@ var Grid = {
                 block = mapGrid[this.location][this.floor][this.Y][this.X][i][j];
                 blockX = block.position.x;
                 blockY = block.position.y;
-                type = block.userData.bt;
+                //type = block.userData.bt;
                 hitPad = block.userData.hitPad;
                 
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && block.userData.set === "Wall") {
+                    return block.userData.hit;
+                }
+                
+                
+                /*
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 1) {
                     return block.userData.hit;
                 }
@@ -276,7 +282,7 @@ var Grid = {
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === specific) {
                     return block;
                 }
-                
+                */
             }
         }
         
