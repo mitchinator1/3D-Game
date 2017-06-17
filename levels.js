@@ -81,7 +81,7 @@ var dungeon1010 = [
     [16384, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
     [16384, 16384, 16384, 16384, 16384, 49153, 16384, 16384, 16384, 16384, 16384]
 ];
-
+/*
 var dungeon1020 = [
     [w, w, w, w, w, id1, w, w, w, w, w],
     [w, o, o, o, o, o, o, o, o, o, w],
@@ -166,6 +166,9 @@ var dungeon2010 = [
     [b, b, w, o, o, o, w],
     [b, b, b, w, w, w]
 ];
+*/
+var dungeon1020, dungeon1001, dungeon1011, dungeon1021,
+    dungeon2000, 2010;
 
 var overworld = [ [
         [overworld000]
