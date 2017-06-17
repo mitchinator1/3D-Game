@@ -34,8 +34,10 @@ var Player = {
             for (i; i < grid.length; i += 1) {
                 for (j = 0; j < grid[i].length; j += 1) {
                     
-                    if (grid[i][j].userData.bt === x) {
+                    if (grid[i][j].userData.set === "Door") {
 
+                        //if (grid[i][j].userData
+                        
                         Player.position.x = grid[i][j].position.x;
                         Player.position.y = grid[i][j].position.y  - blockD;
                         
