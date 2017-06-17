@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("11:55");
+console.log("12:07");
 
 var Grid = {
     
@@ -199,8 +199,14 @@ var Grid = {
                 blockY = block.position.y;
                 hitPad = block.userData.hitPad;
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && (block.userData.set === "Wall" || block.userData.set === "Door" || block.userData.set === "Interactable")) {
-                    return block.userData.hit;
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && block.userData.hit) {
+                    if (block.userData.set === "Interactable") {
+                        console.log("Found an Interactable");
+                        return true;
+                    }
+                    
+                    return true;
+                    
                 }
                 
                 /*
@@ -233,14 +239,6 @@ var Grid = {
             
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 5) {
                     this.setDungeonLocation();
-                    return block.userData.hit;
-                }
-                
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 6) {
-                    return block.userData.hit;
-                }
-                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.1) && type === 7) {
                     return block.userData.hit;
                 }
                 
