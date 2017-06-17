@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:48");
+console.log("3:50");
 
 var Grid = {
     
@@ -260,7 +260,7 @@ var Grid = {
                 
                 if (grid[i][j].userData !== undefined) {
                 
-                    console.log(i + ", " + j);
+                    console.log(i + ", " + j + ", " + grid[i][j].userData);
                     var src = grid[i][j].toString(2);
                     
                     for (k = src.length; k < 16; k += 1) {
