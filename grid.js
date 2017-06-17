@@ -1,7 +1,7 @@
-var blockW, blockD, blockH, blockGeos, blockMats,
-    THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
+var blockW, blockD, blockH,
+    THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
 
-console.log("4:04");
+console.log("4:30");
 
 var Grid = {
     
@@ -132,51 +132,7 @@ var Grid = {
         }
         
     },
-    /*
-    add: function (i, j) {
-        'use strict';
-        var currentMap = mapGrid[this.location][this.floor][this.Y][this.X],
-            type = currentMap[i][j].bt,
-            geometry = currentMap[i][j].geometry,
-            material = currentMap[i][j].material,
-            interact = currentMap[i][j].interact,
-            hit = currentMap[i][j].hit,
-            hitPad = currentMap[i][j].hitPad,
-            contents = currentMap[i][j].contents,
-            locked = currentMap[i][j].locked;
 
-        if (type !== undefined) {
-            currentMap[i][j] = new THREE.Mesh(geometry, material);
-            currentMap[i][j].position.x = j * blockW;
-            currentMap[i][j].position.y = (currentMap.length - 1 - i) * blockD;
-            currentMap[i][j].userData.bt = type;
-            currentMap[i][j].userData.hit = hit;
-            currentMap[i][j].userData.hitPad = hitPad;
-
-            if (type === 0 || type === 3 || type === 4 || type === 5) {
-                currentMap[i][j].position.z = 0;
-                currentMap[i][j].receiveShadow = true;
-            } else if (type === 6) {
-                currentMap[i][j].position.z = 0.5;
-                currentMap[i][j].receiveShadow = true;
-                currentMap[i][j].castShadow = true;
-                currentMap[i][j].userData.interact = interact;
-            } else if (type === 7) {
-                currentMap[i][j].position.z = 0.5;
-                currentMap[i][j].receiveShadow = true;
-                currentMap[i][j].userData.contents = contents;
-            } else if (type === 8) {
-                currentMap[i][j].position.z = 1;
-                currentMap[i][j].userData.locked = locked;
-            } else {
-                currentMap[i][j].position.z = 1;
-                currentMap[i][j].castShadow = true;
-            }
-            
-        }
-        
-    },
-    */
     hitDetect: function (specific) {
         'use strict';
         var playerX = Player.position.x, playerY = Player.position.y,
@@ -202,8 +158,12 @@ var Grid = {
                         
                         if (this.location === block.userData.enterLink) {
                             this.setOverworldLocation(block.userData.exitLink);
-                        } else {
+                        } else if (this.location === block.userData.exitLink) {
                             this.setOverworldLocation(block.userData.enterLink);
+                        }
+                        
+                        if (block.userData.link === "Inside") {
+                            this.setDungeonLocation();
                         }
                         
                         return true;
@@ -215,13 +175,7 @@ var Grid = {
                     }
                     
                 }
-                
                 /*
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 5) {
-                    this.setDungeonLocation();
-                    return block.userData.hit;
-                }
-                
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad - 0.2) && type === 8) {
                     
                     if (block.userData.locked) {
@@ -392,6 +346,8 @@ var Grid = {
         
         if (block.set === "Door") {
             switch (dataSrc) {
+                case 0: block.link = "Inside";
+                    break;
                 case 1: block.enterLink = "Dungeon 1";
                     block.exitLink = "Overworld";
                     break;
