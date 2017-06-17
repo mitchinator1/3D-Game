@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("12:13");
+console.log("1:43");
 
 var Grid = {
     
@@ -202,32 +202,30 @@ var Grid = {
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && block.userData.hit) {
                     
                     if (block.userData.set === "Interactable") {
-                        console.log("Found an Interactable");
+                        
                         return true;
+                        
                     } else if (block.userData.set === "Door") {
-                        console.log("Found a Door");
+                        
+                        this.previousLocation = this.location;
+                        
+                        if (this.location === "Overworld") {
+                            this.setOverworldLocation("Dungeon 1");
+                        } else if (this.location === "Dungeon 1") {
+                            this.setOverworldLocation("Overworld");
+                        }
+                        
                         return true;
-                    } else {                    
+                        
+                    } else { 
+                        
                         return true;
+                        
                     }
                     
                 }
                 
                 /*
-
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 3) {
-                
-                    this.previousLocation = this.location;
-                
-                    if (this.location === "Overworld") {
-                        this.setOverworldLocation("Dungeon 1");
-                    } else if (this.location === "Dungeon 1") {
-                        this.setOverworldLocation("Overworld");
-                    }
-                    return block.userData.hit;
-
-                }
-            
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 4) {
                 
                     this.previousLocation = this.location;
