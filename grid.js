@@ -296,7 +296,7 @@ var Grid = {
                     grid[i][j].position.z = parsed.z;
                 
                     grid[i][j].castShadow = true;
-                    grid[i][j].receiveShadow = true;
+                    //grid[i][j].receiveShadow = true;
                     
                 }
                 
