@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:52");
+console.log("4:04");
 
 var Grid = {
     
@@ -29,11 +29,11 @@ var Grid = {
             
             if (this.previousLocation === "Dungeon 1") {
 
-                Player.userData.setPosition("overworld", 3);
+                Player.userData.setPosition("overworld");
                 
             } else if (this.previousLocation === "Dungeon 2") {
 
-                Player.userData.setPosition("overworld", 4);
+                Player.userData.setPosition("overworld");
                 
             } else {
                 
