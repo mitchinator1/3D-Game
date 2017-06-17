@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:05");
+console.log("10:34");
 
 var Grid = {
     
@@ -25,7 +25,8 @@ var Grid = {
             Camera.padX = 4;
             Camera.padY = 4;
             Lighting.fog(0x000000, 5);
-            this.render();
+            //this.render();
+            this.readGrid();
             
             if (this.previousLocation === "Dungeon 1") {
 
