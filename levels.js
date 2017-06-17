@@ -70,7 +70,7 @@ var sign = function (index) {
 
 // dungeon number, floor, x coordinate, y coordinate
 
-var mapGridTest = [
+var overworld000 = [
   [16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384],
   [16384, 0, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
   [16384, 0, 512, 0, 512, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
@@ -92,7 +92,7 @@ var mapGridTest = [
   [16384, 0, 0, 512, 0, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16384],
   [16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384, 16384]
 ];
-
+/*
 var overworld000 = [
         [w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w],
         [w, o, o, s, o, o, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
@@ -115,7 +115,7 @@ var overworld000 = [
         [w, o, o, s, o, s, o, o, o, o, o, o, o, o, o, o, o, o, o, w],
         [w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w, w]
     ];
-
+*/
 var dungeon1010 = [
     [w, w, w, w, w, w, w, w, w, w, w],
     [w, o, o, o, o, o, o, o, o, o, w],
@@ -231,11 +231,7 @@ var dungeon2 = [ [
 var dungeon3,
     dungeon4,
     dungeon5;
-/*
-var mapGridTest = [[429, 430, 430, 430],
-                   [430, 16384, 16384, 429],
-                   [430, 430, 430, 430]];
-*/
+
 var mapGrid = {
     "Overworld": overworld,
     "Dungeon 1": dungeon1,
