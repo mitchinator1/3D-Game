@@ -26,7 +26,7 @@ var Grid = {
             Camera.padY = 4;
             Lighting.fog(0x000000, 5);
             this.readGrid();
-            /*
+            
             if (this.previousLocation === "Dungeon 1") {
 
                 Player.userData.setPosition("overworld", 3);
@@ -36,10 +36,10 @@ var Grid = {
                 Player.userData.setPosition("overworld", 4);
                 
             } else {
-                */
+                
                 Player.userData.setPosition("exact", 18, 8);
             
-            //}
+            }
 
         } else if (this.location === "Dungeon 1") {
             this.X = 1;
