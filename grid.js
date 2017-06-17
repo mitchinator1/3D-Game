@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:33");
+console.log("3:40");
 
 var Grid = {
     
@@ -201,10 +201,8 @@ var Grid = {
                         this.previousLocation = this.location;
                         
                         if (this.location === block.userData.enterLink) {
-                            this.location = block.userData.exitLink;
                             this.setOverworldLocation(block.userData.exitLink);
                         } else {
-                            this.location = block.userData.enterLink;
                             this.setOverworldLocation(block.userData.enterLink);
                         }
                         
@@ -287,31 +285,17 @@ var Grid = {
                     dataSrc = parseInt(src.slice(7), 2);
                 
                 var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
-                /*
-                var hit = parsed.hit,
-                    hitPad = parsed.hitPad,
-                    set = parsed.set,
-                    data = parsed.data;
-                var zPos = parsed.z,
-                    enterLink = parsed.enterLink,
-                    exitLink = parsed.exitLink;
-                */
+
                 grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
                 grid[i][j].userData = parsed;
-                /*
-                grid[i][j].userData.hit = hit;
-                grid[i][j].userData.hitPad = hitPad;
-                grid[i][j].userData.set = set;
-                grid[i][j].userData.data = data;
-                grid[i][j].userData.enterLink = enterLink;
-                grid[i][j].userData.exitLink = exitLink;
-                */
+
                 grid[i][j].position.x = j * blockW;
                 grid[i][j].position.y = (grid.length - 1 - i) * blockD;
                 grid[i][j].position.z = parsed.z;
                 
                 grid[i][j].castShadow = true;
+                grid[i][j].receiveShadow = true;
                 
                 scene.add(grid[i][j]);
                 
