@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("11:41");
+console.log("11:55");
 
 var Grid = {
     
@@ -25,7 +25,6 @@ var Grid = {
             Camera.padX = 4;
             Camera.padY = 4;
             Lighting.fog(0x000000, 5);
-            //this.render();
             this.readGrid();
             /*
             if (this.previousLocation === "Dungeon 1") {
@@ -143,22 +142,6 @@ var Grid = {
         
     },
     
-    render: function () {
-        'use strict';
-        var i, j;
-        
-        for (i = 0; i < mapGrid[this.location][this.floor][this.Y][this.X].length; i += 1) {
-            
-            for (j = 0; j < mapGrid[this.location][this.floor][this.Y][this.X][i].length; j += 1) {
-                    
-                this.add(i, j);
-                    
-            }
-                
-        }
-        
-    },
-    
     add: function (i, j) {
         'use strict';
         var currentMap = mapGrid[this.location][this.floor][this.Y][this.X],
@@ -201,8 +184,6 @@ var Grid = {
             
         }
         
-        scene.add(currentMap[i][j]);
-        
     },
     
     hitDetect: function (specific) {
@@ -216,18 +197,13 @@ var Grid = {
                 block = mapGrid[this.location][this.floor][this.Y][this.X][i][j];
                 blockX = block.position.x;
                 blockY = block.position.y;
-                //type = block.userData.bt;
                 hitPad = block.userData.hitPad;
                 
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && block.userData.set === "Wall") {
+                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && (block.userData.set === "Wall" || block.userData.set === "Door" || block.userData.set === "Interactable") {
                     return block.userData.hit;
                 }
-                
                 
                 /*
-                if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 1) {
-                    return block.userData.hit;
-                }
 
                 if (this.blockCheck(playerX, playerY, blockX, blockY, hitPad) && type === 3) {
                 
