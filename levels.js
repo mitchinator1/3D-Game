@@ -1,43 +1,18 @@
 var THREE, blockW, blockD, blockH;
-// '11' '11111' 1 1111 1111
-//[general][type][data]
-//Interactables
-//hitpad, geo, mat,
+/* 65535 = '11' '11111' 1 1111 1111
+//[set][type][data]
+//SET
 //00 or 0 Passables
 //01 0r 1 Walls
 //10 or 2 interactables
 //11 or 3 doors
-/*
-var start = 61111;
-
-var number = start.toString(2);
-for (i = 0; number.length < 16; i++){
-  number = "0" + number;
-}
-
-var general = parseInt(number.slice(0, 2), 2);
-var type = parseInt(number.slice(2, 7), 2);
-var data = parseInt(number.slice(7), 2);
-
-switch (general) {
-  case 0: general = "Passable";
-    break;
-  case 1: general = Wall";
-    break;
-  case 2: general = "Interactable";
-    break;
-  case 3: general = "Door";
-}
-
-//65535 = 1111 1111 1111 1111
-
-//48 + 8
+//TYPE
+//hitPad, Geometry, Material
 */
-
 var sign1 = "You are now entering Dungeon 1.";
 var sign2 = "You are now entering Dungeon 2. Complete Dungeon 1 first.";
 var signs = [sign1, sign2];
-
+/*
 var blockGeo0 = new THREE.BoxGeometry(blockW, blockD, 0.01),
     blockMat0 = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
 var blockGeo1 = new THREE.BoxGeometry(blockW, blockD, blockH * 2),
@@ -67,7 +42,7 @@ var sign = function (index) {
     'use strict';
     return {bt: 7, hit: true, hitPad: 1, contents: signs[index], geometry: blockGeo7, material: blockMat7 };
 };
-
+*/
 // dungeon number, floor, x coordinate, y coordinate
 
 var overworld000 = [
