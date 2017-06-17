@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("10:34");
+console.log("10:40");
 
 var Grid = {
     
@@ -293,11 +293,12 @@ var Grid = {
     
     readGrid: function () {
         var i, j, k;
+        var grid = mapGrid[this.location][this.floor][this.Y][this.X];
         
-        for (i = 0; i < mapGridTest.length; i += 1) {
-            for (j = 0; j < mapGridTest[i].length; j += 1) {
+        for (i = 0; i < grid.length; i += 1) {
+            for (j = 0; j < grid[i].length; j += 1) {
                 
-                var src = mapGridTest[i][j].toString(2);
+                var src = grid[i][j].toString(2);
                 for (k = src.length; k < 16; k += 1) {
                     
                     src = "0" + src;
@@ -318,21 +319,21 @@ var Grid = {
                     data = parsed.data,
                     zPos = parsed.z;
                 
-                mapGridTest[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
+                grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
-                mapGridTest[i][j].userData.hit = hit;
-                mapGridTest[i][j].userData.hitPad = hitPad;
-                mapGridTest[i][j].userData.set = set;
-                mapGridTest[i][j].userData.data = data;
+                grid[i][j].userData.hit = hit;
+                grid[i][j].userData.hitPad = hitPad;
+                grid[i][j].userData.set = set;
+                grid[i][j].userData.data = data;
                 
-                mapGridTest[i][j].position.x = j * blockW;
-                mapGridTest[i][j].position.y = (mapGridTest.length - 1 - i) * blockD;
+                grid[i][j].position.x = j * blockW;
+                grid[i][j].position.y = (grid.length - 1 - i) * blockD;
 
-                mapGridTest[i][j].position.z = zPos;
+                grid[i][j].position.z = zPos;
                 
-                mapGridTest[i][j].castShadow = true;
+                grid[i][j].castShadow = true;
                 
-                scene.add(mapGridTest[i][j]);
+                scene.add(grid[i][j]);
                 
             }
         }
