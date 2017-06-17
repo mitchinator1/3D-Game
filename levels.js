@@ -20,9 +20,9 @@ var type = parseInt(number.slice(2, 7), 2);
 var data = parseInt(number.slice(7), 2);
 
 switch (general) {
-  case 0: general = "wall";
+  case 0: general = "Passable";
     break;
-  case 1: general = "Passable";
+  case 1: general = Wall";
     break;
   case 2: general = "Interactable";
     break;
