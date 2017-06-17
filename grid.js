@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("4:14");
+console.log("5:08");
 
 var Grid = {
     
@@ -411,7 +411,10 @@ var Grid = {
         
         if (block.set === "Door") {
             switch (typeSrc) {
-                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                    block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
+                    block.hitPad = 0.1;
+                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
                     block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                     block.hitPad = 1;
                     break;
@@ -424,7 +427,18 @@ var Grid = {
     
     parseData: function (block, dataSrc) {
         
-        block.data = dataSrc;
+        if (block.set === "Door") {
+            switch (dataSrc) {
+                case 1: block.enterLink = "Dungeon 1";
+                    block.exitLink = "Overworld";
+                    break;
+                default: block.enterLink = "Overworld";
+                    block.exitLink = "Overworld";
+                    break;
+                           }
+        } else {
+            block.data = dataSrc;
+        }
         
         return block;
         
