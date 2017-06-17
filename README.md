@@ -5,6 +5,14 @@ https://rawgit.com/mitchinator1/3D-Game/master/index.html
 
 <b><u>Change log</u></b>
 
+<b>Jun 17, 2017</b>
+- All levels converted to 16 bit integers.
+- Grid is now updated to render entirely off binary information, allowing for up to 65535 different block values.
+- Blocks are now catagorized in "Set" "Type" and "Data", allowing both generalizations and pinpoint data.
+- Hit Detection has been drastically simplified due to the new Grid system.
+- Block generation is now simpler and more accurate.
+- Removed a bunch of now unneccessary code/functions.
+
 <b>Jun 15, 2017</b>
 - Starting to convert levels to a 16 bit Integer.
 
