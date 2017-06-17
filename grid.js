@@ -329,7 +329,7 @@ var Grid = {
                 mapGridTest[i][j].position.x = j * blockW;
                 mapGridTest[i][j].position.y = (mapGridTest.length - 1 - i) * blockD;
 
-                mapGridTest[i][j].position.z = 1;
+                mapGridTest[i][j].position.z = 0;
                 
                 mapGridTest[i][j].castShadow = true;
                 
@@ -366,7 +366,7 @@ var Grid = {
                     block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
                     block.hitPad = 0;
                     break;
-                case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.5);
+                case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
                     block.hitPad = 0;
                     break;
