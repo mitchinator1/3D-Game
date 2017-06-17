@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:40");
+console.log("3:45");
 
 var Grid = {
     
@@ -132,7 +132,7 @@ var Grid = {
         }
         
     },
-    
+    /*
     add: function (i, j) {
         'use strict';
         var currentMap = mapGrid[this.location][this.floor][this.Y][this.X],
@@ -176,7 +176,7 @@ var Grid = {
         }
         
     },
-    
+    */
     hitDetect: function (specific) {
         'use strict';
         var playerX = Player.position.x, playerY = Player.position.y,
@@ -271,31 +271,34 @@ var Grid = {
         for (i = 0; i < grid.length; i += 1) {
             for (j = 0; j < grid[i].length; j += 1) {
                 
-                var src = grid[i][j].toString(2);
-                for (k = src.length; k < 16; k += 1) {
+                if (grid[i][j].userData !== undefined) {
+                
+                    var src = grid[i][j].toString(2);
                     
-                    src = "0" + src;
+                    for (k = src.length; k < 16; k += 1) {
+                        src = "0" + src;
+                    }
+
+                //k = 0;
+                
+                    var setSrc = parseInt(src.slice(0, 2), 2),
+                        typeSrc = parseInt(src.slice(2, 7), 2),
+                        dataSrc = parseInt(src.slice(7), 2);
+                
+                    var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
+
+                    grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
+                
+                    grid[i][j].userData = parsed;
+
+                    grid[i][j].position.x = j * blockW;
+                    grid[i][j].position.y = (grid.length - 1 - i) * blockD;
+                    grid[i][j].position.z = parsed.z;
+                
+                    grid[i][j].castShadow = true;
+                    grid[i][j].receiveShadow = true;
                     
                 }
-
-                k = 0;
-                
-                var setSrc = parseInt(src.slice(0, 2), 2),
-                    typeSrc = parseInt(src.slice(2, 7), 2),
-                    dataSrc = parseInt(src.slice(7), 2);
-                
-                var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
-
-                grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
-                
-                grid[i][j].userData = parsed;
-
-                grid[i][j].position.x = j * blockW;
-                grid[i][j].position.y = (grid.length - 1 - i) * blockD;
-                grid[i][j].position.z = parsed.z;
-                
-                grid[i][j].castShadow = true;
-                grid[i][j].receiveShadow = true;
                 
                 scene.add(grid[i][j]);
                 
