@@ -1,7 +1,7 @@
 var blockW, blockD, blockH, blockGeos, blockMats,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, mapGridTest;
 
-console.log("3:50");
+console.log("3:52");
 
 var Grid = {
     
@@ -258,9 +258,8 @@ var Grid = {
         for (i = 0; i < grid.length; i += 1) {
             for (j = 0; j < grid[i].length; j += 1) {
                 
-                if (grid[i][j].userData !== undefined) {
-                
-                    console.log(i + ", " + j + ", " + grid[i][j].userData);
+                if (grid[i][j].userData === undefined) {
+                    
                     var src = grid[i][j].toString(2);
                     
                     for (k = src.length; k < 16; k += 1) {
