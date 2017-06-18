@@ -206,7 +206,7 @@ var Grid = {
     },
     
     readGrid: function () {
-        var i, j, k;
+        var i, j;
         var grid = mapGrid[this.location][this.floor][this.Y][this.X];
         
         for (i = 0; i < grid.length; i += 1) {
@@ -214,13 +214,13 @@ var Grid = {
                 
                 if (grid[i][j].userData === undefined) {
                     
-                    var src = grid[i][j].toString(2);
+                    var src = ("000000000000000" + grid[i][j].toString(2)).slice(-16);
                     
-                    for (k = src.length; k < 16; k += 1) {
-                        src = "0" + src;
-                    }
+                    //for (k = src.length; k < 16; k += 1) {
+                    //    src = "0" + src;
+                    //}
 
-                //k = 0;
+                    //k = 0;
                 
                     var setSrc = parseInt(src.slice(0, 2), 2),
                         typeSrc = parseInt(src.slice(2, 7), 2),
