@@ -58,7 +58,7 @@ var Player = {
                 if (grid[0][i].userData.set === "Door") {
 
                     Player.position.x = grid[0][i].position.x;
-                    Player.position.y = grid[0][i].position.y - blockD / 1.5;
+                    Player.position.y = grid[0][i].position.y - blockD;
 
                 }
             }
@@ -73,7 +73,7 @@ var Player = {
                 if (grid[grid.length - 1][i].userData.set === "Door") {
 
                     Player.position.x = grid[grid.length - 1][i].position.x;
-                    Player.position.y = grid[grid.length - 1][i].position.y + blockD / 1.5;
+                    Player.position.y = grid[grid.length - 1][i].position.y + blockD;
 
                 }
             }
@@ -87,7 +87,7 @@ var Player = {
                 
                 if (grid[i][grid[i].length - 1].userData.set === "Door") {
                     
-                    Player.position.x = grid[i][grid[i].length - 1].position.x - blockW / 1.5;
+                    Player.position.x = grid[i][grid[i].length - 1].position.x - blockW;
                     Player.position.y = grid[i][grid[i].length - 1].position.y;
                     
                 }
@@ -102,7 +102,7 @@ var Player = {
                 
                 if (grid[i][0].userData.set === "Door") {
                     
-                    Player.position.x = grid[i][0].position.x + blockW / 1.5;
+                    Player.position.x = grid[i][0].position.x + blockW;
                     Player.position.y = grid[i][0].position.y;
                     
                 }
