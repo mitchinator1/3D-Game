@@ -1,7 +1,7 @@
 var blockW, blockD, blockH,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
 
-console.log("4:58");
+console.log("10:55");
 
 var Grid = {
     
@@ -216,12 +216,6 @@ var Grid = {
                     
                     var src = ("000000000000000" + grid[i][j].toString(2)).slice(-16);
                     
-                    //for (k = src.length; k < 16; k += 1) {
-                    //    src = "0" + src;
-                    //}
-
-                    //k = 0;
-                
                     var setSrc = parseInt(src.slice(0, 2), 2),
                         typeSrc = parseInt(src.slice(2, 7), 2),
                         dataSrc = parseInt(src.slice(7), 2);
@@ -327,7 +321,7 @@ var Grid = {
             switch (typeSrc) {
                 case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
                     block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
-                    block.hitPad = 0.1;
+                    block.hitPad = 0.2;
                     block.z = 0;
                     break;
                 default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
