@@ -41,7 +41,9 @@ var Grid = {
             
             }
 
-        } else if (this.location === "Dungeon 1") {
+        }
+        
+        if (this.location === "Dungeon 1") {
             this.X = 1;
             this.Y = 0;
             Camera.padX = 3;
@@ -51,7 +53,9 @@ var Grid = {
 
             Player.userData.setPosition("south");
 
-        } else if (this.location === "Dungeon 2") {
+        }
+        
+        if (this.location === "Dungeon 2") {
             this.X = 0;
             this.Y = 0;
             Camera.padX = 3;
@@ -59,17 +63,11 @@ var Grid = {
             Lighting.fog(0x000000, 45);
             this.readGrid();
 
-            if (this.previousLocation === "Overworld") {
-                
-                Player.userData.setPosition("south");
-                
-            } else {
-                
-                Player.userData.setPosition("south");
-                
-            }
+            Player.userData.setPosition("south");
 
-        } else {
+        }
+        
+        if (this.location === undefined) {
             
             this.location = "Overworld";
             this.X = 0;
@@ -90,19 +88,21 @@ var Grid = {
     setDungeonLocation: function () {
         'use strict';
         this.remove();
-        var currentMap = mapGrid[this.location][this.floor];
+        var currentMap = mapGrid[this.location][this.floor][this.Y][this.X];
 
-        if (Player.position.x > (currentMap[this.Y][this.X][0].length - 1) * blockW - 1) {
+        if (Player.position.x > (currentMap[0].length - 1) * blockW - 3) {
             this.X += 1;
+            console.log("West");
             this.readGrid();
             Player.userData.setPosition("west");
             
         } else if (Player.position.x < blockW + 1) {
             this.X -= 1;
+            console.log("East");
             this.readGrid();
             Player.userData.setPosition("east");
             
-        } else if (Player.position.y > (currentMap[this.Y][this.X].length - 1) * blockD - 1) {
+        } else if (Player.position.y > (currentMap.length - 1) * blockD - 3) {
             this.Y += 1;
             this.readGrid();
             Player.userData.setPosition("south");
@@ -168,7 +168,7 @@ var Grid = {
                         
                         return true;
                         
-                    } else { 
+                    } else {
                         
                         return true;
                         
@@ -206,21 +206,20 @@ var Grid = {
     },
     
     readGrid: function () {
-        var i, j;
-        var grid = mapGrid[this.location][this.floor][this.Y][this.X];
+        'use strict';
+        var i, j,
+            grid = mapGrid[this.location][this.floor][this.Y][this.X];
         
         for (i = 0; i < grid.length; i += 1) {
             for (j = 0; j < grid[i].length; j += 1) {
                 
                 if (grid[i][j].userData === undefined) {
                     
-                    var src = ("000000000000000" + grid[i][j].toString(2)).slice(-16);
-                    
-                    var setSrc = parseInt(src.slice(0, 2), 2),
+                    var src = ("000000000000000" + grid[i][j].toString(2)).slice(-16),
+                        setSrc = parseInt(src.slice(0, 2), 2),
                         typeSrc = parseInt(src.slice(2, 7), 2),
-                        dataSrc = parseInt(src.slice(7), 2);
-                
-                    var parsed = this.parseSet(setSrc, typeSrc, dataSrc);
+                        dataSrc = parseInt(src.slice(7), 2),
+                        parsed = this.parseSet(setSrc, typeSrc, dataSrc);
 
                     grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
@@ -242,94 +241,111 @@ var Grid = {
     },
     
     parseSet: function (setSrc, typeSrc, dataSrc) {
+        'use strict';
         var block;
         
         switch (setSrc) {
-            case 0: block = { set: "Passable", hit: false };
-                break;
-            case 1: block = { set: "Wall", hit: true };
-                break;
-            case 2: block = { set: "Interactable", hit: true };
-                break;
-            case 3: block = { set: "Door", hit: true };
-                break;
-                      }
+        case 0:
+            block = { set: "Passable", hit: false };
+            break;
+        case 1:
+            block = { set: "Wall", hit: true };
+            break;
+        case 2:
+            block = { set: "Interactable", hit: true };
+            break;
+        case 3:
+            block = { set: "Door", hit: true };
+            break;
+        }
         
         return this.parseType(block, typeSrc, dataSrc);
         
     },
     
     parseType: function (block, typeSrc, dataSrc) {
+        'use strict';
         
         if (block.set === "Passable") {
             switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
-                    block.hitPad = 0;
-                    block.z = 0;
-                    break;
-                case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
-                    block.hitPad = 0;
-                    block.z = 1;
-                    break;
-                default: block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
-                    block.hitPad = 1;
-                    break;
-                           }
+            case 0:
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
+                block.hitPad = 0;
+                block.z = 0;
+                break;
+            case 1:
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
+                block.hitPad = 0;
+                block.z = 1;
+                break;
+            default:
+                block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                block.hitPad = 1;
+                break;
+            }
         }
         
         if (block.set === "Wall") {
             switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
-                    block.hitPad = 0.9;
-                    block.z = 1;
-                    break;
-                case 1: block.geometry = new THREE.BoxGeometry(2, 2, 2);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
-                    block.hitPad = 1;
-                    break;
-                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
-                    block.hitPad = 1;
-                    break;
-                           }
+            case 0:
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
+                block.hitPad = 0.9;
+                block.z = 1;
+                break;
+            case 1:
+                block.geometry = new THREE.BoxGeometry(2, 2, 2);
+                block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
+                block.hitPad = 1;
+                break;
+            default:
+                block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                block.hitPad = 1;
+                break;
+            }
         }
         
         if (block.set === "Interactable") {
             switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
-                    block.hitPad = 0.9;
-                    block.z = 0.5;
-                    break;
-                case 1: block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH / 2);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xdddd55 });
-                    block.hitPad = 0.9;
-                    block.z = 0.5;
-                    break;
-                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
-                    block.hitPad = 0.9;
-                    break;
-                           }
+            case 0:
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
+                block.hitPad = 0.9;
+                block.z = 0.5;
+                break;
+            case 1:
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH / 2);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xdddd55 });
+                block.hitPad = 0.9;
+                block.z = 0.5;
+                break;
+            default:
+                block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                block.hitPad = 0.9;
+                break;
+            }
         }
         
         if (block.set === "Door") {
             switch (typeSrc) {
-                case 0: block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
-                    block.hitPad = 0.2;
-                    block.z = 0;
-                    break;
-                default: block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
-                    block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
-                    block.hitPad = 1;
-                    block.z = 0;
-                    break;
-                           }
+            case 0:
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
+                block.hitPad = 0.2;
+                block.z = 0;
+                break;
+            default:
+                block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+                block.hitPad = 1;
+                block.z = 0;
+                break;
+            }
         }
 
         return this.parseData(block, dataSrc);
@@ -337,21 +353,26 @@ var Grid = {
     },
     
     parseData: function (block, dataSrc) {
+        'use strict';
         
         if (block.set === "Door") {
             switch (dataSrc) {
-                case 0: block.link = "Inside";
-                    break;
-                case 1: block.enterLink = "Dungeon 1";
-                    block.exitLink = "Overworld";
-                    break;
-                case 2: block.enterLink = "Dungeon 2";
-                    block.exitLink = "Overworld";
-                    break;
-                default: block.enterLink = "Overworld";
-                    block.exitLink = "Overworld";
-                    break;
-                           }
+            case 0:
+                block.link = "Inside";
+                break;
+            case 1:
+                block.enterLink = "Dungeon 1";
+                block.exitLink = "Overworld";
+                break;
+            case 2:
+                block.enterLink = "Dungeon 2";
+                block.exitLink = "Overworld";
+                break;
+            default:
+                block.enterLink = "Overworld";
+                block.exitLink = "Overworld";
+                break;
+            }
         } else {
             block.data = dataSrc;
         }
