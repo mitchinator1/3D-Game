@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("2:52");
+console.log("3:08");
 
 var Grid = {
     
@@ -89,24 +89,28 @@ var Grid = {
     
     setDungeonLocation: function () {
         'use strict';
-        this.remove();
+        //this.remove();
 
         if (Player.position.x > (currentGrid[0].length - 1) * blockW - 3) {
+            this.remove();
             this.X += 1;
             this.readGrid();
             Player.userData.setPosition("west");
             
         } else if (Player.position.x < blockW + 1) {
+            this.remove();
             this.X -= 1;
             this.readGrid();
             Player.userData.setPosition("east");
             
         } else if (Player.position.y > (currentGrid.length - 1) * blockD - 3) {
+            this.remove();
             this.Y += 1;
             this.readGrid();
             Player.userData.setPosition("south");
             
         } else if (Player.position.y < blockD + 1) {
+            this.remove();
             this.Y -= 1;
             this.readGrid();
             Player.userData.setPosition("north");
