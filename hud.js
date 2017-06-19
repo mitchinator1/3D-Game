@@ -45,6 +45,9 @@ var HUD = {
         
         this.heart = new Image();
         this.heart.src = 'sprites/fullHeart.png';
+        
+        this.key = new Image();
+        this.key.src = 'sprites/key.png';
     },
     
     refresh: function () {
@@ -136,7 +139,8 @@ var HUD = {
             ctx.font = '16px Arial';
             ctx.fillStyle = 'rgba(255,255,255,1)';
             ctx.fillText("x" + this.coinCount, canvas.width - 34, 44);
-            ctx.fillText("Keys x" + this.keyCount, canvas.width - 74, 70);
+            ctx.drawImage(this.key, canvas.width - 68, 60. 32, 32);
+            ctx.fillText("x" + this.keyCount, canvas.width - 34, 70);
             
             for (i = 0; i < this.heartCount; i += 1) {
                 if (i <= 9) {
@@ -178,7 +182,6 @@ var HUD = {
         if (windowed) {
             
             this.setRefreshArea("Window");
-            //this.refreshMaxY = canvas.height - 228;
             
             this.window(20, canvas.height - 228, 16, 16, canvas.width - 36, canvas.height - 36, true);
             
