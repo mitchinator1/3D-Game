@@ -1,9 +1,9 @@
 var blockW, blockD, blockH,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, currentGrid = [];
 
-var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
+var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
 
-console.log("3:51");
+console.log("4:09");
 
 var Grid = {
     
@@ -283,8 +283,8 @@ var Grid = {
                 block.receiveShadow = true;
                 break;
             case 1: //Shrub
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
-                //block.geometry = geo1;
+                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                block.geometry = standardGeo;
                 block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
                 block.hitPad = 0;
                 block.z = 1;
@@ -292,14 +292,14 @@ var Grid = {
                 block.receiveShadow = true;
                 break;
             case 2: //Leaves
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH / 2);
+                block.geometry = new THREE.BoxBufferGeometry(blockW, blockD, blockH / 2);
                 block.material = new THREE.MeshLambertMaterial({ color: 0x229911 });
                 block.hitPad = 0;
                 block.castShadow = true;
                 block.z = 4;
                 break;
             default:
-                block.geometry = new THREE.boxGeometry(blockW / 2, blockD, blockH * 5);
+                block.geometry = new THREE.BoxBufferGeometry(blockW / 2, blockD, blockH * 5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                 block.hitPad = 1;
                 break;
@@ -317,7 +317,7 @@ var Grid = {
                 block.castShadow = true;
                 break;
             case 1:
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 3.5);
+                block.geometry = new THREE.BoxBufferGeometry(blockW, blockD, blockH * 3.5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xcc8855 });
                 block.hitPad = 0.9;
                 block.z = 1;
@@ -325,7 +325,7 @@ var Grid = {
                 block.receiveShadow = true;
                 break;
             default:
-                block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                block.geometry = new THREE.BoxBufferGeometry(blockW / 2, blockD / 2, blockH * 5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                 block.hitPad = 1;
                 break;
@@ -335,22 +335,22 @@ var Grid = {
         if (block.set === "Interactable") {
             switch (typeSrc) {
             case 0:
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
-                //block.geometry = geo1;
+                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                block.geometry = standardGeo;
                 block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
                 block.hitPad = 0.9;
                 block.z = 0.5;
                 block.type = "Chest";
                 break;
             case 1:
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH / 2);
+                block.geometry = new THREE.BoxBufferGeometry(blockW, blockD, blockH / 2);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xdddd55 });
                 block.hitPad = 0.9;
                 block.z = 0.5;
                 block.type = "Sign";
                 break;
             default:
-                block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                block.geometry = new THREE.BoxBufferGeometry(blockW / 2, blockD / 2, blockH * 5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                 block.hitPad = 0.9;
                 break;
@@ -360,7 +360,7 @@ var Grid = {
         if (block.set === "Door") {
             switch (typeSrc) {
             case 0: //Standard Door
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                block.geometry = new THREE.BoxBufferGeometry(blockW, blockD, 0.01);
                 block.material = new THREE.MeshLambertMaterial({ color: 0x000000 });
                 block.hitPad = 0.2;
                 block.z = 0;
@@ -373,8 +373,16 @@ var Grid = {
                 block.locked = true;
                 block.type = "Locked Door";
                 break;
+            case 2: //Horizontal Locked Door
+                block.geometry = new THREE.BoxGeometry(blockW / 4, blockD, blockH * 2);
+                block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
+                block.hitPad = 0.2;
+                block.z = 1;
+                block.locked = true;
+                block.type = "Locked Door";
+                break;
             default:
-                block.geometry = new THREE.BoxGeometry(blockW / 2, blockD / 2, blockH * 5);
+                block.geometry = new THREE.BoxBufferGeometry(blockW / 2, blockD / 2, blockH * 5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
                 block.hitPad = 1;
                 block.z = 0;
