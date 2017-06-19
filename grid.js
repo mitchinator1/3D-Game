@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("11:25");
+console.log("11:39");
 
 var Grid = {
     
@@ -222,6 +222,8 @@ var Grid = {
                     grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
                     grid[i][j].userData = parsed;
+                    grid[i][j].userData.geometry = "";
+                    grid[i][j].userData.material = "";
 
                     grid[i][j].position.x = j * blockW;
                     grid[i][j].position.y = (grid.length - 1 - i) * blockD;
