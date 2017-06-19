@@ -1,9 +1,9 @@
 var blockW, blockD, blockH,
-    THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
+    THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, currentGrid = [];
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("11:39");
+console.log("12:25");
 
 var Grid = {
     
@@ -90,9 +90,8 @@ var Grid = {
     setDungeonLocation: function () {
         'use strict';
         this.remove();
-        var currentMap = mapGrid[this.location][this.floor][this.Y][this.X];
 
-        if (Player.position.x > (currentMap[0].length - 1) * blockW - 3) {
+        if (Player.position.x > (currentGrid[0].length - 1) * blockW - 3) {
             this.X += 1;
             this.readGrid();
             Player.userData.setPosition("west");
@@ -102,7 +101,7 @@ var Grid = {
             this.readGrid();
             Player.userData.setPosition("east");
             
-        } else if (Player.position.y > (currentMap.length - 1) * blockD - 3) {
+        } else if (Player.position.y > (currentGrid.length - 1) * blockD - 3) {
             this.Y += 1;
             this.readGrid();
             Player.userData.setPosition("south");
@@ -122,14 +121,16 @@ var Grid = {
         'use strict';
         var i, j;
         
-        for (i = 0; i < mapGrid[this.location][this.floor][this.Y][this.X].length; i += 1) {
+        for (i = 0; i < currentGrid.length; i += 1) {
 
-            for (j = 0; j < mapGrid[this.location][this.floor][this.Y][this.X][i].length; j += 1) {
+            for (j = 0; j < currentGrid[i].length; j += 1) {
                 
-                scene.remove(mapGrid[this.location][this.floor][this.Y][this.X][i][j]);
+                scene.remove(currentGrid[i][j]);
                 
             }
         }
+        
+        currentGrid = [];
         
     },
 
@@ -137,10 +138,10 @@ var Grid = {
         'use strict';
         var block, hitPad, i, j;
     
-        for (i = 0; i < mapGrid[this.location][this.floor][this.Y][this.X].length; i += 1) {
-            for (j = 0; j < mapGrid[this.location][this.floor][this.Y][this.X][i].length; j += 1) {
+        for (i = 0; i < currentGrid.length; i += 1) {
+            for (j = 0; j < currentGrid[i].length; j += 1) {
 
-                block = mapGrid[this.location][this.floor][this.Y][this.X][i][j];
+                block = currentGrid[i][j];
                 hitPad = block.userData.hitPad;
                 
                 if (this.blockCheck(Player.position.x, Player.position.y, block.position.x, block.position.y, hitPad)) {
@@ -205,36 +206,37 @@ var Grid = {
     
     readGrid: function () {
         'use strict';
-        var i, j, grid = mapGrid[this.location][this.floor][this.Y][this.X],
-            src, setSrc, typeSrc, dataSrc, parsed;
+        var i, j, src, setSrc, typeSrc, dataSrc, parsed;
         
-        for (i = 0; i < grid.length; i += 1) {
-            for (j = 0; j < grid[i].length; j += 1) {
+        currentGrid = mapGrid[this.location][this.floor][this.Y][this.X];
+        
+        for (i = 0; i < currentGrid.length; i += 1) {
+            for (j = 0; j < currentGrid[i].length; j += 1) {
                 
-                if (grid[i][j].userData === undefined) {
+                if (currentGrid[i][j].userData === undefined) {
                     
-                    src = ("000000000000000" + grid[i][j].toString(2)).slice(-16);
+                    src = ("000000000000000" + currentGrid[i][j].toString(2)).slice(-16);
                     setSrc = parseInt(src.slice(0, 2), 2);
                     typeSrc = parseInt(src.slice(2, 7), 2);
                     dataSrc = parseInt(src.slice(7), 2);
                     parsed = this.parseSet(setSrc, typeSrc, dataSrc);
 
-                    grid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
+                    currentGrid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
                 
-                    grid[i][j].userData = parsed;
-                    grid[i][j].userData.geometry = "";
-                    grid[i][j].userData.material = "";
+                    currentGrid[i][j].userData = parsed;
+                    currentGrid[i][j].userData.geometry = "";
+                    currentGrid[i][j].userData.material = "";
 
-                    grid[i][j].position.x = j * blockW;
-                    grid[i][j].position.y = (grid.length - 1 - i) * blockD;
-                    grid[i][j].position.z = parsed.z || 0;
+                    currentGrid[i][j].position.x = j * blockW;
+                    currentGrid[i][j].position.y = (currentGrid.length - 1 - i) * blockD;
+                    currentGrid[i][j].position.z = parsed.z || 0;
                 
-                    grid[i][j].castShadow = parsed.castShadow || false;
-                    grid[i][j].receiveShadow = parsed.receiveShadow || false;
+                    currentGrid[i][j].castShadow = parsed.castShadow || false;
+                    currentGrid[i][j].receiveShadow = parsed.receiveShadow || false;
                     
                 }
 
-                scene.add(grid[i][j]);
+                scene.add(currentGrid[i][j]);
                 
             }
         }
@@ -276,8 +278,8 @@ var Grid = {
                 block.receiveShadow = true;
                 break;
             case 1: //Shrub
-                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
-                  block.geometry = geo1;
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                //block.geometry = geo1;
                 block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
                 block.hitPad = 0;
                 block.z = 1;
@@ -327,8 +329,8 @@ var Grid = {
         if (block.set === "Interactable") {
             switch (typeSrc) {
             case 0:
-                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
-                  block.geometry = geo1;
+                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                //block.geometry = geo1;
                 block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
                 block.hitPad = 0.9;
                 block.z = 0.5;
