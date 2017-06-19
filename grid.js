@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("2:50");
+console.log("2:52");
 
 var Grid = {
     
@@ -218,7 +218,7 @@ var Grid = {
                     src = ("000000000000000" + currentGrid[i][j].toString(2)).slice(-16);
                     setSrc = parseInt(src.slice(0, 2), 2);
                     typeSrc = parseInt(src.slice(2, 7), 2);
-                    dataSrc = parseInt(src.splice(7), 2);
+                    dataSrc = parseInt(src.slice(7), 2);
                     parsed = this.parseSet(setSrc, typeSrc, dataSrc);
 
                     currentGrid[i][j] = new THREE.Mesh(parsed.geometry, parsed.material);
