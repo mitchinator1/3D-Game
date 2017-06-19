@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("3:36");
+console.log("3:51");
 
 var Grid = {
     
@@ -276,7 +276,8 @@ var Grid = {
         if (block.set === "Passable") {
             switch (typeSrc) {
             case 0: //Grass
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                //block.geometry = new THREE.BoxGeometry(blockW, blockD, 0.01);
+                block.geometry = new THREE.BoxBufferGeometry(blockW, blockD, 0.01);
                 block.material = new THREE.MeshLambertMaterial({ color: 0x33aa00 });
                 block.hitPad = 0;
                 block.receiveShadow = true;
@@ -308,7 +309,8 @@ var Grid = {
         if (block.set === "Wall") {
             switch (typeSrc) {
             case 0:
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
+                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH * 2);
+                block.geometry = new THREE.BoxBufferGeometry(blockW, blockD, blockH * 2);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xddaa55 });
                 block.hitPad = 0.9;
                 block.z = 1;
