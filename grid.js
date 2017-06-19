@@ -1,7 +1,9 @@
 var blockW, blockD, blockH,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid;
 
-console.log("10:55");
+var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
+
+console.log("11:25");
 
 var Grid = {
     
@@ -272,7 +274,8 @@ var Grid = {
                 block.receiveShadow = true;
                 break;
             case 1: //Shrub
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                  block.geometry = geo1;
                 block.material = new THREE.MeshLambertMaterial({ color: 0x119922 });
                 block.hitPad = 0;
                 block.z = 1;
@@ -322,7 +325,8 @@ var Grid = {
         if (block.set === "Interactable") {
             switch (typeSrc) {
             case 0:
-                block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                //block.geometry = new THREE.BoxGeometry(blockW, blockD, blockH);
+                  block.geometry = geo1;
                 block.material = new THREE.MeshLambertMaterial({ color: 0xddaa00 });
                 block.hitPad = 0.9;
                 block.z = 0.5;
