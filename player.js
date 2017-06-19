@@ -13,6 +13,7 @@ var Player = {
         scene.add(Player);
         
         Player.userData.controllable = true;
+        Player.userData.reading = false;
         Player.userData.setPosition = this.setPosition;
         Player.userData.pause = this.pause;
                 
@@ -40,6 +41,7 @@ var Player = {
                         
                             Player.position.x = grid[i][j].position.x;
                             Player.position.y = grid[i][j].position.y - blockD;
+                            break;
                             
                         }
                         
@@ -59,6 +61,7 @@ var Player = {
 
                     Player.position.x = grid[0][i].position.x;
                     Player.position.y = grid[0][i].position.y - blockD;
+                    break;
 
                 }
             }
@@ -74,6 +77,7 @@ var Player = {
 
                     Player.position.x = grid[grid.length - 1][i].position.x;
                     Player.position.y = grid[grid.length - 1][i].position.y + blockD;
+                    break;
 
                 }
             }
@@ -89,6 +93,7 @@ var Player = {
                     
                     Player.position.x = grid[i][grid[i].length - 1].position.x - blockW;
                     Player.position.y = grid[i][grid[i].length - 1].position.y;
+                    break;
                     
                 }
             }
@@ -104,6 +109,7 @@ var Player = {
                     
                     Player.position.x = grid[i][0].position.x + blockW;
                     Player.position.y = grid[i][0].position.y;
+                    break;
                     
                 }
             }

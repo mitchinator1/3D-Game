@@ -1,6 +1,6 @@
 var HUD, Player, Camera, Grid, Storage,
-    ctx, lastTs, timeDelta, movementSpeed, e, ESwitch = false, SpaceSwitch = false,
-    blockW, blockD, mainCam, pointLight;
+    ctx, lastTs, timeDelta, movementSpeed,
+    blockW, blockD, blockH, mainCam, pointLight;
 
 var Input =  {
 
@@ -84,15 +84,16 @@ var Input =  {
         //Left Direction
         if (this.AKey && Player.userData.controllable && !this.DKey) {
             
-            if (!Grid.hitDetect()) {
-                Player.position.x -= movementSpeed;
-            }
+            //if (!Grid.hitDetect()) {
+            Player.position.x -= movementSpeed;
+            //}
             if (Player.position.x < Camera.maxX - (Camera.padX * blockW) || Grid.hitDetect()) {
                 Camera.control.move(-movementSpeed, 0);
             }
             if (Player.position.x < Camera.minX * Camera.padX || Grid.hitDetect()) {
                 Camera.control.move(movementSpeed, 0);
             }
+            
             if (Grid.hitDetect()) {
                 Player.position.x += movementSpeed;
             }
@@ -102,15 +103,16 @@ var Input =  {
         //Right Direction
         if (this.DKey && Player.userData.controllable && !this.AKey) {
             
-            if (!Grid.hitDetect()) {
-                Player.position.x += movementSpeed;
-            }
+            //if (!Grid.hitDetect()) {
+            Player.position.x += movementSpeed;
+            //}
             if (Player.position.x > Camera.minX * Camera.padX || Grid.hitDetect()) {
                 Camera.control.move(movementSpeed, 0);
             }
             if (Player.position.x > Camera.maxX - (Camera.padX * blockW) || Grid.hitDetect()) {
                 Camera.control.move(-movementSpeed, 0);
             }
+            
             if (Grid.hitDetect()) {
                 Player.position.x -= movementSpeed;
             }
@@ -120,15 +122,16 @@ var Input =  {
         //Up Direction
         if (this.WKey && Player.userData.controllable && !this.SKey) {
             
-            if (!Grid.hitDetect()) {
-                Player.position.y += movementSpeed;
-            }
+            //if (!Grid.hitDetect()) {
+            Player.position.y += movementSpeed;
+            //}
             if (Player.position.y > Camera.minY * Camera.padY || Grid.hitDetect()) {
                 Camera.control.move(0, movementSpeed);
             }
             if (Player.position.y > Camera.maxY - (Camera.padY * blockD) || Grid.hitDetect()) {
                 Camera.control.move(0, -movementSpeed);
             }
+            
             if (Grid.hitDetect()) {
                 Player.position.y -= movementSpeed;
             }
@@ -138,9 +141,9 @@ var Input =  {
         //Down Direction
         if (this.SKey && Player.userData.controllable && !this.WKey) {
             
-            if (!Grid.hitDetect()) {
-                Player.position.y -= movementSpeed;
-            }
+            //if (!Grid.hitDetect()) {
+            Player.position.y -= movementSpeed;
+            //}
             if (Player.position.y < Camera.maxY - (Camera.padY * blockD) || Grid.hitDetect()) {
                 Camera.control.move(0, -movementSpeed);
             }
@@ -182,77 +185,103 @@ var Input =  {
         //Inventory switch on E Key
         if (this.EKey.down && !this.EKey.toggle) {
             
-            if (!HUD.showInventory) {
+            if (!HUD.showInventory && Player.userData.controllable) {
+                
                 HUD.showInventory = true;
                 Player.userData.controllable = false;
+                
             } else {
+                
                 HUD.showInventory = false;
                 Player.userData.controllable = true;
+                
             }
+            
             this.EKey.toggle = true;
+            
         }
         
         if (!this.EKey.down && this.EKey.toggle) {
             this.EKey.toggle = false;
         }
         
+        //Interaction button
         if (this.SpaceKey.down && !this.SpaceKey.toggle) {
-            var sign, chest, door;
+            var interact;
             this.SpaceKey.toggle = true;
             
-            //Check for interactable objects
-            if (Grid.hitDetect(6)) {
-                chest = Grid.hitDetect(6).userData;
+            if (Grid.hitDetect.interactable) {
                 
                 if (!Player.userData.controllable) {
                     Player.userData.controllable = true;
                     HUD.setRefreshArea("Full");
                 }
-                
-                if (!chest.interact.opened) {
 
-                    HUD.keyCount += 1;
+                interact = Grid.hitDetect.data;
 
-                    if (chest.interact.item === "Heart") {
-                        HUD.health(true, 1);
-                    }
-                    if (chest.interact.coins) {
-                        HUD.currency(chest.interact.coins);
-                    }
-                    chest.interact.opened = true;
-
-                    Player.userData.controllable = false;
-                    HUD.displayText("You found a " + chest.interact.item + ", 1 Key, and " + chest.interact.coins + " coins!", true);
-                }
-                
-            }
-            
-            if (Grid.hitDetect(7) && Player.position.y < Grid.hitDetect(7).position.y - blockD + 0.1) {
-                sign = Grid.hitDetect(7).userData;
-                
                 if (Player.userData.controllable) {
-                    Player.userData.controllable = false;
-                    HUD.displayText(sign.contents, true);
-                } else {
-                    Player.userData.controllable = true;
-                    HUD.setRefreshArea("Full");
-                }
-                
-            }
+                    
+                    if (interact.userData.type === "Chest") {
+                        if (interact.userData.opened === false) {
+                            Player.userData.controllable = false;
 
-            if (Grid.hitDetect(8)) {
-                
-                door = Grid.hitDetect(8);
-                
-                if (door.userData.locked && HUD.keyCount > 0) {
+                            if (interact.userData.contents.heart > 0) {
+                                HUD.displayText("You found a Heart", true);
+                                HUD.health(true, interact.userData.contents.heart);
+                            }
+
+                            if (interact.userData.contents.coins > 0) {
+                                HUD.displayText("You found " + interact.contents.coins + " coins", true);
+                                HUD.currency(interact.contents.coins);
+                            }
+                            
+                            if (interact.userData.contents.key > 0) {
+                                HUD.displayText("You found " + interact.userData.contents.key + " key", true);
+                                HUD.keyCount += 1;
+                            }
+
+                            if (interact.userData.contents.item !== undefined) {
+                                HUD.displayText("You found a " + interact.userData.item, true);
+                            }
                     
-                    Player.userData.pause(1);
-                    door.userData.locked = false;
-                    HUD.keyCount -= 1;
-                    door.position.z = -1.9;
+                            interact.userData.opened = true;
                     
+                        } else {
+                            Player.userData.controllable = true;
+                            HUD.setRefreshArea("True");
+                        }
+                    }
+                
+                    if (interact.userData.type === "Sign") {
+                        
+                        if (!Player.userData.reading) {
+                            
+                            Player.userData.controllable = false;
+                            Player.userData.reading = true;
+                            HUD.displayText(interact.userData.contents.message, true);
+                            
+                        } else {
+                            
+                            Player.userData.controllable = true;
+                            Player.userData.reading = false;
+                            HUD.setRefreshArea("Full");
+                            
+                        }
+                        
+                    }
+                    
+                    if (interact.userData.type === "Locked Door") {
+                        
+                        if (interact.userData.locked && HUD.keyCount > 0) {
+                            interact.userData.locked = false;
+                            HUD.keyCount -= 1;
+                            interact.position.z = -blockH + 0.1;
+                        }
+                        
+                    }
+
                 }
-                
+
             }
             
         }
