@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("1:24");
+console.log("1:33");
 
 var Grid = {
     
@@ -208,7 +208,7 @@ var Grid = {
         'use strict';
         var i, j, src, setSrc, typeSrc, dataSrc, parsed;
         
-        currentGrid = mapGrid[this.location][this.floor][this.Y][this.X];
+        currentGrid = mapGrid[this.location][this.floor][this.Y][this.X].slice();
         
         for (i = 0; i < currentGrid.length; i += 1) {
             console.log(currentGrid[i][0]);
