@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var geo1 = new THREE.BoxGeometry(blockW, blockD, blockH);
 
-console.log("12:56");
+console.log("1:22");
 
 var Grid = {
     
@@ -139,7 +139,6 @@ var Grid = {
         var block, hitPad, i, j;
     
         for (i = 0; i < currentGrid.length; i += 1) {
-            console.log(currentGrid[1][0]);
             for (j = 0; j < currentGrid[i].length; j += 1) {
 
                 block = currentGrid[i][j];
@@ -212,6 +211,7 @@ var Grid = {
         currentGrid = mapGrid[this.location][this.floor][this.Y][this.X];
         
         for (i = 0; i < currentGrid.length; i += 1) {
+            console.log(currentGrid[1][0]);
             for (j = 0; j < currentGrid[i].length; j += 1) {
                 
                 if (currentGrid[i][j].userData === undefined) {
