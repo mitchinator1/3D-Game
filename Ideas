@@ -15,3 +15,7 @@ player (x, y) = (4, 3) = 7
 enemy (x, y) = (7, 4) = 11
 - or -
 enemy (x, y) = (3, 6) = 9
+
+var globalCheeriosGeometry = new THREE.Geometry();
+// create 161 cherios meshes and add them to global geometry
+globalCheeriosGeometry.mergeMesh( cheeriosMesh );
