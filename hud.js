@@ -139,7 +139,7 @@ var HUD = {
             ctx.font = '16px Arial';
             ctx.fillStyle = 'rgba(255,255,255,1)';
             ctx.fillText("x" + this.coinCount, canvas.width - 34, 44);
-            ctx.drawImage(this.key, canvas.width - 68, 60. 32, 32);
+            ctx.drawImage(this.key, canvas.width - 68, 60, 32, 32);
             ctx.fillText("x" + this.keyCount, canvas.width - 34, 70);
             
             for (i = 0; i < this.heartCount; i += 1) {
