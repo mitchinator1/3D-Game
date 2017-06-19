@@ -225,7 +225,6 @@ var Grid = {
                     this.previousLocation = this.location;
                 
                     if (this.location === "Overworld") {
-                        //HUD.locationText("Dungeon 1");
                         this.setOverworldLocation("Dungeon 1");
                     } else if (this.location === "Dungeon 1") {
                         this.setOverworldLocation("Overworld");
