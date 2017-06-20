@@ -246,7 +246,6 @@ var Grid = {
         }
         
         console.timeEnd('renderTime');
-        console.table(currentGrid[0][0]);
         
     },
     
