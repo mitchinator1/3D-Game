@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
 
-console.log("4:09");
+console.log("5:22");
 
 var Grid = {
     
@@ -324,6 +324,9 @@ var Grid = {
                 block.castShadow = true;
                 block.receiveShadow = true;
                 break;
+            case 4:
+                block.type === "Roof";
+                break;
             default:
                 block.geometry = new THREE.BoxBufferGeometry(blockW / 2, blockD / 2, blockH * 5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
@@ -396,6 +399,16 @@ var Grid = {
     
     parseData: function (block, dataSrc) {
         'use strict';
+        
+        if (block.type === "Roof") {
+            switch (dataSrc) {
+            case 0:
+                block.geometry = new THREE.CylinderBufferGeometry(blockW, BlockD, blockH, 3);
+                block.material = new THREE.MeshLambertMaterial({ color: 0x33ffff });
+                block.z = 4;
+                break;
+            }
+        }
         
         if (block.set === "Door") {
             switch (dataSrc) {
