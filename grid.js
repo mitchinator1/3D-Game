@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
 
-console.log("5:22");
+console.log("5:25");
 
 var Grid = {
     
@@ -403,7 +403,7 @@ var Grid = {
         if (block.type === "Roof") {
             switch (dataSrc) {
             case 0:
-                block.geometry = new THREE.CylinderBufferGeometry(blockW, BlockD, blockH, 3);
+                block.geometry = new THREE.CylinderBufferGeometry(blockW, BlockD, blockH, 3);
                 block.material = new THREE.MeshLambertMaterial({ color: 0x33ffff });
                 block.z = 4;
                 break;
