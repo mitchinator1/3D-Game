@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
 
-console.log("5:40");
+console.log("1:54");
 
 var Grid = {
     
@@ -213,7 +213,7 @@ var Grid = {
         var i, j, src, setSrc, typeSrc, dataSrc, parsed;
         
         currentGrid = mapGrid[this.location][this.floor][this.Y][this.X].slice();
-        
+        console.time('renderTime');
         for (i = 0; i < currentGrid.length; i += 1) {
             for (j = 0; j < currentGrid[i].length; j += 1) {
                 
@@ -244,6 +244,8 @@ var Grid = {
                 
             }
         }
+        
+        console.timeEnd('renderTime');
         
     },
     
@@ -324,9 +326,6 @@ var Grid = {
                 block.castShadow = true;
                 block.receiveShadow = true;
                 break;
-            case 4:
-                block.type === "Roof";
-                break;
             default:
                 block.geometry = new THREE.BoxBufferGeometry(blockW / 2, blockD / 2, blockH * 5);
                 block.material = new THREE.MeshLambertMaterial({ color: 0xffffff });
@@ -399,16 +398,6 @@ var Grid = {
     
     parseData: function (block, dataSrc) {
         'use strict';
-        
-        if (block.type === "Roof") {
-            switch (dataSrc) {
-            case 0:
-                block.geometry = new THREE.CylinderGeometry(blockW, blockD, blockH, 3);
-                block.material = new THREE.MeshBasicMaterial({ color: 0x33ffff });
-                block.z = 4;
-                break;
-            }
-        }
         
         if (block.set === "Door") {
             switch (dataSrc) {
