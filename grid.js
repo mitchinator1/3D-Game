@@ -3,7 +3,7 @@ var blockW, blockD, blockH,
 
 var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
 
-console.log("1:54");
+console.log("1:56");
 
 var Grid = {
     
@@ -246,6 +246,7 @@ var Grid = {
         }
         
         console.timeEnd('renderTime');
+        console.table(currentGrid);
         
     },
     
