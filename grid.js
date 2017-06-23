@@ -2,8 +2,9 @@ var blockW, blockD, blockH,
     THREE, scene, Player, Camera, Lighting, ctx, canvas, HUD, Storage, mapGrid, currentGrid = [];
 
 var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
+var group = new THREE.Group();
 
-console.log("4:12");
+console.log("6:20");
 
 var Grid = {
     
@@ -240,11 +241,13 @@ var Grid = {
                     
                 }
 
-                scene.add(currentGrid[i][j]);
+                //scene.add(currentGrid[i][j]);
+                group.add(currentGrid[i][j]);
                 
             }
         }
         
+        scene.add(group);
         console.timeEnd('renderTime');
         
     },
