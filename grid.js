@@ -4,7 +4,7 @@ var blockW, blockD, blockH,
 var standardGeo = new THREE.BoxBufferGeometry(blockW, blockD, blockH);
 var group = new THREE.Group();
 
-console.log("6:20");
+console.log("6:22");
 
 var Grid = {
     
@@ -241,13 +241,13 @@ var Grid = {
                     
                 }
 
-                //scene.add(currentGrid[i][j]);
-                group.add(currentGrid[i][j]);
+                scene.add(currentGrid[i][j]);
+                //group.add(currentGrid[i][j]);
                 
             }
         }
         
-        scene.add(group);
+        //scene.add(group);
         console.timeEnd('renderTime');
         
     },
